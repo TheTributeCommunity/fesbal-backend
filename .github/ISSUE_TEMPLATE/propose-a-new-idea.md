@@ -1,6 +1,6 @@
 ---
-name: 'Backend issues '
-about: Describe this issue template's purpose here.
+name: Propose a new idea
+about: Use this template to suggest a new idea
 title: ''
 labels: ''
 assignees: ''
