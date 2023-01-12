@@ -1,6 +1,6 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import {RecipientUserCreated} from "../events/recipient-user-created";
+import { RecipientUserCreated } from '../events/recipient-user-created'
 
 @Command({
   authorize: 'all', // Specify authorized roles here. Use 'all' to authorize anyone

@@ -1,0 +1,67 @@
+[2023-01-11T15:07:40.724Z] 
+[2023-01-11T15:07:40.727Z] boost new:command CreateRecipientUser --fields recipientUserId:UUID firstName:string lastName:string password:string dateOfBirth:string address:string phone:number familyMembersCount:number
+[2023-01-11T15:07:40.727Z] CLI version 1.3.5 is higher than your project Booster version 0.30.4 in the 'breaking' section. Please upgrade your project Booster dependencies.[2023-01-11T15:15:00.362Z] 
+[2023-01-11T15:15:00.363Z] boost new:command CreateRecipientUser --fields recipientUserId:UUID firstName:string lastName:string password:string dateOfBirth:string address:string phone:number familyMembersCount:number
+[2023-01-11T15:15:00.363Z] CLI version 1.3.5 is higher than your project Booster version 0.30.4 in the 'breaking' section. Please upgrade your project Booster dependencies.[2023-01-11T15:18:00.225Z] 
+[2023-01-11T15:18:00.227Z] boost new:command CreateRecipientUser --fields recipientUserId:UUID firstName:string lastName:string password:string dateOfBirth:string address:string phone:number familyMembersCount:number
+[2023-01-11T15:18:00.227Z] CLI version 1.3.5 is higher than your project Booster version 0.30.4 in the 'breaking' section. Please upgrade your project Booster dependencies.[2023-01-12T11:05:53.644Z] 
+[2023-01-12T11:05:53.645Z] boost start -e local -p 8080
+[2023-01-12T11:05:53.645Z] Error: [38;5;210m[ChildProcessError] Project contains compilation errors:[39m
+[2023-01-12T11:05:53.645Z] Command failed: npm run build
+[2023-01-12T11:05:53.645Z] /Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:107465
+[2023-01-12T11:05:53.645Z]                 throw e;
+[2023-01-12T11:05:53.645Z]                 ^
+[2023-01-12T11:05:53.645Z] 
+[2023-01-12T11:05:53.645Z] NotImplementedError: For some reason the top parent was not a source file.
+[2023-01-12T11:05:53.645Z]     at getSourceFileFromNode (/Users/melina/GitHub/fesbal-backend/node_modules/ts-morph/dist/ts-morph.js:20358:19)
+[2023-01-12T11:05:53.645Z]     at getSourceFileNode (/Users/melina/GitHub/fesbal-backend/node_modules/ts-morph/dist/ts-morph.js:20347:76)
+[2023-01-12T11:05:53.645Z]     at createWrappedNode (/Users/melina/GitHub/fesbal-backend/node_modules/ts-morph/dist/ts-morph.js:20344:76)
+[2023-01-12T11:05:53.645Z]     at getClassInfo (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/metadata-booster/dist/metadata-extractors.js:9:51)
+[2023-01-12T11:05:53.645Z]     at visitor (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/metadata-booster/dist/index.js:31:78)
+[2023-01-12T11:05:53.645Z]     at visitNodes (/Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:81433:48)
+[2023-01-12T11:05:53.645Z]     at visitLexicalEnvironment (/Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:81473:22)
+[2023-01-12T11:05:53.645Z]     at Object.visitEachChild (/Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:81860:55)
+[2023-01-12T11:05:53.645Z]     at visitor (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/metadata-booster/dist/index.js:38:27)
+[2023-01-12T11:05:53.645Z]     at Object.visitNode (/Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:81380:23)
+[2023-01-12T11:05:53.645Z] 
+[2023-01-12T11:05:53.645Z] Node.js v19.4.0
+[2023-01-12T11:05:53.645Z]  `npm run build` (exited with error code 1)
+[2023-01-12T11:05:53.645Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/errors.js:18:12
+[2023-01-12T11:05:53.645Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/orDieWith.js:33:56
+[2023-01-12T11:05:53.645Z]     at Object.fold_ (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Either/core.js:417:23)
+[2023-01-12T11:05:53.645Z]     at HandlerFrame.apply (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/foldM.js:33:52)
+[2023-01-12T11:05:53.645Z]     at FiberContext.nextInstr (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:391:16)
+[2023-01-12T11:05:53.645Z]     at FiberContext.evaluateNow (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:870:40)
+[2023-01-12T11:05:53.645Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:558:47
+[2023-01-12T11:05:53.645Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Support/Scheduler/index.js:20:22
+[2023-01-12T11:05:53.645Z]     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[2023-01-12T11:06:40.955Z] 
+[2023-01-12T11:06:40.956Z] boost build 
+[2023-01-12T11:06:40.956Z] Error: [38;5;210m[ChildProcessError] Project contains compilation errors:[39m
+[2023-01-12T11:06:40.956Z] Command failed: npm run build
+[2023-01-12T11:06:40.956Z] /Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:107465
+[2023-01-12T11:06:40.956Z]                 throw e;
+[2023-01-12T11:06:40.956Z]                 ^
+[2023-01-12T11:06:40.956Z] 
+[2023-01-12T11:06:40.956Z] NotImplementedError: For some reason the top parent was not a source file.
+[2023-01-12T11:06:40.956Z]     at getSourceFileFromNode (/Users/melina/GitHub/fesbal-backend/node_modules/ts-morph/dist/ts-morph.js:20358:19)
+[2023-01-12T11:06:40.956Z]     at getSourceFileNode (/Users/melina/GitHub/fesbal-backend/node_modules/ts-morph/dist/ts-morph.js:20347:76)
+[2023-01-12T11:06:40.956Z]     at createWrappedNode (/Users/melina/GitHub/fesbal-backend/node_modules/ts-morph/dist/ts-morph.js:20344:76)
+[2023-01-12T11:06:40.956Z]     at getClassInfo (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/metadata-booster/dist/metadata-extractors.js:9:51)
+[2023-01-12T11:06:40.956Z]     at visitor (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/metadata-booster/dist/index.js:31:78)
+[2023-01-12T11:06:40.956Z]     at visitNodes (/Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:81433:48)
+[2023-01-12T11:06:40.956Z]     at visitLexicalEnvironment (/Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:81473:22)
+[2023-01-12T11:06:40.956Z]     at Object.visitEachChild (/Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:81860:55)
+[2023-01-12T11:06:40.956Z]     at visitor (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/metadata-booster/dist/index.js:38:27)
+[2023-01-12T11:06:40.956Z]     at Object.visitNode (/Users/melina/GitHub/fesbal-backend/node_modules/typescript/lib/typescript.js:81380:23)
+[2023-01-12T11:06:40.956Z] 
+[2023-01-12T11:06:40.956Z] Node.js v19.4.0
+[2023-01-12T11:06:40.956Z]  `npm run build` (exited with error code 1)
+[2023-01-12T11:06:40.956Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/errors.js:18:12
+[2023-01-12T11:06:40.956Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/orDieWith.js:33:56
+[2023-01-12T11:06:40.956Z]     at Object.fold_ (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Either/core.js:417:23)
+[2023-01-12T11:06:40.956Z]     at HandlerFrame.apply (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/foldM.js:33:52)
+[2023-01-12T11:06:40.956Z]     at FiberContext.nextInstr (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:391:16)
+[2023-01-12T11:06:40.956Z]     at FiberContext.evaluateNow (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:870:40)
+[2023-01-12T11:06:40.956Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:558:47
+[2023-01-12T11:06:40.956Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Support/Scheduler/index.js:20:22
+[2023-01-12T11:06:40.956Z]     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
