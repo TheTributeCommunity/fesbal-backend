@@ -1,5 +1,6 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
+import {RecipientUserCreated} from "../events/recipient-user-created";
 
 @Command({
   authorize: 'all', // Specify authorized roles here. Use 'all' to authorize anyone
@@ -17,6 +18,17 @@ export class CreateRecipientUser {
   ) {}
 
   public static async handle(command: CreateRecipientUser, register: Register): Promise<void> {
-    register.events(/* YOUR EVENT HERE */)
+    register.events(
+      new RecipientUserCreated(
+        command.recipientUserId,
+        command.firstName,
+        command.lastName,
+        command.password,
+        command.dateOfBirth,
+        command.address,
+        command.phone,
+        command.familyMembersCount
+      )
+    )
   }
 }
