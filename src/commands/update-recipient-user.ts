@@ -7,7 +7,7 @@ import { RecipientUserUpdated } from '../events/recipient-user-updated'
 })
 export class UpdateRecipientUser {
   public constructor(
-    readonly recipientUserid: UUID,
+    readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly password: string,
@@ -20,7 +20,7 @@ export class UpdateRecipientUser {
   public static async handle(command: UpdateRecipientUser, register: Register): Promise<void> {
     register.events(
       new RecipientUserUpdated(
-        command.recipientUserid,
+        command.recipientUserId,
         command.firstName,
         command.lastName,
         command.password,

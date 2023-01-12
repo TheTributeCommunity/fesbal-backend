@@ -4,7 +4,7 @@ import { UUID } from '@boostercloud/framework-types'
 @Event
 export class RecipientUserUpdated {
   public constructor(
-    readonly recipientUserid: UUID,
+    readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly password: string,
@@ -15,6 +15,6 @@ export class RecipientUserUpdated {
   ) {}
 
   public entityID(): UUID {
-    return this.recipientUserid
+    return this.recipientUserId
   }
 }

@@ -39,7 +39,7 @@ export class RecipientUser {
     currentRecipientUser?: RecipientUser
   ): RecipientUser {
     if (!currentRecipientUser) {
-      throw new RecipientUserNotFoundError(event.recipientUserid)
+      throw new RecipientUserNotFoundError(event.recipientUserId)
     }
 
     return {
