@@ -19,7 +19,7 @@ export class RecipientUserReadModel {
   @Projects(RecipientUser, 'id')
   public static projectRecipientUser(
     entity: RecipientUser,
-    currentUserRecipientReadModel?: RecipientUserReadModel
+    currentRecipientUserReadModel?: RecipientUserReadModel
   ): ProjectionResult<RecipientUserReadModel> {
     return new RecipientUserReadModel(
       entity.id,
