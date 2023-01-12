@@ -1,0 +1,20 @@
+import { Event } from '@boostercloud/framework-core'
+import { UUID } from '@boostercloud/framework-types'
+
+@Event
+export class RecipientUserUpdated {
+  public constructor(
+    readonly recipientUserid: UUID,
+    readonly firstName: string,
+    readonly lastName: string,
+    readonly password: string,
+    readonly dateOfBirth: string,
+    readonly address: string,
+    readonly phone: number,
+    readonly familyMembersCount: number
+  ) {}
+
+  public entityID(): UUID {
+    return this.recipientUserid
+  }
+}
