@@ -46,13 +46,13 @@ export class RecipientUser {
 
     return {
       ...currentRecipientUser,
-      firstName: event.firstName,
-      lastName: event.lastName,
-      password: event.password,
-      dateOfBirth: event.dateOfBirth,
-      address: event.address,
-      phone: event.phone,
-      familyMembersCount: event.familyMembersCount,
+      firstName: event.firstName ?? currentRecipientUser.firstName,
+      lastName: event.lastName ?? currentRecipientUser.lastName,
+      password: event.password ?? currentRecipientUser.password,
+      dateOfBirth: event.dateOfBirth ?? currentRecipientUser.dateOfBirth,
+      address: event.address ?? currentRecipientUser.address,
+      phone: event.phone ?? currentRecipientUser.phone,
+      familyMembersCount: event.familyMembersCount ?? currentRecipientUser.familyMembersCount,
     }
   }
 

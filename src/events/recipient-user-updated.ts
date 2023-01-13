@@ -5,13 +5,13 @@ import { UUID } from '@boostercloud/framework-types'
 export class RecipientUserUpdated {
   public constructor(
     readonly recipientUserId: UUID,
-    readonly firstName: string,
-    readonly lastName: string,
-    readonly password: string,
-    readonly dateOfBirth: string,
-    readonly address: string,
-    readonly phone: number,
-    readonly familyMembersCount: number
+    readonly firstName?: string,
+    readonly lastName?: string,
+    readonly password?: string,
+    readonly dateOfBirth?: string,
+    readonly address?: string,
+    readonly phone?: number,
+    readonly familyMembersCount?: number
   ) {}
 
   public entityID(): UUID {
