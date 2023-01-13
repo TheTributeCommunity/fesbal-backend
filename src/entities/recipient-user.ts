@@ -2,7 +2,6 @@ import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
 import { RecipientUserUpdated } from '../events/recipient-user-updated'
-import { RecipientUserNotFoundError } from '../common/recipient-user-not-found-error'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
 
 @Entity
@@ -18,6 +17,10 @@ export class RecipientUser {
     readonly familyMembersCount: number,
     readonly deleted: boolean = false
   ) {}
+
+  private static createEmpty() {
+    return new RecipientUser(UUID.generate(), '', '', '', '', '', 0, 0, true)
+  }
 
   @Reduces(RecipientUserCreated)
   public static reduceRecipientUserCreated(
@@ -41,7 +44,7 @@ export class RecipientUser {
     currentRecipientUser?: RecipientUser
   ): RecipientUser {
     if (!currentRecipientUser) {
-      throw new RecipientUserNotFoundError(event.recipientUserId)
+      return RecipientUser.createEmpty()
     }
 
     return {
@@ -62,7 +65,7 @@ export class RecipientUser {
     currentRecipientUser?: RecipientUser
   ): RecipientUser {
     if (!currentRecipientUser) {
-      throw new RecipientUserNotFoundError(event.recipientUserId)
+      return RecipientUser.createEmpty()
     }
 
     return {

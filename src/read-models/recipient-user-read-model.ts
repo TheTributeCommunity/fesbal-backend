@@ -1,5 +1,5 @@
 import { ReadModel, Projects } from '@boostercloud/framework-core'
-import {UUID, ProjectionResult, ReadModelAction} from '@boostercloud/framework-types'
+import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework-types'
 import { RecipientUser } from '../entities/recipient-user'
 
 @ReadModel({
