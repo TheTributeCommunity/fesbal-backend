@@ -10,6 +10,7 @@ export class RecipientUser {
     public id: UUID,
     readonly firstName: string,
     readonly lastName: string,
+    readonly email: string,
     readonly password: string,
     readonly dateOfBirth: string,
     readonly address: string,
@@ -19,7 +20,7 @@ export class RecipientUser {
   ) {}
 
   private static createEmpty() {
-    return new RecipientUser(UUID.generate(), '', '', '', '', '', 0, 0, true)
+    return new RecipientUser(UUID.generate(), '', '', '', '', '', '', 0, 0, true)
   }
 
   @Reduces(RecipientUserCreated)
@@ -31,6 +32,7 @@ export class RecipientUser {
       event.recipientUserId,
       event.firstName,
       event.lastName,
+      event.email,
       event.password,
       event.dateOfBirth,
       event.address,
