@@ -64,4 +64,188 @@
 [2023-01-12T11:06:40.956Z]     at FiberContext.evaluateNow (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:870:40)
 [2023-01-12T11:06:40.956Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:558:47
 [2023-01-12T11:06:40.956Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Support/Scheduler/index.js:20:22
-[2023-01-12T11:06:40.956Z]     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[2023-01-12T11:06:40.956Z]     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)[2023-01-13T16:53:27.761Z] 
+[2023-01-13T16:53:27.761Z] boost start -e local
+[2023-01-13T16:53:27.761Z] Error: [38;5;210m[ChildProcessError] Project contains compilation errors:[39m
+[2023-01-13T16:53:27.761Z] Command failed: npm run build
+[2023-01-13T16:53:27.761Z]  `npm run build` (exited with error code 1)
+[2023-01-13T16:53:27.761Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/errors.js:18:12
+[2023-01-13T16:53:27.761Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/orDieWith.js:33:56
+[2023-01-13T16:53:27.761Z]     at Object.fold_ (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Either/core.js:417:23)
+[2023-01-13T16:53:27.761Z]     at HandlerFrame.apply (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/foldM.js:33:52)
+[2023-01-13T16:53:27.761Z]     at FiberContext.nextInstr (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:391:16)
+[2023-01-13T16:53:27.761Z]     at FiberContext.evaluateNow (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:870:40)
+[2023-01-13T16:53:27.761Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:558:47
+[2023-01-13T16:53:27.761Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Support/Scheduler/index.js:20:22
+[2023-01-13T16:53:27.761Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)[2023-01-13T16:56:49.977Z] 
+[2023-01-13T16:56:49.977Z] boost start -e local
+[2023-01-13T16:56:49.977Z] Error: Attempted to perform the 'start' operation with a provider that does not support this feature, please check your environment configuration.
+[2023-01-13T16:56:49.977Z]     at supportedInfrastructureMethodOrDie (/opt/homebrew/lib/node_modules/@boostercloud/cli/dist/services/provider-service.js:33:15)
+[2023-01-13T16:56:49.977Z]     at startProvider (/opt/homebrew/lib/node_modules/@boostercloud/cli/dist/services/provider-service.js:50:12)
+[2023-01-13T16:56:49.977Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/script.js:30:19
+[2023-01-13T16:56:49.977Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/fp-ts/lib/TaskEither.js:229:42
+[2023-01-13T16:56:49.977Z]     at step (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/fp-ts/lib/TaskEither.js:56:23)
+[2023-01-13T16:56:49.977Z]     at Object.next (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/fp-ts/lib/TaskEither.js:37:53)
+[2023-01-13T16:56:49.977Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/fp-ts/lib/TaskEither.js:31:71
+[2023-01-13T16:56:49.977Z]     at new Promise (<anonymous>)
+[2023-01-13T16:56:49.977Z]     at __awaiter (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/fp-ts/lib/TaskEither.js:27:12)
+[2023-01-13T16:56:49.977Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/fp-ts/lib/TaskEither.js:223:33[2023-01-15T11:57:03.773Z] 
+[2023-01-15T11:57:03.773Z] boost deploy -e development
+[2023-01-15T11:57:03.773Z] Error: Unable to load default AWS account. Check that you have properly set your AWS credentials in `~/.aws/credentials` file or the corresponding environment variables. Refer to AWS documentation for more details https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html
+[2023-01-15T11:57:03.773Z]     at getEnvironment (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:33:15)
+[2023-01-15T11:57:03.773Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2023-01-15T11:57:03.773Z]     at getStackServiceConfiguration (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:48:25)
+[2023-01-15T11:57:03.773Z]     at deploy (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/deploy.js:14:46)
+[2023-01-15T11:57:03.773Z]     at deploy (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/index.js:11:35)
+[2023-01-15T11:57:03.773Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/script.js:30:13[2023-01-15T11:58:24.575Z] 
+[2023-01-15T11:58:24.575Z] boost deploy -e development
+[2023-01-15T11:58:24.575Z] Error: Unable to load default AWS account. Check that you have properly set your AWS credentials in `~/.aws/credentials` file or the corresponding environment variables. Refer to AWS documentation for more details https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html
+[2023-01-15T11:58:24.575Z]     at getEnvironment (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:33:15)
+[2023-01-15T11:58:24.575Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2023-01-15T11:58:24.575Z]     at getStackServiceConfiguration (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:48:25)
+[2023-01-15T11:58:24.575Z]     at deploy (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/deploy.js:14:46)
+[2023-01-15T11:58:24.575Z]     at deploy (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/index.js:11:35)
+[2023-01-15T11:58:24.575Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/script.js:30:13[2023-01-15T12:00:46.754Z] 
+[2023-01-15T12:00:46.754Z] boost deploy -e development
+[2023-01-15T12:00:46.754Z] Error: Unable to load default AWS account. Check that you have properly set your AWS credentials in `~/.aws/credentials` file or the corresponding environment variables. Refer to AWS documentation for more details https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html
+[2023-01-15T12:00:46.754Z]     at getEnvironment (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:33:15)
+[2023-01-15T12:00:46.754Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2023-01-15T12:00:46.754Z]     at getStackServiceConfiguration (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:48:25)
+[2023-01-15T12:00:46.754Z]     at deploy (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/deploy.js:14:46)
+[2023-01-15T12:00:46.754Z]     at deploy (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/index.js:11:35)
+[2023-01-15T12:00:46.754Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/script.js:30:13[2023-01-15T12:03:34.705Z] 
+[2023-01-15T12:03:34.705Z] boost deploy -e development
+[2023-01-15T12:03:34.705Z] Error: Unable to load default AWS account. Check that you have properly set your AWS credentials in `~/.aws/credentials` file or the corresponding environment variables. Refer to AWS documentation for more details https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html
+[2023-01-15T12:03:34.705Z]     at getEnvironment (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:33:15)
+[2023-01-15T12:03:34.705Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2023-01-15T12:03:34.705Z]     at getStackServiceConfiguration (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:48:25)
+[2023-01-15T12:03:34.705Z]     at deploy (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/deploy.js:14:46)
+[2023-01-15T12:03:34.705Z]     at deploy (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/index.js:11:35)
+[2023-01-15T12:03:34.705Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/script.js:30:13[2023-01-15T12:13:39.386Z] 
+[2023-01-15T12:13:39.386Z] boost deploy -e development
+[2023-01-15T12:13:39.386Z] TypeError: Cannot read properties of undefined (reading 'BOOSTER_JWKS_URI')
+[2023-01-15T12:13:39.386Z]     at Function.createEnvVars (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:282:134)
+[2023-01-15T12:13:39.386Z]     at mountStack (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:28:23)
+[2023-01-15T12:13:39.386Z]     at /Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:94
+[2023-01-15T12:13:39.386Z]     at Array.forEach (<anonymous>)
+[2023-01-15T12:13:39.386Z]     at ApplicationStackBuilder.buildOn (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:67)
+[2023-01-15T12:13:39.386Z]     at assemble (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:13:61)
+[2023-01-15T12:13:39.386Z]     at Object.synthesizer (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:54:34)
+[2023-01-15T12:13:39.386Z]     at CloudExecutable.doSynthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:79:41)
+[2023-01-15T12:13:39.386Z]     at CloudExecutable.synthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:65:40)
+[2023-01-15T12:13:39.386Z]     at CdkToolkit.assembly (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/cdk-toolkit.ts:680:39)[2023-01-15T13:06:12.176Z] 
+[2023-01-15T13:06:12.176Z] boost deploy -e development
+[2023-01-15T13:06:12.176Z] TypeError: Cannot read properties of undefined (reading 'BOOSTER_JWKS_URI')
+[2023-01-15T13:06:12.176Z]     at Function.createEnvVars (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:282:134)
+[2023-01-15T13:06:12.176Z]     at mountStack (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:28:23)
+[2023-01-15T13:06:12.176Z]     at /Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:94
+[2023-01-15T13:06:12.176Z]     at Array.forEach (<anonymous>)
+[2023-01-15T13:06:12.176Z]     at ApplicationStackBuilder.buildOn (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:67)
+[2023-01-15T13:06:12.176Z]     at assemble (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:13:61)
+[2023-01-15T13:06:12.176Z]     at Object.synthesizer (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:54:34)
+[2023-01-15T13:06:12.176Z]     at CloudExecutable.doSynthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:79:41)
+[2023-01-15T13:06:12.176Z]     at CloudExecutable.synthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:65:40)
+[2023-01-15T13:06:12.176Z]     at CdkToolkit.assembly (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/cdk-toolkit.ts:680:39)[2023-01-15T13:11:31.970Z] 
+[2023-01-15T13:11:31.970Z] boost deploy -e development
+[2023-01-15T13:11:31.970Z] TypeError: Cannot read properties of undefined (reading 'BOOSTER_JWKS_URI')
+[2023-01-15T13:11:31.970Z]     at Function.createEnvVars (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:282:134)
+[2023-01-15T13:11:31.970Z]     at mountStack (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:28:23)
+[2023-01-15T13:11:31.970Z]     at /Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:94
+[2023-01-15T13:11:31.970Z]     at Array.forEach (<anonymous>)
+[2023-01-15T13:11:31.970Z]     at ApplicationStackBuilder.buildOn (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:67)
+[2023-01-15T13:11:31.970Z]     at assemble (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:13:61)
+[2023-01-15T13:11:31.970Z]     at Object.synthesizer (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:54:34)
+[2023-01-15T13:11:31.970Z]     at CloudExecutable.doSynthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:79:41)
+[2023-01-15T13:11:31.970Z]     at CloudExecutable.synthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:65:40)
+[2023-01-15T13:11:31.970Z]     at CdkToolkit.assembly (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/cdk-toolkit.ts:680:39)[2023-01-15T13:32:09.658Z] 
+[2023-01-15T13:32:09.658Z] boost deploy -e development
+[2023-01-15T13:32:09.658Z] TypeError: Cannot read properties of undefined (reading 'BOOSTER_JWKS_URI')
+[2023-01-15T13:32:09.658Z]     at Function.createEnvVars (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:282:134)
+[2023-01-15T13:32:09.658Z]     at mountStack (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:28:23)
+[2023-01-15T13:32:09.658Z]     at /Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:94
+[2023-01-15T13:32:09.658Z]     at Array.forEach (<anonymous>)
+[2023-01-15T13:32:09.658Z]     at ApplicationStackBuilder.buildOn (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:67)
+[2023-01-15T13:32:09.658Z]     at assemble (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:13:61)
+[2023-01-15T13:32:09.658Z]     at Object.synthesizer (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:54:34)
+[2023-01-15T13:32:09.658Z]     at CloudExecutable.doSynthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:79:41)
+[2023-01-15T13:32:09.658Z]     at CloudExecutable.synthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:65:40)
+[2023-01-15T13:32:09.658Z]     at CdkToolkit.assembly (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/cdk-toolkit.ts:680:39)[2023-01-15T15:45:09.862Z] 
+[2023-01-15T15:45:09.862Z] boost deploy -e development
+[2023-01-15T15:45:09.862Z] [38;5;210m[ChildProcessError] Project contains compilation errors:[39m
+[2023-01-15T15:45:09.862Z] Command failed: npm run build
+[2023-01-15T15:45:09.862Z]  `npm run build` (exited with error code 1)[2023-01-15T15:46:24.374Z] 
+[2023-01-15T15:46:24.374Z] boost deploy -e development
+[2023-01-15T15:46:24.374Z] TypeError: Cannot read properties of undefined (reading 'BOOSTER_JWKS_URI')
+[2023-01-15T15:46:24.374Z]     at Function.createEnvVars (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:282:134)
+[2023-01-15T15:46:24.374Z]     at mountStack (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/rocket-auth-aws-infrastructure/dist/auth-stack.js:28:23)
+[2023-01-15T15:46:24.374Z]     at /Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:94
+[2023-01-15T15:46:24.374Z]     at Array.forEach (<anonymous>)
+[2023-01-15T15:46:24.374Z]     at ApplicationStackBuilder.buildOn (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stacks/application-stack.js:36:67)
+[2023-01-15T15:46:24.374Z]     at assemble (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:13:61)
+[2023-01-15T15:46:24.374Z]     at Object.synthesizer (/Users/melina/GitHub/fesbal-backend/node_modules/@boostercloud/framework-provider-aws-infrastructure/dist/infrastructure/stack-tools.js:54:34)
+[2023-01-15T15:46:24.374Z]     at CloudExecutable.doSynthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:79:41)
+[2023-01-15T15:46:24.374Z]     at CloudExecutable.synthesize (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/api/cxapp/cloud-executable.ts:65:40)
+[2023-01-15T15:46:24.374Z]     at CdkToolkit.assembly (/Users/melina/GitHub/fesbal-backend/node_modules/aws-cdk/lib/cdk-toolkit.ts:680:39)[2023-01-16T11:41:23.751Z] 
+[2023-01-16T11:41:23.751Z] boost start -e local
+[2023-01-16T11:41:23.751Z] Error: [38;5;210m[ChildProcessError] Project contains compilation errors:[39m
+[2023-01-16T11:41:23.751Z] Command failed: npm run build
+[2023-01-16T11:41:23.751Z]  `npm run build` (exited with error code 1)
+[2023-01-16T11:41:23.751Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/errors.js:18:12
+[2023-01-16T11:41:23.751Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/orDieWith.js:33:56
+[2023-01-16T11:41:23.751Z]     at Object.fold_ (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Either/core.js:417:23)
+[2023-01-16T11:41:23.751Z]     at HandlerFrame.apply (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/foldM.js:33:52)
+[2023-01-16T11:41:23.751Z]     at FiberContext.nextInstr (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:391:16)
+[2023-01-16T11:41:23.751Z]     at FiberContext.evaluateNow (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:870:40)
+[2023-01-16T11:41:23.751Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:558:47
+[2023-01-16T11:41:23.751Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Support/Scheduler/index.js:20:22
+[2023-01-16T11:41:23.751Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)[2023-01-16T11:43:12.243Z] 
+[2023-01-16T11:43:12.243Z] boost build 
+[2023-01-16T11:43:12.243Z] Error: [38;5;210m[ChildProcessError] Project contains compilation errors:[39m
+[2023-01-16T11:43:12.243Z] Command failed: npm run build
+[2023-01-16T11:43:12.243Z]  `npm run build` (exited with error code 1)
+[2023-01-16T11:43:12.243Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/errors.js:18:12
+[2023-01-16T11:43:12.243Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/orDieWith.js:33:56
+[2023-01-16T11:43:12.243Z]     at Object.fold_ (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Either/core.js:417:23)
+[2023-01-16T11:43:12.243Z]     at HandlerFrame.apply (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/foldM.js:33:52)
+[2023-01-16T11:43:12.243Z]     at FiberContext.nextInstr (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:391:16)
+[2023-01-16T11:43:12.243Z]     at FiberContext.evaluateNow (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:870:40)
+[2023-01-16T11:43:12.243Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:558:47
+[2023-01-16T11:43:12.243Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Support/Scheduler/index.js:20:22
+[2023-01-16T11:43:12.243Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)[2023-01-16T11:44:14.354Z] 
+[2023-01-16T11:44:14.354Z] boost build 
+[2023-01-16T11:44:14.354Z] Error: [38;5;210m[ChildProcessError] Project contains compilation errors:[39m
+[2023-01-16T11:44:14.354Z] Command failed: npm run build
+[2023-01-16T11:44:14.354Z]  `npm run build` (exited with error code 1)
+[2023-01-16T11:44:14.354Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/errors.js:18:12
+[2023-01-16T11:44:14.354Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/orDieWith.js:33:56
+[2023-01-16T11:44:14.354Z]     at Object.fold_ (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Either/core.js:417:23)
+[2023-01-16T11:44:14.354Z]     at HandlerFrame.apply (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/foldM.js:33:52)
+[2023-01-16T11:44:14.354Z]     at FiberContext.nextInstr (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:391:16)
+[2023-01-16T11:44:14.354Z]     at FiberContext.evaluateNow (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:870:40)
+[2023-01-16T11:44:14.354Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:558:47
+[2023-01-16T11:44:14.354Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Support/Scheduler/index.js:20:22
+[2023-01-16T11:44:14.354Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)[2023-01-16T17:30:07.719Z] 
+[2023-01-16T17:30:07.719Z] boost start -e local
+[2023-01-16T17:30:07.719Z] Error: Service account object must contain a string "project_id" property.
+[2023-01-16T17:30:07.719Z]     at new ServiceAccount (/Users/melina/GitHub/fesbal-backend/node_modules/firebase-admin/lib/app/credential-internal.js:136:19)
+[2023-01-16T17:30:07.719Z]     at new ServiceAccountCredential (/Users/melina/GitHub/fesbal-backend/node_modules/firebase-admin/lib/app/credential-internal.js:70:15)
+[2023-01-16T17:30:07.719Z]     at cert (/Users/melina/GitHub/fesbal-backend/node_modules/firebase-admin/lib/app/credential-factory.js:103:54)
+[2023-01-16T17:30:07.719Z]     at Object.<anonymous> (/Users/melina/GitHub/fesbal-backend/dist/config/firebase-config.js:7:32)
+[2023-01-16T17:30:07.719Z]     at Module._compile (node:internal/modules/cjs/loader:1165:14)
+[2023-01-16T17:30:07.719Z]     at Object.Module._extensions..js (node:internal/modules/cjs/loader:1219:10)
+[2023-01-16T17:30:07.719Z]     at Module.load (node:internal/modules/cjs/loader:1043:32)
+[2023-01-16T17:30:07.719Z]     at Function.Module._load (node:internal/modules/cjs/loader:878:12)
+[2023-01-16T17:30:07.719Z]     at Module.require (node:internal/modules/cjs/loader:1067:19)
+[2023-01-16T17:30:07.719Z]     at require (node:internal/modules/cjs/helpers:103:18)[2023-01-16T17:34:03.537Z] 
+[2023-01-16T17:34:03.537Z] boost start -e local
+[2023-01-16T17:34:03.537Z] Error: Failed to parse private key: Error: Invalid PEM formatted message.
+[2023-01-16T17:34:03.537Z]     at new ServiceAccount (/Users/melina/GitHub/fesbal-backend/node_modules/firebase-admin/lib/app/credential-internal.js:144:19)
+[2023-01-16T17:34:03.537Z]     at new ServiceAccountCredential (/Users/melina/GitHub/fesbal-backend/node_modules/firebase-admin/lib/app/credential-internal.js:70:15)
+[2023-01-16T17:34:03.537Z]     at cert (/Users/melina/GitHub/fesbal-backend/node_modules/firebase-admin/lib/app/credential-factory.js:103:54)
+[2023-01-16T17:34:03.537Z]     at Object.<anonymous> (/Users/melina/GitHub/fesbal-backend/dist/config/firebase-config.js:7:32)
+[2023-01-16T17:34:03.537Z]     at Module._compile (node:internal/modules/cjs/loader:1165:14)
+[2023-01-16T17:34:03.537Z]     at Object.Module._extensions..js (node:internal/modules/cjs/loader:1219:10)
+[2023-01-16T17:34:03.537Z]     at Module.load (node:internal/modules/cjs/loader:1043:32)
+[2023-01-16T17:34:03.537Z]     at Function.Module._load (node:internal/modules/cjs/loader:878:12)
+[2023-01-16T17:34:03.537Z]     at Module.require (node:internal/modules/cjs/loader:1067:19)
+[2023-01-16T17:34:03.537Z]     at require (node:internal/modules/cjs/helpers:103:18)
