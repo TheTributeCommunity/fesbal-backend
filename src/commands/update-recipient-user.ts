@@ -12,11 +12,11 @@ export class UpdateRecipientUser {
     readonly recipientUserId: UUID,
     readonly firstName?: string,
     readonly lastName?: string,
+    readonly dateOfBirth?: string,
     readonly email?: string,
     readonly password?: string,
-    readonly dateOfBirth?: string,
-    readonly address?: string,
-    readonly phone?: number,
+    readonly typeOfIdentityDocument?: 'ID' | 'passport',
+    readonly identityDocumentNumber?: string,
     readonly familyMembersCount?: number
   ) {}
 
@@ -31,11 +31,11 @@ export class UpdateRecipientUser {
         command.recipientUserId,
         command.firstName,
         command.lastName,
+        command.dateOfBirth,
         command.email,
         command.password,
-        command.dateOfBirth,
-        command.address,
-        command.phone,
+        command.typeOfIdentityDocument,
+        command.identityDocumentNumber,
         command.familyMembersCount
       )
     )

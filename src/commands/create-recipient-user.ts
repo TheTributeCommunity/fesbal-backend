@@ -11,12 +11,8 @@ export class CreateRecipientUser {
     readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
-    readonly email: string,
-    readonly password: string,
     readonly dateOfBirth: string,
-    readonly address: string,
-    readonly phone: number,
-    readonly familyMembersCount: number
+    readonly phone: number
   ) {}
 
   public static async handle(command: CreateRecipientUser, register: Register): Promise<void> {
@@ -25,12 +21,8 @@ export class CreateRecipientUser {
         command.recipientUserId,
         command.firstName,
         command.lastName,
-        command.email,
-        command.password,
         command.dateOfBirth,
-        command.address,
-        command.phone,
-        command.familyMembersCount
+        command.phone
       )
     )
   }

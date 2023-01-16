@@ -10,17 +10,21 @@ export class RecipientUser {
     public id: UUID,
     readonly firstName: string,
     readonly lastName: string,
-    readonly email: string,
-    readonly password: string,
     readonly dateOfBirth: string,
-    readonly address: string,
     readonly phone: number,
-    readonly familyMembersCount: number,
+    readonly phone_verified: boolean = false,
+    readonly email?: string,
+    readonly password?: string,
+    readonly typeOfIdentityDocument?: 'ID' | 'passport',
+    readonly identityDocumentNumber?: string,
+    readonly familyMembersCount?: number,
+    readonly referralSheet?: string,
+    readonly applicationStatus?: string,
     readonly deleted: boolean = false
   ) {}
 
   private static createEmpty() {
-    return new RecipientUser(UUID.generate(), '', '', '', '', '', '', 0, 0, true)
+    return new RecipientUser(UUID.generate(), '', '', '', 0, false, '', '', 'ID', '', 0, '', '', true)
   }
 
   @Reduces(RecipientUserCreated)
@@ -28,17 +32,7 @@ export class RecipientUser {
     event: RecipientUserCreated,
     currentRecipientUser?: RecipientUser
   ): RecipientUser {
-    return new RecipientUser(
-      event.recipientUserId,
-      event.firstName,
-      event.lastName,
-      event.email,
-      event.password,
-      event.dateOfBirth,
-      event.address,
-      event.phone,
-      event.familyMembersCount
-    )
+    return new RecipientUser(event.recipientUserId, event.firstName, event.lastName, event.dateOfBirth, event.phone)
   }
   @Reduces(RecipientUserUpdated)
   public static reduceRecipientUserUpdated(
@@ -53,10 +47,11 @@ export class RecipientUser {
       ...currentRecipientUser,
       firstName: event.firstName ?? currentRecipientUser.firstName,
       lastName: event.lastName ?? currentRecipientUser.lastName,
-      password: event.password ?? currentRecipientUser.password,
       dateOfBirth: event.dateOfBirth ?? currentRecipientUser.dateOfBirth,
-      address: event.address ?? currentRecipientUser.address,
-      phone: event.phone ?? currentRecipientUser.phone,
+      email: event.email ?? currentRecipientUser.email,
+      password: event.password ?? currentRecipientUser.password,
+      typeOfIdentityDocument: event.typeOfIdentityDocument ?? currentRecipientUser.typeOfIdentityDocument,
+      identityDocumentNumber: event.identityDocumentNumber ?? currentRecipientUser.identityDocumentNumber,
       familyMembersCount: event.familyMembersCount ?? currentRecipientUser.familyMembersCount,
     }
   }

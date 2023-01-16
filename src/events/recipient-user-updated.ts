@@ -7,11 +7,11 @@ export class RecipientUserUpdated {
     readonly recipientUserId: UUID,
     readonly firstName?: string,
     readonly lastName?: string,
+    readonly dateOfBirth?: string,
     readonly email?: string,
     readonly password?: string,
-    readonly dateOfBirth?: string,
-    readonly address?: string,
-    readonly phone?: number,
+    readonly typeOfIdentityDocument?: 'ID' | 'passport',
+    readonly identityDocumentNumber?: string,
     readonly familyMembersCount?: number
   ) {}
 
