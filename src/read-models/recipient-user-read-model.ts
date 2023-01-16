@@ -10,12 +10,16 @@ export class RecipientUserReadModel {
     public id: UUID,
     readonly firstName: string,
     readonly lastName: string,
-    readonly email: string,
-    readonly password: string,
     readonly dateOfBirth: string,
-    readonly address: string,
     readonly phone: number,
-    readonly familyMembersCount: number,
+    readonly phone_verified: boolean,
+    readonly email?: string,
+    readonly password?: string,
+    readonly typeOfIdentityDocument?: 'ID' | 'passport',
+    readonly identityDocumentNumber?: string,
+    readonly familyMembersCount?: number,
+    readonly referralSheet?: string,
+    readonly applicationStatus?: string,
     readonly deleted?: boolean
   ) {}
 
@@ -32,12 +36,16 @@ export class RecipientUserReadModel {
       entity.id,
       entity.firstName,
       entity.lastName,
+      entity.dateOfBirth,
+      entity.phone,
+      entity.phone_verified,
       entity.email,
       entity.password,
-      entity.dateOfBirth,
-      entity.address,
-      entity.phone,
-      entity.familyMembersCount
+      entity.typeOfIdentityDocument,
+      entity.identityDocumentNumber,
+      entity.familyMembersCount,
+      entity.referralSheet,
+      entity.applicationStatus
     )
   }
 }
