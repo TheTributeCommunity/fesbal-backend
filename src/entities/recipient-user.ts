@@ -12,7 +12,7 @@ export class RecipientUser {
     readonly lastName: string,
     readonly dateOfBirth: string,
     readonly phone: number,
-    readonly phone_verified: boolean = false,
+    readonly phoneVerified: boolean = true,
     readonly email?: string,
     readonly password?: string,
     readonly typeOfIdentityDocument?: 'ID' | 'passport',
