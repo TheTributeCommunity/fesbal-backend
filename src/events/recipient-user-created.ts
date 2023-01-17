@@ -8,6 +8,8 @@ export class RecipientUserCreated {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
+    readonly typeOfIdentityDocument: 'ID' | 'passport',
+    readonly identityDocumentNumber: string,
     readonly phone: number
   ) {}
 

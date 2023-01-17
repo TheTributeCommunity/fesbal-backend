@@ -1,10 +1,10 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
-import { RecipientUser } from '../config/roles'
+import { User } from '../common/roles'
 
 @Command({
-  authorize: [RecipientUser],
+  authorize: [User],
 })
 export class CreateRecipientUser {
   public constructor(
@@ -12,6 +12,8 @@ export class CreateRecipientUser {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
+    readonly typeOfIdentityDocument: 'ID' | 'passport',
+    readonly identityDocumentNumber: string,
     readonly phone: number
   ) {}
 
@@ -22,6 +24,8 @@ export class CreateRecipientUser {
         command.firstName,
         command.lastName,
         command.dateOfBirth,
+        command.typeOfIdentityDocument,
+        command.identityDocumentNumber,
         command.phone
       )
     )

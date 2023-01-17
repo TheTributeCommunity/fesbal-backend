@@ -11,15 +11,13 @@ export class RecipientUserReadModel {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
+    readonly typeOfIdentityDocument: 'ID' | 'passport',
+    readonly identityDocumentNumber: string,
     readonly phone: number,
     readonly phoneVerified: boolean,
-    readonly email?: string,
-    readonly password?: string,
-    readonly typeOfIdentityDocument?: 'ID' | 'passport',
-    readonly identityDocumentNumber?: string,
-    readonly familyMembersCount?: number,
-    readonly referralSheet?: string,
-    readonly applicationStatus?: string,
+    readonly email: string | undefined,
+    readonly referralSheet: string | undefined,
+    readonly applicationStatus: string,
     readonly deleted?: boolean
   ) {}
 
@@ -37,13 +35,11 @@ export class RecipientUserReadModel {
       entity.firstName,
       entity.lastName,
       entity.dateOfBirth,
+      entity.typeOfIdentityDocument,
+      entity.identityDocumentNumber,
       entity.phone,
       entity.phoneVerified,
       entity.email,
-      entity.password,
-      entity.typeOfIdentityDocument,
-      entity.identityDocumentNumber,
-      entity.familyMembersCount,
       entity.referralSheet,
       entity.applicationStatus
     )

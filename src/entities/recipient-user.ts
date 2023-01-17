@@ -1,8 +1,8 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
-import { RecipientUserUpdated } from '../events/recipient-user-updated'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
+import { RecipientUserEmailUpdated } from '../events/recipient-user-email-updated'
 
 @Entity
 export class RecipientUser {
@@ -11,20 +11,18 @@ export class RecipientUser {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
+    readonly typeOfIdentityDocument: 'ID' | 'passport',
+    readonly identityDocumentNumber: string,
     readonly phone: number,
     readonly phoneVerified: boolean = true,
     readonly email?: string,
-    readonly password?: string,
-    readonly typeOfIdentityDocument?: 'ID' | 'passport',
-    readonly identityDocumentNumber?: string,
-    readonly familyMembersCount?: number,
     readonly referralSheet?: string,
-    readonly applicationStatus?: string,
+    readonly applicationStatus: 'registered' | 'application requested' | 'application accepted' = 'registered',
     readonly deleted: boolean = false
   ) {}
 
   private static createEmpty() {
-    return new RecipientUser(UUID.generate(), '', '', '', 0, false, '', '', 'ID', '', 0, '', '', true)
+    return new RecipientUser(UUID.generate(), '', '', '', 'ID', '', 0, false, '', '', 'registered', true)
   }
 
   @Reduces(RecipientUserCreated)
@@ -32,11 +30,19 @@ export class RecipientUser {
     event: RecipientUserCreated,
     currentRecipientUser?: RecipientUser
   ): RecipientUser {
-    return new RecipientUser(event.recipientUserId, event.firstName, event.lastName, event.dateOfBirth, event.phone)
+    return new RecipientUser(
+      event.recipientUserId,
+      event.firstName,
+      event.lastName,
+      event.dateOfBirth,
+      event.typeOfIdentityDocument,
+      event.identityDocumentNumber,
+      event.phone
+    )
   }
-  @Reduces(RecipientUserUpdated)
-  public static reduceRecipientUserUpdated(
-    event: RecipientUserUpdated,
+  @Reduces(RecipientUserEmailUpdated)
+  public static reduceRecipientUserEmailUpdated(
+    event: RecipientUserEmailUpdated,
     currentRecipientUser?: RecipientUser
   ): RecipientUser {
     if (!currentRecipientUser) {
@@ -45,14 +51,7 @@ export class RecipientUser {
 
     return {
       ...currentRecipientUser,
-      firstName: event.firstName ?? currentRecipientUser.firstName,
-      lastName: event.lastName ?? currentRecipientUser.lastName,
-      dateOfBirth: event.dateOfBirth ?? currentRecipientUser.dateOfBirth,
-      email: event.email ?? currentRecipientUser.email,
-      password: event.password ?? currentRecipientUser.password,
-      typeOfIdentityDocument: event.typeOfIdentityDocument ?? currentRecipientUser.typeOfIdentityDocument,
-      identityDocumentNumber: event.identityDocumentNumber ?? currentRecipientUser.identityDocumentNumber,
-      familyMembersCount: event.familyMembersCount ?? currentRecipientUser.familyMembersCount,
+      email: event.email,
     }
   }
 
