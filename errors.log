@@ -248,4 +248,28 @@
 [2023-01-16T17:34:03.537Z]     at Module.load (node:internal/modules/cjs/loader:1043:32)
 [2023-01-16T17:34:03.537Z]     at Function.Module._load (node:internal/modules/cjs/loader:878:12)
 [2023-01-16T17:34:03.537Z]     at Module.require (node:internal/modules/cjs/loader:1067:19)
-[2023-01-16T17:34:03.537Z]     at require (node:internal/modules/cjs/helpers:103:18)
+[2023-01-16T17:34:03.537Z]     at require (node:internal/modules/cjs/helpers:103:18)[2023-01-17T08:58:34.931Z] 
+[2023-01-17T08:58:34.931Z] boost new:event UpdateRecipientUserEmail -fields recipientUserId:UUID email:string
+[2023-01-17T08:58:34.931Z] Error: Error parsing field ields. Fields must be in the form of <field name>:<field type>
+[2023-01-17T08:58:34.931Z]     at fieldParsingError (/opt/homebrew/lib/node_modules/@boostercloud/cli/dist/services/generator/target/parsing.js:54:38)
+[2023-01-17T08:58:34.931Z]     at parseField (/opt/homebrew/lib/node_modules/@boostercloud/cli/dist/services/generator/target/parsing.js:24:31)
+[2023-01-17T08:58:34.931Z]     at Array.map (<anonymous>)
+[2023-01-17T08:58:34.931Z]     at parseFields (/opt/homebrew/lib/node_modules/@boostercloud/cli/dist/services/generator/target/parsing.js:11:51)
+[2023-01-17T08:58:34.931Z]     at run (/opt/homebrew/lib/node_modules/@boostercloud/cli/dist/commands/new/event.js:36:196)
+[2023-01-17T08:58:34.931Z]     at Event.run (/opt/homebrew/lib/node_modules/@boostercloud/cli/dist/commands/new/event.js:18:20)
+[2023-01-17T08:58:34.931Z]     at Event._run (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@oclif/command/lib/command.js:43:31)
+[2023-01-17T08:58:34.931Z]     at async Config.runCommand (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@oclif/config/lib/config.js:173:24)
+[2023-01-17T08:58:34.931Z]     at async Main.run (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@oclif/command/lib/main.js:28:9)
+[2023-01-17T08:58:34.931Z]     at async Main._run (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@oclif/command/lib/command.js:43:20)[2023-01-17T15:08:23.416Z] 
+[2023-01-17T15:08:23.416Z] boost start -e local
+[2023-01-17T15:08:23.416Z] Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './lib/auth' is not defined by "exports" in /Users/melina/GitHub/fesbal-backend/node_modules/firebase-admin/package.json
+[2023-01-17T15:08:23.416Z]     at new NodeError (node:internal/errors:387:5)
+[2023-01-17T15:08:23.416Z]     at throwExportsNotFound (node:internal/modules/esm/resolve:365:9)
+[2023-01-17T15:08:23.416Z]     at packageExportsResolve (node:internal/modules/esm/resolve:649:3)
+[2023-01-17T15:08:23.416Z]     at resolveExports (node:internal/modules/cjs/loader:529:36)
+[2023-01-17T15:08:23.416Z]     at Function.Module._findPath (node:internal/modules/cjs/loader:569:31)
+[2023-01-17T15:08:23.416Z]     at Function.Module._resolveFilename (node:internal/modules/cjs/loader:981:27)
+[2023-01-17T15:08:23.416Z]     at Function.Module._load (node:internal/modules/cjs/loader:841:27)
+[2023-01-17T15:08:23.416Z]     at Module.require (node:internal/modules/cjs/loader:1067:19)
+[2023-01-17T15:08:23.416Z]     at require (node:internal/modules/cjs/helpers:103:18)
+[2023-01-17T15:08:23.416Z]     at Object.<anonymous> (/Users/melina/GitHub/fesbal-backend/dist/services/AuthService.js:6:16)
