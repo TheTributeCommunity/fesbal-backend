@@ -3,6 +3,7 @@ import { UUID } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
 import { RecipientUserEmailUpdated } from '../events/recipient-user-email-updated'
+import {RecipientUserRegistrationRequested} from "../events/recipient-user-registration-requested";
 
 @Entity
 export class RecipientUser {
@@ -17,7 +18,7 @@ export class RecipientUser {
     readonly phoneVerified: boolean = true,
     readonly email?: string,
     readonly referralSheet?: string,
-    readonly role: 'UserRegistered' | 'UserVerified' = 'UserRegistered',
+    readonly role: 'UserRegistered' | 'UserPending' | 'UserVerified' = 'UserRegistered',
     readonly deleted: boolean = false
   ) {}
 
@@ -67,6 +68,21 @@ export class RecipientUser {
     return {
       ...currentRecipientUser,
       deleted: true,
+    }
+  }
+
+  @Reduces(RecipientUserRegistrationRequested)
+  public static reduceRecipientUserRoleUpdated(
+    event: RecipientUserRegistrationRequested,
+    currentRecipientUser?: RecipientUser
+  ): RecipientUser {
+    if (!currentRecipientUser) {
+      return RecipientUser.createEmpty()
+    }
+
+    return {
+      ...currentRecipientUser,
+      role: 'UserPending',
     }
   }
 }
