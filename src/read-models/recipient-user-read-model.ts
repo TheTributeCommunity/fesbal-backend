@@ -1,6 +1,7 @@
 import { ReadModel, Projects } from '@boostercloud/framework-core'
 import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework-types'
 import { RecipientUser } from '../entities/recipient-user'
+import { RecipientUserRole } from '../common/recipient-user-role'
 
 @ReadModel({
   authorize: 'all', // Specify authorized roles here. Use 'all' to authorize anyone
@@ -17,7 +18,7 @@ export class RecipientUserReadModel {
     readonly phoneVerified: boolean,
     readonly email: string | undefined,
     readonly referralSheet: string | undefined,
-    readonly role: 'UserRegistered' | 'UserVerified',
+    readonly role: RecipientUserRole,
     readonly deleted?: boolean
   ) {}
 

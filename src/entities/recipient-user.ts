@@ -3,7 +3,9 @@ import { UUID } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
 import { RecipientUserEmailUpdated } from '../events/recipient-user-email-updated'
-import {RecipientUserRegistrationRequested} from "../events/recipient-user-registration-requested";
+import { RecipientUserRegistrationRequested } from '../events/recipient-user-registration-requested'
+import { RecipientUserRole } from '../common/recipient-user-role'
+import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 
 @Entity
 export class RecipientUser {
@@ -12,18 +14,31 @@ export class RecipientUser {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
-    readonly typeOfIdentityDocument: 'ID' | 'passport',
+    readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
     readonly phone: number,
     readonly phoneVerified: boolean = true,
     readonly email?: string,
     readonly referralSheet?: string,
-    readonly role: 'UserRegistered' | 'UserPending' | 'UserVerified' = 'UserRegistered',
+    readonly role: RecipientUserRole = RecipientUserRole.UserRegistered,
     readonly deleted: boolean = false
   ) {}
 
   private static createEmpty() {
-    return new RecipientUser(UUID.generate(), '', '', '', 'ID', '', 0, false, '', '', 'UserRegistered', true)
+    return new RecipientUser(
+      UUID.generate(),
+      '',
+      '',
+      '',
+      TypeOfIdentityDocument.ID,
+      '',
+      0,
+      false,
+      '',
+      '',
+      RecipientUserRole.UserRegistered,
+      true
+    )
   }
 
   @Reduces(RecipientUserCreated)
@@ -82,7 +97,7 @@ export class RecipientUser {
 
     return {
       ...currentRecipientUser,
-      role: 'UserPending',
+      role: RecipientUserRole.UserPending,
     }
   }
 }

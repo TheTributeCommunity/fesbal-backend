@@ -1,5 +1,6 @@
 import { Event } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
+import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 
 @Event
 export class RecipientUserCreated {
@@ -8,7 +9,7 @@ export class RecipientUserCreated {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
-    readonly typeOfIdentityDocument: 'ID' | 'passport',
+    readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
     readonly phone: number
   ) {}

@@ -1,6 +1,7 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 import { RegistrationRequestCreated } from '../events/registration-request-created'
+import { RegistrationRequestStatus } from '../common/registration-request-status'
 
 @Entity
 export class RegistrationRequest {
@@ -9,7 +10,7 @@ export class RegistrationRequest {
     readonly recipientUserId: UUID,
     readonly referralSheetPending: boolean,
     readonly referralSheetSocialSecurityDate?: string,
-    readonly status: 'pending' | 'accepted' | 'rejected' = 'pending'
+    readonly status: RegistrationRequestStatus = RegistrationRequestStatus.Pending
   ) {}
 
   @Reduces(RegistrationRequestCreated)

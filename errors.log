@@ -272,4 +272,29 @@
 [2023-01-17T15:08:23.416Z]     at Function.Module._load (node:internal/modules/cjs/loader:841:27)
 [2023-01-17T15:08:23.416Z]     at Module.require (node:internal/modules/cjs/loader:1067:19)
 [2023-01-17T15:08:23.416Z]     at require (node:internal/modules/cjs/helpers:103:18)
-[2023-01-17T15:08:23.416Z]     at Object.<anonymous> (/Users/melina/GitHub/fesbal-backend/dist/services/AuthService.js:6:16)
+[2023-01-17T15:08:23.416Z]     at Object.<anonymous> (/Users/melina/GitHub/fesbal-backend/dist/services/AuthService.js:6:16)[2023-01-17T16:03:27.033Z] 
+[2023-01-17T16:03:27.033Z] boost start -e local
+[2023-01-17T16:03:27.033Z] Error: [38;5;210m[ChildProcessError] Project contains compilation errors:[39m
+[2023-01-17T16:03:27.033Z] Command failed: npm run build
+[2023-01-17T16:03:27.033Z]  `npm run build` (exited with error code 1)
+[2023-01-17T16:03:27.033Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/dist/common/errors.js:18:12
+[2023-01-17T16:03:27.033Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/orDieWith.js:33:56
+[2023-01-17T16:03:27.033Z]     at Object.fold_ (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Either/core.js:417:23)
+[2023-01-17T16:03:27.033Z]     at HandlerFrame.apply (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Effect/foldM.js:33:52)
+[2023-01-17T16:03:27.033Z]     at FiberContext.nextInstr (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:391:16)
+[2023-01-17T16:03:27.033Z]     at FiberContext.evaluateNow (/opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:870:40)
+[2023-01-17T16:03:27.033Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Fiber/context.js:558:47
+[2023-01-17T16:03:27.033Z]     at /opt/homebrew/lib/node_modules/@boostercloud/cli/node_modules/@effect-ts/system/Support/Scheduler/index.js:20:22
+[2023-01-17T16:03:27.033Z]     at processTicksAndRejections (node:internal/process/task_queues:96:5)[2023-01-17T16:05:04.932Z] 
+[2023-01-17T16:05:04.932Z] boost start -e local
+[2023-01-17T16:05:04.932Z] Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './lib/auth' is not defined by "exports" in /Users/melina/GitHub/fesbal-backend/node_modules/firebase-admin/package.json
+[2023-01-17T16:05:04.932Z]     at new NodeError (node:internal/errors:387:5)
+[2023-01-17T16:05:04.932Z]     at throwExportsNotFound (node:internal/modules/esm/resolve:365:9)
+[2023-01-17T16:05:04.932Z]     at packageExportsResolve (node:internal/modules/esm/resolve:649:3)
+[2023-01-17T16:05:04.932Z]     at resolveExports (node:internal/modules/cjs/loader:529:36)
+[2023-01-17T16:05:04.932Z]     at Function.Module._findPath (node:internal/modules/cjs/loader:569:31)
+[2023-01-17T16:05:04.932Z]     at Function.Module._resolveFilename (node:internal/modules/cjs/loader:981:27)
+[2023-01-17T16:05:04.932Z]     at Function.Module._load (node:internal/modules/cjs/loader:841:27)
+[2023-01-17T16:05:04.932Z]     at Module.require (node:internal/modules/cjs/loader:1067:19)
+[2023-01-17T16:05:04.932Z]     at require (node:internal/modules/cjs/helpers:103:18)
+[2023-01-17T16:05:04.932Z]     at Object.<anonymous> (/Users/melina/GitHub/fesbal-backend/dist/services/auth-service.js:6:16)
