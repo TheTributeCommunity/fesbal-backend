@@ -8,6 +8,7 @@
     "@boostercloud/framework-core": "^1.3.5",
     "@boostercloud/framework-provider-aws": "^1.3.5",
     "@boostercloud/framework-types": "^1.3.5",
+    "aws-sdk": "^2.1295.0",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "dotenv": "^16.0.3",
