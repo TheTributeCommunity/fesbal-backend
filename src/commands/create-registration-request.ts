@@ -3,6 +3,7 @@ import { Register, UUID } from '@boostercloud/framework-types'
 import { UserRegistered } from '../common/roles'
 import { RegistrationRequestCreated } from '../events/registration-request-created'
 import { RecipientUserRegistrationRequested } from '../events/recipient-user-registration-requested'
+import { AuthService } from '../services/auth-service'
 
 @Command({
   authorize: [UserRegistered],
@@ -16,6 +17,7 @@ export class CreateRegistrationRequest {
   ) {}
 
   public static async handle(command: CreateRegistrationRequest, register: Register): Promise<void> {
+    AuthService.setUserPendingRole(register.currentUser?.claims.user_id)
     register.events(new RecipientUserRegistrationRequested(command.recipientUserId))
     register.events(
       new RegistrationRequestCreated(
