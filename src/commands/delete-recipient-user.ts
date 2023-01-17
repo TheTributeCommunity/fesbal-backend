@@ -3,10 +3,10 @@ import { Register, UUID } from '@boostercloud/framework-types'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
 import { RecipientUser } from '../entities/recipient-user'
 import { RecipientUserNotFoundError } from '../common/recipient-user-not-found-error'
-import { User } from '../common/roles'
+import { UserRegistered } from '../common/roles'
 
 @Command({
-  authorize: [User],
+  authorize: [UserRegistered],
 })
 export class DeleteRecipientUser {
   public constructor(readonly recipientUserId: UUID) {}

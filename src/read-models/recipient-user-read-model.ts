@@ -17,7 +17,7 @@ export class RecipientUserReadModel {
     readonly phoneVerified: boolean,
     readonly email: string | undefined,
     readonly referralSheet: string | undefined,
-    readonly applicationStatus: string,
+    readonly role: 'UserRegistered' | 'UserVerified',
     readonly deleted?: boolean
   ) {}
 
@@ -41,7 +41,7 @@ export class RecipientUserReadModel {
       entity.phoneVerified,
       entity.email,
       entity.referralSheet,
-      entity.applicationStatus
+      entity.role
     )
   }
 }

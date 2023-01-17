@@ -1,10 +1,10 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
-import { User } from '../common/roles'
+import { UserRegistered } from '../common/roles'
 
 @Command({
-  authorize: [User],
+  authorize: [UserRegistered],
 })
 export class CreateRecipientUser {
   public constructor(

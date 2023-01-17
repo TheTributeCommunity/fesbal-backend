@@ -17,12 +17,12 @@ export class RecipientUser {
     readonly phoneVerified: boolean = true,
     readonly email?: string,
     readonly referralSheet?: string,
-    readonly applicationStatus: 'registered' | 'application requested' | 'application accepted' = 'registered',
+    readonly role: 'UserRegistered' | 'UserVerified' = 'UserRegistered',
     readonly deleted: boolean = false
   ) {}
 
   private static createEmpty() {
-    return new RecipientUser(UUID.generate(), '', '', '', 'ID', '', 0, false, '', '', 'registered', true)
+    return new RecipientUser(UUID.generate(), '', '', '', 'ID', '', 0, false, '', '', 'UserRegistered', true)
   }
 
   @Reduces(RecipientUserCreated)
