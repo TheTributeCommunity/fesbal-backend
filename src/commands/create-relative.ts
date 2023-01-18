@@ -3,6 +3,7 @@ import { Register, UUID } from '@boostercloud/framework-types'
 import { UserRegistered } from '../common/roles'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeCreated } from '../events/relative-created'
+import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
 
 @Command({
   authorize: [UserRegistered],
@@ -30,5 +31,6 @@ export class CreateRelative {
         command.identityDocumentNumber
       )
     )
+    register.events(new RelativeAddedToRecipientUser(command.recipientUserId, command.relativeId))
   }
 }

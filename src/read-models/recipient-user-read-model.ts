@@ -2,9 +2,10 @@ import { ReadModel, Projects } from '@boostercloud/framework-core'
 import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework-types'
 import { RecipientUser } from '../entities/recipient-user'
 import { RecipientUserRole } from '../common/recipient-user-role'
+import { UserPending, UserRegistered, UserVerified } from '../common/roles'
 
 @ReadModel({
-  authorize: 'all', // Specify authorized roles here. Use 'all' to authorize anyone
+  authorize: [UserRegistered, UserPending, UserVerified],
 })
 export class RecipientUserReadModel {
   public constructor(
@@ -17,6 +18,7 @@ export class RecipientUserReadModel {
     readonly phone: number,
     readonly phoneVerified: boolean,
     readonly email: string | undefined,
+    readonly relatives: Array<UUID> | undefined,
     readonly referralSheet: string | undefined,
     readonly role: RecipientUserRole,
     readonly deleted?: boolean
@@ -41,6 +43,7 @@ export class RecipientUserReadModel {
       entity.phone,
       entity.phoneVerified,
       entity.email,
+      entity.relatives,
       entity.referralSheet,
       entity.role
     )

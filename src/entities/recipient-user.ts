@@ -6,6 +6,7 @@ import { RecipientUserEmailUpdated } from '../events/recipient-user-email-update
 import { RecipientUserRegistrationRequested } from '../events/recipient-user-registration-requested'
 import { RecipientUserRole } from '../common/recipient-user-role'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
+import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
 
 @Entity
 export class RecipientUser {
@@ -19,6 +20,7 @@ export class RecipientUser {
     readonly phone: number,
     readonly phoneVerified: boolean = true,
     readonly email?: string,
+    readonly relatives?: Array<UUID>,
     readonly referralSheet?: string,
     readonly role: RecipientUserRole = RecipientUserRole.UserRegistered,
     readonly deleted: boolean = false
@@ -35,6 +37,7 @@ export class RecipientUser {
       0,
       false,
       '',
+      [],
       '',
       RecipientUserRole.UserRegistered,
       true
@@ -98,6 +101,23 @@ export class RecipientUser {
     return {
       ...currentRecipientUser,
       role: RecipientUserRole.UserPending,
+    }
+  }
+  @Reduces(RelativeAddedToRecipientUser)
+  public static reduceRelativeAddedToRecipientUser(
+    event: RelativeAddedToRecipientUser,
+    currentRecipientUser?: RecipientUser
+  ): RecipientUser {
+    if (!currentRecipientUser) {
+      return RecipientUser.createEmpty()
+    }
+    const relatives = currentRecipientUser.relatives ?? []
+
+    relatives.push(event.relativeId)
+
+    return {
+      ...currentRecipientUser,
+      relatives: relatives,
     }
   }
 }
