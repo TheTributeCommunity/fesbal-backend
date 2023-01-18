@@ -4,6 +4,7 @@ import { UserRegistered } from '../common/roles'
 import { RegistrationRequestCreated } from '../events/registration-request-created'
 import { RecipientUserRegistrationRequested } from '../events/recipient-user-registration-requested'
 import { AuthService } from '../services/auth-service'
+import { RecipientUserRole } from '../common/recipient-user-role'
 
 @Command({
   authorize: [UserRegistered],
@@ -17,7 +18,7 @@ export class CreateRegistrationRequest {
   ) {}
 
   public static async handle(command: CreateRegistrationRequest, register: Register): Promise<void> {
-    AuthService.setUserPendingRole(register.currentUser?.claims.user_id)
+    await AuthService.setRole(register.currentUser?.claims.user_id as string, RecipientUserRole.UserPending)
     register.events(new RecipientUserRegistrationRequested(command.recipientUserId))
     register.events(
       new RegistrationRequestCreated(
