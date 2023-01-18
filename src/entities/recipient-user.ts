@@ -24,7 +24,7 @@ export class RecipientUser {
     readonly deleted: boolean = false
   ) {}
 
-  private static createEmpty() {
+  private static createEmpty(): RecipientUser {
     return new RecipientUser(
       UUID.generate(),
       '',
