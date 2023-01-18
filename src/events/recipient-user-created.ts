@@ -11,7 +11,7 @@ export class RecipientUserCreated {
     readonly dateOfBirth: string,
     readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
-    readonly phone: number
+    readonly phone: string
   ) {}
 
   public entityID(): UUID {

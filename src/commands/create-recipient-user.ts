@@ -17,7 +17,7 @@ export class CreateRecipientUser {
     readonly dateOfBirth: string,
     readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
-    readonly phone: number
+    readonly phone: string
   ) {}
 
   public static async handle(command: CreateRecipientUser, register: Register): Promise<void> {
