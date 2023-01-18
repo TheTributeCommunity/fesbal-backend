@@ -11,7 +11,7 @@ export class AuthService {
   public static initialize(): void {
     AuthService.projectId = process.env.FIREBASE_PROJECT_ID
     AuthService.privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n')
-    AuthService.projectId = process.env.FIREBASE_CLIENT_EMAIL
+    AuthService.clientEmail = process.env.FIREBASE_CLIENT_EMAIL
     AuthService.databaseURL = process.env.FIREBASE_DATABASE_URL
 
     initializeApp({
@@ -25,6 +25,8 @@ export class AuthService {
   }
 
   public static async setRole(userId: string, role: RecipientUserRole): Promise<void> {
-    return await getAuth().setCustomUserClaims(userId, { role: role })
+    if (this.projectId) {
+      return await getAuth().setCustomUserClaims(userId, { role: role })
+    }
   }
 }
