@@ -21,7 +21,7 @@ export class RecipientUserReadModel {
     readonly phoneVerified: boolean,
     readonly email: string | undefined,
     readonly relativesIds: Array<UUID> | undefined,
-    readonly referralSheet: string | undefined,
+    readonly referralSheetUrl: string | undefined,
     readonly role: RecipientUserRole,
     readonly deleted?: boolean
   ) {}
@@ -52,7 +52,7 @@ export class RecipientUserReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheet,
+      entity.referralSheetUrl,
       entity.role
     )
   }

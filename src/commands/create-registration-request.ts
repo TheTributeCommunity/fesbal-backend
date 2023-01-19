@@ -44,6 +44,6 @@ export class CreateRegistrationRequest {
       throw new RecipientUserNotFoundError(recipientUserId)
     }
 
-    return !currentRecipientUser.referralSheet
+    return !currentRecipientUser.referralSheetUrl
   }
 }

@@ -7,7 +7,7 @@ import { RecipientUserRegistrationRequested } from '../events/recipient-user-reg
 import { RecipientUserRole } from '../common/recipient-user-role'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
-import {RecipientUserReferralSheetUpdated} from "../events/recipient-user-referral-sheet-updated";
+import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-user-referral-sheet-url-updated'
 
 @Entity
 export class RecipientUser {
@@ -22,7 +22,7 @@ export class RecipientUser {
     readonly phoneVerified: boolean = true,
     readonly email?: string,
     readonly relativesIds?: Array<UUID>,
-    readonly referralSheet?: string,
+    readonly referralSheetUrl?: string,
     readonly role: RecipientUserRole = RecipientUserRole.UserRegistered,
     readonly deleted: boolean = false
   ) {}
@@ -122,9 +122,9 @@ export class RecipientUser {
     }
   }
 
-  @Reduces(RecipientUserReferralSheetUpdated)
+  @Reduces(RecipientUserReferralSheetUrlUpdated)
   public static reduceRecipientUserReferralSheetUpdated(
-    event: RecipientUserReferralSheetUpdated,
+    event: RecipientUserReferralSheetUrlUpdated,
     currentRecipientUser?: RecipientUser
   ): RecipientUser {
     if (!currentRecipientUser) {
@@ -133,7 +133,7 @@ export class RecipientUser {
 
     return {
       ...currentRecipientUser,
-      referralSheet: event.referralSheet,
+      referralSheetUrl: event.referralSheetUrl,
     }
   }
 }
