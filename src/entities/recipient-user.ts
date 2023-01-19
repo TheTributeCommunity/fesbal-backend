@@ -7,6 +7,7 @@ import { RecipientUserRegistrationRequested } from '../events/recipient-user-reg
 import { RecipientUserRole } from '../common/recipient-user-role'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
+import {RecipientUserReferralSheetUpdated} from "../events/recipient-user-referral-sheet-updated";
 
 @Entity
 export class RecipientUser {
@@ -118,6 +119,21 @@ export class RecipientUser {
     return {
       ...currentRecipientUser,
       relativesIds: relativesIds,
+    }
+  }
+
+  @Reduces(RecipientUserReferralSheetUpdated)
+  public static reduceRecipientUserReferralSheetUpdated(
+    event: RecipientUserReferralSheetUpdated,
+    currentRecipientUser?: RecipientUser
+  ): RecipientUser {
+    if (!currentRecipientUser) {
+      return RecipientUser.createEmpty()
+    }
+
+    return {
+      ...currentRecipientUser,
+      referralSheet: event.referralSheet,
     }
   }
 }
