@@ -7,6 +7,7 @@ import { RecipientUserRegistrationRequested } from '../events/recipient-user-reg
 import { RecipientUserRole } from '../common/recipient-user-role'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
+import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-user-referral-sheet-url-updated'
 
 @Entity
 export class RecipientUser {
@@ -21,7 +22,7 @@ export class RecipientUser {
     readonly phoneVerified: boolean = true,
     readonly email?: string,
     readonly relativesIds?: Array<UUID>,
-    readonly referralSheet?: string,
+    readonly referralSheetUrl?: string,
     readonly role: RecipientUserRole = RecipientUserRole.UserRegistered,
     readonly deleted: boolean = false
   ) {}
@@ -118,6 +119,21 @@ export class RecipientUser {
     return {
       ...currentRecipientUser,
       relativesIds: relativesIds,
+    }
+  }
+
+  @Reduces(RecipientUserReferralSheetUrlUpdated)
+  public static reduceRecipientUserReferralSheetUpdated(
+    event: RecipientUserReferralSheetUrlUpdated,
+    currentRecipientUser?: RecipientUser
+  ): RecipientUser {
+    if (!currentRecipientUser) {
+      return RecipientUser.createEmpty()
+    }
+
+    return {
+      ...currentRecipientUser,
+      referralSheetUrl: event.referralSheetUrl,
     }
   }
 }

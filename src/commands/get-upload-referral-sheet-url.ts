@@ -6,10 +6,10 @@ import { UploadFileService } from '../services/upload-file-service'
 @Command({
   authorize: [UserRegistered],
 })
-export class GetUploadReferralSheetURL {
+export class GetUploadReferralSheetUrl {
   public constructor(readonly fileName: string) {}
 
-  public static async handle(command: GetUploadReferralSheetURL, register: Register): Promise<string> {
+  public static async handle(command: GetUploadReferralSheetUrl, register: Register): Promise<string> {
     return UploadFileService.getUrlToUploadFile(command.fileName)
   }
 }
