@@ -6,19 +6,21 @@ import { RecipientUserEmailUpdated } from '../events/recipient-user-email-update
 import { RecipientUserRegistrationRequested } from '../events/recipient-user-registration-requested'
 import { RecipientUserRole } from '../common/recipient-user-role'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
+import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
 
 @Entity
 export class RecipientUser {
   public constructor(
-    public id: UUID,
+    readonly id: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
     readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
-    readonly phone: number,
+    readonly phone: string,
     readonly phoneVerified: boolean = true,
     readonly email?: string,
+    readonly relativesIds?: Array<UUID>,
     readonly referralSheet?: string,
     readonly role: RecipientUserRole = RecipientUserRole.UserRegistered,
     readonly deleted: boolean = false
@@ -32,9 +34,10 @@ export class RecipientUser {
       '',
       TypeOfIdentityDocument.ID,
       '',
-      0,
+      '0',
       false,
       '',
+      [],
       '',
       RecipientUserRole.UserRegistered,
       true
@@ -98,6 +101,23 @@ export class RecipientUser {
     return {
       ...currentRecipientUser,
       role: RecipientUserRole.UserPending,
+    }
+  }
+  @Reduces(RelativeAddedToRecipientUser)
+  public static reduceRelativeAddedToRecipientUser(
+    event: RelativeAddedToRecipientUser,
+    currentRecipientUser?: RecipientUser
+  ): RecipientUser {
+    if (!currentRecipientUser) {
+      return RecipientUser.createEmpty()
+    }
+    const relativesIds = currentRecipientUser.relativesIds ?? []
+
+    relativesIds.push(event.relativeId)
+
+    return {
+      ...currentRecipientUser,
+      relativesIds: relativesIds,
     }
   }
 }
