@@ -20,7 +20,7 @@ export class RecipientUser {
     readonly phone: string,
     readonly phoneVerified: boolean = true,
     readonly email?: string,
-    readonly relatives?: Array<UUID>,
+    readonly relativesIds?: Array<UUID>,
     readonly referralSheet?: string,
     readonly role: RecipientUserRole = RecipientUserRole.UserRegistered,
     readonly deleted: boolean = false
@@ -111,13 +111,13 @@ export class RecipientUser {
     if (!currentRecipientUser) {
       return RecipientUser.createEmpty()
     }
-    const relatives = currentRecipientUser.relatives ?? []
+    const relativesIds = currentRecipientUser.relativesIds ?? []
 
-    relatives.push(event.relativeId)
+    relativesIds.push(event.relativeId)
 
     return {
       ...currentRecipientUser,
-      relatives: relatives,
+      relativesIds: relativesIds,
     }
   }
 }

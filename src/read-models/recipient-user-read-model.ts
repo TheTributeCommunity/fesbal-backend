@@ -26,7 +26,7 @@ export class RecipientUserReadModel {
     readonly deleted?: boolean
   ) {}
 
-  public get relatives(): Promise<RelativeReadModel[]> {
+  public get relatives(): Promise<RelativeReadModel[] | undefined> {
     return Booster.readModel(RelativeReadModel)
       .filter({ id: { in: this.relativesIds ?? [] } })
       .search() as Promise<RelativeReadModel[]>
@@ -51,7 +51,7 @@ export class RecipientUserReadModel {
       entity.phone,
       entity.phoneVerified,
       entity.email,
-      entity.relatives,
+      entity.relativesIds,
       entity.referralSheet,
       entity.role
     )
