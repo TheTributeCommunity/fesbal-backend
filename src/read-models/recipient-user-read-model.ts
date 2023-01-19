@@ -4,6 +4,7 @@ import { RecipientUser } from '../entities/recipient-user'
 import { RecipientUserRole } from '../common/recipient-user-role'
 import { UserPending, UserRegistered, UserVerified } from '../common/roles'
 import { RelativeReadModel } from './relative-read-model'
+import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 
 @ReadModel({
   authorize: [UserRegistered, UserPending, UserVerified],
@@ -14,7 +15,7 @@ export class RecipientUserReadModel {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
-    readonly typeOfIdentityDocument: 'ID' | 'passport',
+    readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
     readonly phone: string,
     readonly phoneVerified: boolean,

@@ -6,7 +6,7 @@ import { RelativeCreated } from '../events/relative-created'
 @Entity
 export class Relative {
   public constructor(
-    public id: UUID,
+    readonly id: UUID,
     readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,

@@ -11,7 +11,7 @@ import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipi
 @Entity
 export class RecipientUser {
   public constructor(
-    public id: UUID,
+    readonly id: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,

@@ -9,7 +9,7 @@ import { Relative } from '../entities/relative'
 })
 export class RelativeReadModel {
   public constructor(
-    public id: UUID,
+    readonly id: UUID,
     readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
