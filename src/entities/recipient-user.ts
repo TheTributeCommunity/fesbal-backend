@@ -114,7 +114,9 @@ export class RecipientUser {
     }
     const relativesIds = currentRecipientUser.relativesIds ?? []
 
-    relativesIds.push(event.relativeId)
+    if (!relativesIds.includes(event.relativeId)) {
+      relativesIds.push(event.relativeId)
+    }
 
     return {
       ...currentRecipientUser,
