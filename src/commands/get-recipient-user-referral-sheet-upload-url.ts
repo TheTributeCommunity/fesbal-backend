@@ -16,8 +16,10 @@ export class GetRecipientUserReferralSheetUploadUrl {
   }
 
   private static getReferralSheetPath(recipientUserId: string): string {
-    const currentDate = new Date().toISOString().slice(0, 10)
+    const date = new Date()
+    const currentDate = date.toLocaleDateString('es-ES')
+    const unixTime = date.valueOf()
 
-    return `referral-sheets/referral_sheet_${recipientUserId}_${currentDate}`
+    return `referral-sheets/referral_sheet_${recipientUserId}_${currentDate}_${unixTime}`
   }
 }
