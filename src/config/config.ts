@@ -26,6 +26,7 @@ Booster.configure('development', (config: BoosterConfig): void => {
   AuthService.initialize()
   UploadFileService.initialize()
 
+  config.assets = ['.env']
   config.appName = 'fesbal-backend-dev'
   config.providerPackage = '@boostercloud/framework-provider-aws'
   config.tokenVerifiers = [
