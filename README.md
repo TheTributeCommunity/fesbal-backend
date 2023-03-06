@@ -55,4 +55,12 @@ Please **use eslint with the provided configuration**. To get it working in VSCo
 }
 ```
 
+### Getting started with Booster
+Here are some useful links to start learning Booster:
+- [What is Booster](https://www.boosterframework.com/)
+- [Youtube playlist](https://www.youtube.com/watch?v=e5wQ3egAJeo&list=PLAS8tGIFYloQ6wxhWFIhIottLAsQds6Uw) with great small lessons to get started with booster. Made by Booster experts.
+- [Booster demonstration videos](https://www.boosterframework.com/#demos)
+- [Awesome documentation](https://docs.boosterframework.com/) with tutorials on each topic.
+- [Discord Booster server](https://discord.gg/bDY8MKx) and [#booster-help channel](https://discord.com/channels/763753198388510780/1019895895325675550) where Booster experts are always available to answer questions.
+
 ## Work in progress 🚧
