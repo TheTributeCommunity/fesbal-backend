@@ -1,7 +1,7 @@
 import { Projects, ReadModel } from '@boostercloud/framework-core'
 import { ProjectionResult, UUID } from '@boostercloud/framework-types'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { UserPending, UserRegistered, UserVerified } from '../common/roles'
+import { UserPending, UserRegistered, UserVerified } from '../config/roles'
 import { Relative } from '../entities/relative'
 
 @ReadModel({

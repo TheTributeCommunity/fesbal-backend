@@ -2,7 +2,7 @@ import { ReadModel, Projects, Booster } from '@boostercloud/framework-core'
 import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework-types'
 import { RecipientUser } from '../entities/recipient-user'
 import { RecipientUserRole } from '../common/recipient-user-role'
-import { UserPending, UserRegistered, UserVerified } from '../common/roles'
+import { UserPending, UserRegistered, UserVerified } from '../config/roles'
 import { RelativeReadModel } from './relative-read-model'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 
