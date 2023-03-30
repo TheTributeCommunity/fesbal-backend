@@ -3,10 +3,9 @@ import { Register, UUID } from '@boostercloud/framework-types'
 import { RecipientUserEmailUpdated } from '../events/recipient-user-email-updated'
 import { RecipientUserNotFoundError } from '../common/recipient-user-not-found-error'
 import { RecipientUser } from '../entities/recipient-user'
-import { UserRegistered } from '../common/roles'
 
 @Command({
-  authorize: [UserRegistered],
+  authorize: 'all',
 })
 export class UpdateRecipientUserEmail {
   public constructor(readonly recipientUserId: UUID, readonly email: string) {}

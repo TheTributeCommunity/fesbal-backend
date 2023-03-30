@@ -1,10 +1,9 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { UserPending, UserRegistered, UserVerified } from '../common/roles'
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-user-referral-sheet-url-updated'
 
 @Command({
-  authorize: [UserRegistered, UserPending, UserVerified],
+  authorize: 'all',
 })
 export class UpdateRecipientUserReferralSheetUrl {
   public constructor(readonly recipientUserId: UUID, readonly referralSheetUrl: string) {}

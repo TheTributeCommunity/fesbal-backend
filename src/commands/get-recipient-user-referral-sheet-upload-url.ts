@@ -1,10 +1,9 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register } from '@boostercloud/framework-types'
-import { UserRegistered } from '../common/roles'
 import { UploadFileService } from '../services/upload-file-service'
 
 @Command({
-  authorize: [UserRegistered],
+  authorize: 'all',
 })
 export class GetRecipientUserReferralSheetUploadUrl {
   public constructor(readonly recipientUserId: string) {}

@@ -9,7 +9,7 @@ import { RecipientUserNotFoundInFirebaseError } from '../common/recipient-user-n
 @Command({
   authorize: 'all',
 })
-export class CreateRecipientUser {
+export class CreateRecipient {
   public constructor(
     readonly recipientUserId: UUID,
     readonly firstName: string,
@@ -20,7 +20,7 @@ export class CreateRecipientUser {
     readonly phone: string
   ) {}
 
-  public static async handle(command: CreateRecipientUser, register: Register): Promise<void> {
+  public static async handle(command: CreateRecipient, register: Register): Promise<void> {
     await AuthService.setRole(register.currentUser?.claims.user_id as string, RecipientUserRole.UserRegistered).catch(
       (error) => {
         console.log(error)
