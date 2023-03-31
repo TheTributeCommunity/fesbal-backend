@@ -7,7 +7,7 @@ import { RecipientUserNotFoundInFirebaseError } from '../common/recipient-user-n
 import { Recipient } from '../config/roles'
 
 @Command({
-  authorize: [Recipient],
+  authorize: 'all',
 })
 export class CreateRecipientUser {
   public constructor(
