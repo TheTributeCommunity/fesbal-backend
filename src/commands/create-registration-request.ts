@@ -3,7 +3,7 @@ import { Register, UUID } from '@boostercloud/framework-types'
 import { RegistrationRequestCreated } from '../events/registration-request-created'
 import { RecipientUserRegistrationRequested } from '../events/recipient-user-registration-requested'
 import { AuthService } from '../services/auth-service'
-import { RecipientUserRole } from '../common/recipient-user-role'
+import { UserRole } from '../common/user-role'
 import { RecipientUser } from '../entities/recipient-user'
 import { RecipientUserNotFoundError } from '../common/recipient-user-not-found-error'
 import { RegistrationRequestInvalidSocialSecurityDateError } from '../common/registration-request-invalid-social-security-date-error'
@@ -25,7 +25,7 @@ export class CreateRegistrationRequest {
       throw new RegistrationRequestInvalidSocialSecurityDateError(command.recipientUserId)
     }
 
-    await AuthService.setRole(register.currentUser?.claims.user_id as string, RecipientUserRole.UserPending)
+    await AuthService.setRole(register.currentUser?.claims.user_id as string, UserRole.Recipient)
     register.events(new RecipientUserRegistrationRequested(command.recipientUserId))
     register.events(
       new RegistrationRequestCreated(

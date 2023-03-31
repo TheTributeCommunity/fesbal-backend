@@ -3,8 +3,6 @@ import { UUID } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
 import { RecipientUserEmailUpdated } from '../events/recipient-user-email-updated'
-import { RecipientUserRegistrationRequested } from '../events/recipient-user-registration-requested'
-import { RecipientUserRole } from '../common/recipient-user-role'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-user-referral-sheet-url-updated'
@@ -23,26 +21,11 @@ export class RecipientUser {
     readonly email?: string,
     readonly relativesIds?: Array<UUID>,
     readonly referralSheetUrl?: string,
-    readonly role: RecipientUserRole = RecipientUserRole.UserRegistered,
     readonly deleted: boolean = false
   ) {}
 
   private static createEmpty(): RecipientUser {
-    return new RecipientUser(
-      UUID.generate(),
-      '',
-      '',
-      '',
-      TypeOfIdentityDocument.DNI,
-      '',
-      '0',
-      false,
-      '',
-      [],
-      '',
-      RecipientUserRole.UserRegistered,
-      true
-    )
+    return new RecipientUser(UUID.generate(), '', '', '', TypeOfIdentityDocument.DNI, '', '0', false, '', [], '', true)
   }
 
   @Reduces(RecipientUserCreated)
@@ -90,20 +73,6 @@ export class RecipientUser {
     }
   }
 
-  @Reduces(RecipientUserRegistrationRequested)
-  public static reduceRecipientUserRoleUpdated(
-    event: RecipientUserRegistrationRequested,
-    currentRecipientUser?: RecipientUser
-  ): RecipientUser {
-    if (!currentRecipientUser) {
-      return RecipientUser.createEmpty()
-    }
-
-    return {
-      ...currentRecipientUser,
-      role: RecipientUserRole.UserPending,
-    }
-  }
   @Reduces(RelativeAddedToRecipientUser)
   public static reduceRelativeAddedToRecipientUser(
     event: RelativeAddedToRecipientUser,

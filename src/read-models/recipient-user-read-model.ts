@@ -1,7 +1,6 @@
 import { ReadModel, Projects, Booster } from '@boostercloud/framework-core'
 import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework-types'
 import { RecipientUser } from '../entities/recipient-user'
-import { RecipientUserRole } from '../common/recipient-user-role'
 import { RelativeReadModel } from './relative-read-model'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 
@@ -21,7 +20,6 @@ export class RecipientUserReadModel {
     readonly email: string | undefined,
     readonly relativesIds: Array<UUID> | undefined,
     readonly referralSheetUrl: string | undefined,
-    readonly role: RecipientUserRole,
     readonly deleted?: boolean
   ) {}
 
@@ -51,8 +49,7 @@ export class RecipientUserReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheetUrl,
-      entity.role
+      entity.referralSheetUrl
     )
   }
 }
