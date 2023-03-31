@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth-service'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RecipientUserNotFoundInFirebaseError } from '../common/recipient-user-not-registered-in-firebase-error'
 import { Recipient } from '../config/roles'
+import { RecipientUserRole } from '../common/recipient-user-role'
 
 @Command({
   authorize: [Recipient],
@@ -21,11 +22,12 @@ export class CreateRecipient {
   ) {}
 
   public static async handle(command: CreateRecipient, register: Register): Promise<void> {
-    const userId: string = register.currentUser?.claims.user_id as string
-    await AuthService.setRole(userId, Recipient).catch((error) => {
-      console.log(error)
-      throw new RecipientUserNotFoundInFirebaseError(userId)
-    })
+    await AuthService.setRole(register.currentUser?.claims.user_id as string, RecipientUserRole.UserRegistered).catch(
+      (error) => {
+        console.log(error)
+        throw new RecipientUserNotFoundInFirebaseError(command.recipientUserId)
+      }
+    )
 
     register.events(
       new RecipientUserCreated(
