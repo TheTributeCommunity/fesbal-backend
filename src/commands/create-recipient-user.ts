@@ -1,5 +1,5 @@
 import { Command } from '@boostercloud/framework-core'
-import { Register, UUID } from '@boostercloud/framework-types'
+import { Register } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
 import { AuthService } from '../services/auth-service'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
@@ -11,7 +11,6 @@ import { Recipient } from '../config/roles'
 })
 export class CreateRecipientUser {
   public constructor(
-    readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
@@ -30,7 +29,7 @@ export class CreateRecipientUser {
 
     register.events(
       new RecipientUserCreated(
-        command.recipientUserId,
+        userId,
         command.firstName,
         command.lastName,
         command.dateOfBirth,
