@@ -1,6 +1,6 @@
+import { RoleInterface } from '@boostercloud/framework-types'
 import { cert, initializeApp } from 'firebase-admin/app'
 import { getAuth } from 'firebase-admin/auth'
-import { RecipientUserRole } from '../common/recipient-user-role'
 
 export class AuthService {
   static projectId?: string
@@ -24,7 +24,7 @@ export class AuthService {
     })
   }
 
-  public static async setRole(userId: string, role: RecipientUserRole): Promise<void> {
+  public static async setRole(userId: string, role: RoleInterface): Promise<void> {
     if (this.projectId) {
       return await getAuth().setCustomUserClaims(userId, { role: role })
     }

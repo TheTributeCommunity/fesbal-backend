@@ -1,12 +1,11 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { UserRegistered } from '../common/roles'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeCreated } from '../events/relative-created'
 import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
 
 @Command({
-  authorize: [UserRegistered],
+  authorize: 'all',
 })
 export class CreateRelative {
   public constructor(

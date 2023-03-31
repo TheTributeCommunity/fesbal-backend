@@ -1,6 +1,5 @@
 import { Booster, Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { UserRegistered } from '../common/roles'
 import { RegistrationRequestCreated } from '../events/registration-request-created'
 import { RecipientUserRegistrationRequested } from '../events/recipient-user-registration-requested'
 import { AuthService } from '../services/auth-service'
@@ -10,7 +9,7 @@ import { RecipientUserNotFoundError } from '../common/recipient-user-not-found-e
 import { RegistrationRequestInvalidSocialSecurityDateError } from '../common/registration-request-invalid-social-security-date-error'
 
 @Command({
-  authorize: [UserRegistered],
+  authorize: 'all',
 })
 export class CreateRegistrationRequest {
   public constructor(

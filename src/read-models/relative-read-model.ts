@@ -1,11 +1,10 @@
 import { Projects, ReadModel } from '@boostercloud/framework-core'
 import { ProjectionResult, UUID } from '@boostercloud/framework-types'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { UserPending, UserRegistered, UserVerified } from '../common/roles'
 import { Relative } from '../entities/relative'
 
 @ReadModel({
-  authorize: [UserRegistered, UserPending, UserVerified],
+  authorize: 'all',
 })
 export class RelativeReadModel {
   public constructor(
