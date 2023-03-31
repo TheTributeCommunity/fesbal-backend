@@ -11,3 +11,4 @@ coverage
 .booster
 .env
 errors.log
+.vscode

@@ -1,8 +1,8 @@
 import { Role } from '@boostercloud/framework-core'
 
 @Role()
-export class UserRegistered {}
+export class Recipient {}
 @Role()
-export class UserPending {}
+export class Entity {}
 @Role()
-export class UserVerified {}
+export class Fesbal {}
