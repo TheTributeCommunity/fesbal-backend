@@ -1,17 +1,17 @@
 import { Command } from '@boostercloud/framework-core'
-import { Register } from '@boostercloud/framework-types'
+import { Register, UUID } from '@boostercloud/framework-types'
 import { RecipientUserCreated } from '../events/recipient-user-created'
 import { AuthService } from '../services/auth-service'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { RecipientUserNotFoundInFirebaseError } from '../common/recipient-user-not-registered-in-firebase-error'
-import { Recipient } from '../config/roles'
 import { RecipientUserRole } from '../common/recipient-user-role'
+import { RecipientUserNotFoundInFirebaseError } from '../common/recipient-user-not-registered-in-firebase-error'
 
 @Command({
-  authorize: [Recipient],
+  authorize: 'all',
 })
-export class CreateRecipient {
+export class CreateRecipientUser {
   public constructor(
+    readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
@@ -21,7 +21,7 @@ export class CreateRecipient {
     readonly email: string
   ) {}
 
-  public static async handle(command: CreateRecipient, register: Register): Promise<void> {
+  public static async handle(command: CreateRecipientUser, register: Register): Promise<void> {
     await AuthService.setRole(register.currentUser?.claims.user_id as string, RecipientUserRole.UserRegistered).catch(
       (error) => {
         console.log(error)
@@ -31,7 +31,7 @@ export class CreateRecipient {
 
     register.events(
       new RecipientUserCreated(
-        userId,
+        command.recipientUserId,
         command.firstName,
         command.lastName,
         command.dateOfBirth,

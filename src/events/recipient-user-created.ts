@@ -5,7 +5,7 @@ import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 @Event
 export class RecipientUserCreated {
   public constructor(
-    readonly userId: UUID,
+    readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
@@ -16,6 +16,6 @@ export class RecipientUserCreated {
   ) {}
 
   public entityID(): UUID {
-    return this.userId
+    return this.recipientUserId
   }
 }
