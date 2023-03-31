@@ -30,6 +30,16 @@ To start the booster backend locally, do the following:
 3. Fill the fields inside the `.env.example` file, and rename it to `.env`. To get the data needed to fill this file, get in touch with one of the project managers;
 4. Start the backend server with `boost start -e local`.
 
+## Getting started 🚀
+
+- You can check that the code compiles correctly by running the build command:
+  · `boost build`
+- You can clean the compiled code by running:
+  · `boost clean`
+- By default, the backend is running on port 3000. You can change this by using the `-p` option:
+  · `boost start -e local -p 8080`
+- All the graphql endpoints are available at `http://localhost:3000/graphql`
+
 ### Contributing
 
 To contribute to the project, first read the [CONTRIBUTING.md](https://github.com/TheTributeCommunity/fesbal-backend/blob/main/CONTRIBUTING.md 'CONTRIBUTING.md') document.
