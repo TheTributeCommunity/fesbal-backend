@@ -1,6 +1,8 @@
+import { UUID } from '@boostercloud/framework-types'
+
 export class RecipientUserNotFoundInFirebaseError extends Error {
-  constructor(userId: string) {
-    super(`The RecipientUser ${userId} was not found in firebase auth.`)
+  constructor(recipientUserId: UUID) {
+    super(`The RecipientUser ${recipientUserId} was not found in firebase auth.`)
     this.name = 'RecipientUserNotFoundInFirebaseError'
   }
 }
