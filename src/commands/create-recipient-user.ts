@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth-service'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RecipientUserNotFoundInFirebaseError } from '../common/recipient-user-not-registered-in-firebase-error'
 import { Recipient } from '../config/roles'
+import { RecipientUserRole } from '../common/recipient-user-role'
 
 @Command({
   authorize: 'all',
