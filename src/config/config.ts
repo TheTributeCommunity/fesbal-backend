@@ -4,12 +4,12 @@ import * as dotenv from 'dotenv'
 import { AuthService } from '../services/auth-service'
 import { RocketFilesUserConfiguration } from '@boostercloud/rocket-file-uploads-types'
 import { BoosterRocketFiles } from '@boostercloud/rocket-file-uploads-core'
-import { ConfigConstants } from '../common/ConfigConstants'
+import { ConfigConstants, RocketFilesConfigurationDefault } from '../common/config-constants'
 
 const rocketFilesConfigurationDefault: RocketFilesUserConfiguration = {
-  storageName: ConfigConstants.rocketFilesConfigurationDefault.storageName, // AWS S3 bucket name
+  storageName: RocketFilesConfigurationDefault.storageName, // AWS S3 bucket name
   containerName: '', // Not used in AWS
-  directories: ConfigConstants.rocketFilesConfigurationDefault.directories, // Root directories for your files
+  directories: RocketFilesConfigurationDefault.directories, // Root directories for your files
 }
 
 Booster.configure(ConfigConstants.environment.local, (config: BoosterConfig): void => {
