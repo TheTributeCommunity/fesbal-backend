@@ -11,27 +11,34 @@ Our purpose is, on the one hand, to develop a web application for entities and b
 
 There is a **huge opportunity** to improve the food access of many families in Spain and this could happen **thanks to your contribution.**
 
-## Getting started
+## Requirements 📋
 
-### Project setup
+1. Install [Node.js](https://nodejs.org/en) (v14.14 or higher)
+  · Windows -> Run `choco install nodejs`
+  · Linux -> Run `sudo apt install nodejs`
+  · Mac -> Run `brew install nodejs`
 
-To create a local instance of the backend, and connect to the frontend service, follow these steps:
-**Backend:**
+2. Install [Booster CLI](https://docs.boosterframework.com/getting-started/installation#installing-the-booster-cli):
+  · Run `npm install --global @boostercloud/cli`
 
-1. Clone the repo;
-2. Run `npm install` inside the root folder of the app;
-3. Replace the `config/config.ts` file with the `config/config-local.ts file`. This is teporary, but the config-local.ts file has the right code to create a local instance of the backend;
-4. Fill the fields inside the `.env.example` file, and rename it to `.env`. To get the data needed to fill this file, get in touch with one of the project managers;
-5. Run the backend server with `boost start -e local`.
+## Project setup 🛠️
 
-To connect the frontend project with the backend, do the following:
-**Frontend:**
+To start the booster backend locally, do the following:
 
-1. Inside the frontend app folder, open the `.env` file and change these two variables:
-1. Remove the `VITE_BACKEND_URL` variable;
-1. Remove the `VITE_BACKEND_WS` variable;
+1. Clone the repo
+2. Run `npm install` inside the root folder of the app
+3. Fill the fields inside the `.env.example` file, and rename it to `.env`. To get the data needed to fill this file, get in touch with one of the project managers;
+4. Start the backend server with `boost start -e local`.
 
-- Doing this will default the Backend URL to `http://localhost:3000/graphql` and the Backend WS URL to `wss://localhost:3000`
+## Getting started 🚀
+
+- You can check that the code compiles correctly by running the build command:
+  · `boost build`
+- You can clean the compiled code by running:
+  · `boost clean`
+- By default, the backend is running on port 3000. You can change this by using the `-p` option:
+  · `boost start -e local -p 8080`
+- All the graphql endpoints are available at `http://localhost:3000/graphql`
 
 ### Contributing
 
