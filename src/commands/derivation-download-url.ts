@@ -6,15 +6,14 @@ import { getUserId } from '../common/user-utils'
 
 @Command({
   authorize: 'all',
-  // TODO: add validations before: [],
 })
-export class DerivationUploadUrl {
+export class DerivationDownloadUrl {
   public constructor() {}
 
-  public static async handle(command: DerivationUploadUrl, register: Register): Promise<string> {
+  public static async handle(command: DerivationDownloadUrl, register: Register): Promise<string> {
     const boosterConfig = Booster.config
     const fileHandler = new FileHandler(boosterConfig, RocketFilesConfigurationDefault.storageName)
-    return await fileHandler.presignedPut(
+    return await fileHandler.presignedGet(
       RocketFilesConfigurationDefault.directories[0],
       `${getUserId(register)}/derivation.pdf`
     )
