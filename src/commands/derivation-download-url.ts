@@ -8,14 +8,15 @@ import { getUserId } from '../common/user-utils'
   authorize: 'all',
 })
 export class DerivationDownloadUrl {
-  public constructor() {}
+  public constructor(readonly filename: string) {}
 
   public static async handle(command: DerivationDownloadUrl, register: Register): Promise<string> {
     const boosterConfig = Booster.config
     const fileHandler = new FileHandler(boosterConfig, RocketFilesConfigurationDefault.storageName)
+
     return await fileHandler.presignedGet(
       RocketFilesConfigurationDefault.directories[0],
-      `${getUserId(register)}/derivation.pdf`
+      `${getUserId(register)}/${command.filename}`
     )
   }
 }

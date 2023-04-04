@@ -9,14 +9,16 @@ import { getUserId } from '../common/user-utils'
   // TODO: add validations before: [],
 })
 export class DerivationUploadUrl {
-  public constructor() {}
+  public constructor(readonly filename: string) {}
 
   public static async handle(command: DerivationUploadUrl, register: Register): Promise<string> {
     const boosterConfig = Booster.config
     const fileHandler = new FileHandler(boosterConfig, RocketFilesConfigurationDefault.storageName)
+    const timestamp = new Date().getTime()
+
     return await fileHandler.presignedPut(
       RocketFilesConfigurationDefault.directories[0],
-      `${getUserId(register)}/derivation.pdf`
+      `${getUserId(register)}/${timestamp}-${command.filename}`
     )
   }
 }
