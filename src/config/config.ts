@@ -17,7 +17,7 @@ Booster.configure(ConfigConstants.environment.local, (config: BoosterConfig): vo
 
   AuthService.initialize()
 
-  config.appName = ConfigConstants.appName
+  config.appName = `${ConfigConstants.appName}-local`
   config.providerPackage = '@boostercloud/framework-provider-local'
   config.tokenVerifiers = [
     new JwksUriTokenVerifier(
@@ -35,7 +35,7 @@ Booster.configure(ConfigConstants.environment.development, (config: BoosterConfi
   AuthService.initialize()
 
   config.assets = ['.env']
-  config.appName = ConfigConstants.appName
+  config.appName = `${ConfigConstants.appName}-dev`
   config.providerPackage = '@boostercloud/framework-provider-aws'
   config.tokenVerifiers = [
     new JwksUriTokenVerifier(
