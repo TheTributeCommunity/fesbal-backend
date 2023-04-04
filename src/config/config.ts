@@ -2,15 +2,22 @@ import { Booster, JwksUriTokenVerifier } from '@boostercloud/framework-core'
 import { BoosterConfig } from '@boostercloud/framework-types'
 import * as dotenv from 'dotenv'
 import { AuthService } from '../services/auth-service'
-import { UploadFileService } from '../services/upload-file-service'
+import { RocketFilesUserConfiguration } from '@boostercloud/rocket-file-uploads-types'
+import { BoosterRocketFiles } from '@boostercloud/rocket-file-uploads-core'
+import { ConfigConstants, RocketFilesConfigurationDefault } from '../common/config-constants'
 
-Booster.configure('local', (config: BoosterConfig): void => {
+const rocketFilesConfigurationDefault: RocketFilesUserConfiguration = {
+  storageName: RocketFilesConfigurationDefault.storageName, // AWS S3 bucket name
+  containerName: '', // Not used in AWS
+  directories: RocketFilesConfigurationDefault.directories, // Root directories for your files
+}
+
+Booster.configure(ConfigConstants.environment.local, (config: BoosterConfig): void => {
   dotenv.config()
 
   AuthService.initialize()
-  UploadFileService.initialize()
 
-  config.appName = 'fesbal-backend-local'
+  config.appName = `${ConfigConstants.appName}-local`
   config.providerPackage = '@boostercloud/framework-provider-local'
   config.tokenVerifiers = [
     new JwksUriTokenVerifier(
@@ -19,16 +26,16 @@ Booster.configure('local', (config: BoosterConfig): void => {
       'role'
     ),
   ]
+  config.rockets = [new BoosterRocketFiles(config, [rocketFilesConfigurationDefault]).rocketForLocal()]
 })
 
-Booster.configure('development', (config: BoosterConfig): void => {
+Booster.configure(ConfigConstants.environment.development, (config: BoosterConfig): void => {
   dotenv.config()
 
   AuthService.initialize()
-  UploadFileService.initialize()
 
   config.assets = ['.env']
-  config.appName = 'fesbal-backend-dev'
+  config.appName = `${ConfigConstants.appName}-dev`
   config.providerPackage = '@boostercloud/framework-provider-aws'
   config.tokenVerifiers = [
     new JwksUriTokenVerifier(
@@ -37,4 +44,5 @@ Booster.configure('development', (config: BoosterConfig): void => {
       'role'
     ),
   ]
+  config.rockets = [new BoosterRocketFiles(config, [rocketFilesConfigurationDefault]).rocketForAWS()]
 })
