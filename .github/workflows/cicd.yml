@@ -1,0 +1,11 @@
+name: Build and deploy project
+jobs:
+  booster-deploy:
+    name: Deploy main with booster
+    id: deploy
+    uses: santigamo/booster-deploy
+    with:
+      access-key: ${{ secrets.ACCESS_KEY }}
+      secret-key: ${{ secrets.SECRET_KEY }}
+      region: ${{ secrets.REGION }}
+      boost-env: ${{ secrets.BOOST_ENV }}
