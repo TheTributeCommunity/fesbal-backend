@@ -7,6 +7,7 @@ import { getUserId } from '../common/user-utils'
 export class PresignedPostResponse {
   public constructor(readonly url: string, readonly fields: { [key: string]: string }) {}
 }
+
 @Command({
   authorize: 'all',
   // TODO: add validations before: [],
