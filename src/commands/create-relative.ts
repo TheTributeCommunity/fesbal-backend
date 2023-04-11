@@ -31,5 +31,6 @@ export class CreateRelative {
       )
     )
     register.events(new RelativeAddedToRecipientUser(command.recipientUserId, command.relativeId))
+    await register.flush()
   }
 }
