@@ -6,17 +6,19 @@ import { getUserId } from '../common/user-utils'
 
 @Command({
   authorize: 'all',
+  // TODO: add validations before: [],
 })
-export class DerivationDownloadUrl {
+export class ReferralSheetUploadUrl {
   public constructor(readonly filename: string) {}
 
-  public static async handle(command: DerivationDownloadUrl, register: Register): Promise<string> {
+  public static async handle(command: ReferralSheetUploadUrl, register: Register): Promise<string> {
     const boosterConfig = Booster.config
     const fileHandler = new FileHandler(boosterConfig, RocketFilesConfigurationDefault.storageName)
+    const timestamp = new Date().getTime()
 
-    return await fileHandler.presignedGet(
+    return await fileHandler.presignedPut(
       RocketFilesConfigurationDefault.directories[0],
-      `${getUserId(register)}/${command.filename}`
+      `${getUserId(register)}/${timestamp}-${command.filename}`
     )
   }
 }

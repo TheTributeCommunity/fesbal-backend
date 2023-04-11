@@ -12,5 +12,5 @@ export const ConfigConstants = {
 export const RocketFilesConfigurationDefault: RocketFilesUserConfiguration = {
   storageName: 'fesbalst',
   containerName: '', // Not needed in AWS.
-  directories: ['derivations'],
+  directories: ['referral-sheet'],
 }

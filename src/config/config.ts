@@ -8,7 +8,7 @@ import { ConfigConstants, RocketFilesConfigurationDefault } from '../common/conf
 
 const rocketFilesConfigurationDefault: RocketFilesUserConfiguration = {
   storageName: RocketFilesConfigurationDefault.storageName, // AWS S3 bucket name
-  containerName: '', // Not used in AWS
+  containerName: 'local', // Not used in AWS
   directories: RocketFilesConfigurationDefault.directories, // Root directories for your files
 }
 
