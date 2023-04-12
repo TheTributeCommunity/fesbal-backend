@@ -8,19 +8,17 @@ export class RegistrationRequest {
   public constructor(
     readonly id: UUID,
     readonly recipientId: UUID,
+    readonly status: RegistrationRequestStatus,
     readonly referralSheet?: string,
-    readonly socialServiceAppointment?: string,
-    readonly status: RegistrationRequestStatus = RegistrationRequestStatus.Pending
+    readonly socialServiceAppointment?: string
   ) {}
 
   @Reduces(RegistrationRequestSent)
-  public static reduceRegistrationRequestCreated(
-    event: RegistrationRequestSent,
-    currentRegistrationRequest?: RegistrationRequest
-  ): RegistrationRequest {
+  public static reduceRegistrationRequestCreated(event: RegistrationRequestSent): RegistrationRequest {
     return new RegistrationRequest(
       event.registrationRequestId,
       event.recipientId,
+      RegistrationRequestStatus.Pending,
       event.referralSheet,
       event.socialServiceAppointment
     )
