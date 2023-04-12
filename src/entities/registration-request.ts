@@ -14,13 +14,25 @@ export class RegistrationRequest {
   ) {}
 
   @Reduces(RegistrationRequestSent)
-  public static reduceRegistrationRequestCreated(event: RegistrationRequestSent): RegistrationRequest {
-    return new RegistrationRequest(
-      event.registrationRequestId,
-      event.recipientId,
-      RegistrationRequestStatus.Pending,
-      event.referralSheet,
-      event.socialServiceAppointment
-    )
+  public static reduceRegistrationRequestCreated(
+    event: RegistrationRequestSent,
+    currentRegistrationRequest?: RegistrationRequest
+  ): RegistrationRequest {
+    if (!currentRegistrationRequest) {
+      return new RegistrationRequest(
+        event.registrationRequestId,
+        event.recipientId,
+        RegistrationRequestStatus.Pending,
+        event.referralSheet,
+        event.socialServiceAppointment
+      )
+    }
+
+    return {
+      ...currentRegistrationRequest,
+      status: RegistrationRequestStatus.Pending,
+      referralSheet: event.referralSheet,
+      socialServiceAppointment: event.socialServiceAppointment,
+    }
   }
 }
