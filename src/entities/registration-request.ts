@@ -1,28 +1,28 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
-import { RegistrationRequestCreated } from '../events/registration-request-created'
+import { RegistrationRequestSended as RegistrationRequestSent } from '../events/registration-request-sended'
 import { RegistrationRequestStatus } from '../common/registration-request-status'
 
 @Entity
 export class RegistrationRequest {
   public constructor(
     readonly id: UUID,
-    readonly recipientUserId: UUID,
-    readonly referralSheetPending: boolean,
-    readonly referralSheetSocialSecurityDate?: string,
+    readonly recipientId: UUID,
+    readonly referralSheet?: string,
+    readonly socialServiceAppointment?: string,
     readonly status: RegistrationRequestStatus = RegistrationRequestStatus.Pending
   ) {}
 
-  @Reduces(RegistrationRequestCreated)
+  @Reduces(RegistrationRequestSent)
   public static reduceRegistrationRequestCreated(
-    event: RegistrationRequestCreated,
+    event: RegistrationRequestSent,
     currentRegistrationRequest?: RegistrationRequest
   ): RegistrationRequest {
     return new RegistrationRequest(
       event.registrationRequestId,
-      event.recipientUserId,
-      event.referralSheetPending,
-      event.referralSheetSocialSecurityDate
+      event.recipientId,
+      event.referralSheet,
+      event.socialServiceAppointment
     )
   }
 }

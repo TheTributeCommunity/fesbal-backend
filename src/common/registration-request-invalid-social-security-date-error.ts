@@ -1,10 +1,10 @@
 import { UUID } from '@boostercloud/framework-types'
 
-export class RegistrationRequestInvalidSocialSecurityDateError extends Error {
+export class InvalidRegistrationRequestError extends Error {
   constructor(recipientUserId: UUID) {
     super(
-      `The RecipientUser ${recipientUserId} does not have a referralSheetUrl then referralSheetSocialSecurityDate property should be provided.`
+      `The registration request for user ${recipientUserId} is invalid. It must have either a referral sheet or a social service appointment.`
     )
-    this.name = 'RegistrationRequestInvalidSocialSecurityDateError'
+    this.name = 'InvalidRegistrationRequestError'
   }
 }
