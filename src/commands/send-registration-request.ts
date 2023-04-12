@@ -1,6 +1,6 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { RegistrationRequestSended } from '../events/registration-request-sended'
+import { RegistrationRequestSent } from '../events/registration-request-sent'
 import { InvalidRegistrationRequestError } from '../common/registration-request-invalid-social-security-date-error'
 import { getUserId } from '../common/user-utils'
 
@@ -21,7 +21,7 @@ export class SendRegistrationRequest {
     }
 
     register.events(
-      new RegistrationRequestSended(
+      new RegistrationRequestSent(
         command.registrationRequestId,
         recipientId,
         command.referralSheet || '',

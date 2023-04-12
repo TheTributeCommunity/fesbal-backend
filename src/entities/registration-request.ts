@@ -1,6 +1,6 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
-import { RegistrationRequestSended as RegistrationRequestSent } from '../events/registration-request-sended'
+import { RegistrationRequestSent as RegistrationRequestSent } from '../events/registration-request-sent'
 import { RegistrationRequestStatus } from '../common/registration-request-status'
 
 @Entity
