@@ -2,12 +2,12 @@ import { Event } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 
 @Event
-export class RegistrationRequestCreated {
+export class RegistrationRequestSent {
   public constructor(
     readonly registrationRequestId: UUID,
-    readonly recipientUserId: UUID,
-    readonly referralSheetPending: boolean,
-    readonly referralSheetSocialSecurityDate?: string
+    readonly recipientId: UUID,
+    readonly referralSheet?: string,
+    readonly socialServiceAppointment?: string
   ) {}
 
   public entityID(): UUID {

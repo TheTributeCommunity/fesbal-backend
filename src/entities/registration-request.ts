@@ -1,28 +1,38 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
-import { RegistrationRequestCreated } from '../events/registration-request-created'
+import { RegistrationRequestSent as RegistrationRequestSent } from '../events/registration-request-sent'
 import { RegistrationRequestStatus } from '../common/registration-request-status'
 
 @Entity
 export class RegistrationRequest {
   public constructor(
     readonly id: UUID,
-    readonly recipientUserId: UUID,
-    readonly referralSheetPending: boolean,
-    readonly referralSheetSocialSecurityDate?: string,
-    readonly status: RegistrationRequestStatus = RegistrationRequestStatus.Pending
+    readonly recipientId: UUID,
+    readonly status: RegistrationRequestStatus,
+    readonly referralSheet?: string,
+    readonly socialServiceAppointment?: string
   ) {}
 
-  @Reduces(RegistrationRequestCreated)
+  @Reduces(RegistrationRequestSent)
   public static reduceRegistrationRequestCreated(
-    event: RegistrationRequestCreated,
+    event: RegistrationRequestSent,
     currentRegistrationRequest?: RegistrationRequest
   ): RegistrationRequest {
-    return new RegistrationRequest(
-      event.registrationRequestId,
-      event.recipientUserId,
-      event.referralSheetPending,
-      event.referralSheetSocialSecurityDate
-    )
+    if (!currentRegistrationRequest) {
+      return new RegistrationRequest(
+        event.registrationRequestId,
+        event.recipientId,
+        RegistrationRequestStatus.Pending,
+        event.referralSheet,
+        event.socialServiceAppointment
+      )
+    }
+
+    return {
+      ...currentRegistrationRequest,
+      status: RegistrationRequestStatus.Pending,
+      referralSheet: event.referralSheet,
+      socialServiceAppointment: event.socialServiceAppointment,
+    }
   }
 }
