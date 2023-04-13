@@ -1,20 +1,20 @@
 import { Event } from '@boostercloud/framework-core'
-import { UUID } from '@boostercloud/framework-types'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 
 @Event
-export class RelativeCreated {
+export class RecipientCreated {
   public constructor(
-    readonly relativeId: UUID,
-    readonly recipientUserId: UUID,
+    readonly recipientId: string,
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
     readonly typeOfIdentityDocument: TypeOfIdentityDocument,
-    readonly identityDocumentNumber: string
+    readonly identityDocumentNumber: string,
+    readonly phone: string,
+    readonly email: string
   ) {}
 
-  public entityID(): UUID {
-    return this.relativeId
+  public entityID(): string {
+    return this.recipientId
   }
 }

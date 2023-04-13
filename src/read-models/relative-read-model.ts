@@ -23,7 +23,7 @@ export class RelativeReadModel {
   ): ProjectionResult<RelativeReadModel> {
     return new RelativeReadModel(
       entity.id,
-      entity.recipientUserId,
+      entity.recipientId,
       entity.firstName,
       entity.lastName,
       entity.dateOfBirth,

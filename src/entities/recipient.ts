@@ -1,14 +1,14 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
-import { RecipientUserCreated } from '../events/recipient-user-created'
+import { RecipientCreated } from '../events/recipient-created'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
-import { RecipientUserEmailUpdated } from '../events/recipient-user-email-updated'
+import { RecipientEmailUpdated as RecipientEmailUpdated } from '../events/recipient-email-updated'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
-import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-user-referral-sheet-url-updated'
+import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-referral-sheet-url-updated'
 
 @Entity
-export class RecipientUser {
+export class Recipient {
   public constructor(
     readonly id: UUID,
     readonly firstName: string,
@@ -24,47 +24,51 @@ export class RecipientUser {
     readonly deleted: boolean = false
   ) {}
 
-  private static createEmpty(): RecipientUser {
-    return new RecipientUser(UUID.generate(), '', '', '', TypeOfIdentityDocument.DNI, '', '0', false, '', [], '', true)
+  private static createEmpty(): Recipient {
+    return new Recipient(UUID.generate(), '', '', '', TypeOfIdentityDocument.DNI, '', '0', false, '', [], '', true)
   }
 
-  @Reduces(RecipientUserCreated)
-  public static reduceRecipientUserCreated(
-    event: RecipientUserCreated,
-    currentRecipientUser?: RecipientUser
-  ): RecipientUser {
-    return new RecipientUser(
-      event.recipientUserId,
-      event.firstName,
-      event.lastName,
-      event.dateOfBirth,
-      event.typeOfIdentityDocument,
-      event.identityDocumentNumber,
-      event.phone
-    )
-  }
-  @Reduces(RecipientUserEmailUpdated)
-  public static reduceRecipientUserEmailUpdated(
-    event: RecipientUserEmailUpdated,
-    currentRecipientUser?: RecipientUser
-  ): RecipientUser {
-    if (!currentRecipientUser) {
-      return RecipientUser.createEmpty()
+  @Reduces(RecipientCreated)
+  public static reduceRecipientCreated(event: RecipientCreated, currentRecipient?: Recipient): Recipient {
+    if (!currentRecipient) {
+      return new Recipient(
+        event.recipientId,
+        event.firstName,
+        event.lastName,
+        event.dateOfBirth,
+        event.typeOfIdentityDocument,
+        event.identityDocumentNumber,
+        event.phone
+      )
     }
 
     return {
-      ...currentRecipientUser,
+      ...currentRecipient,
+      firstName: event.firstName,
+      lastName: event.lastName,
+      dateOfBirth: event.dateOfBirth,
+      typeOfIdentityDocument: event.typeOfIdentityDocument,
+      identityDocumentNumber: event.identityDocumentNumber,
+      phone: event.phone,
+    }
+  }
+
+  @Reduces(RecipientEmailUpdated)
+  public static reduceRecipientEmailUpdated(event: RecipientEmailUpdated, currentRecipient?: Recipient): Recipient {
+    if (!currentRecipient) {
+      return Recipient.createEmpty()
+    }
+
+    return {
+      ...currentRecipient,
       email: event.email,
     }
   }
 
   @Reduces(RecipientUserDeleted)
-  public static reduceRecipientUserDeleted(
-    event: RecipientUserDeleted,
-    currentRecipientUser?: RecipientUser
-  ): RecipientUser {
+  public static reduceRecipientUserDeleted(event: RecipientUserDeleted, currentRecipientUser?: Recipient): Recipient {
     if (!currentRecipientUser) {
-      return RecipientUser.createEmpty()
+      return Recipient.createEmpty()
     }
 
     return {
@@ -76,10 +80,10 @@ export class RecipientUser {
   @Reduces(RelativeAddedToRecipientUser)
   public static reduceRelativeAddedToRecipientUser(
     event: RelativeAddedToRecipientUser,
-    currentRecipientUser?: RecipientUser
-  ): RecipientUser {
+    currentRecipientUser?: Recipient
+  ): Recipient {
     if (!currentRecipientUser) {
-      return RecipientUser.createEmpty()
+      return Recipient.createEmpty()
     }
     const relativesIds = currentRecipientUser.relativesIds ?? []
 
@@ -96,10 +100,10 @@ export class RecipientUser {
   @Reduces(RecipientUserReferralSheetUrlUpdated)
   public static reduceRecipientUserReferralSheetUpdated(
     event: RecipientUserReferralSheetUrlUpdated,
-    currentRecipientUser?: RecipientUser
-  ): RecipientUser {
+    currentRecipientUser?: Recipient
+  ): Recipient {
     if (!currentRecipientUser) {
-      return RecipientUser.createEmpty()
+      return Recipient.createEmpty()
     }
 
     return {

@@ -1,15 +1,13 @@
 import { ReadModel, Projects, Booster } from '@boostercloud/framework-core'
 import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework-types'
-import { RecipientUser } from '../entities/recipient-user'
-import { RecipientUserRole } from '../common/recipient-user-role'
-import { UserPending, UserRegistered, UserVerified } from '../common/roles'
+import { Recipient } from '../entities/recipient'
 import { RelativeReadModel } from './relative-read-model'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 
 @ReadModel({
-  authorize: [UserRegistered, UserPending, UserVerified],
+  authorize: 'all',
 })
-export class RecipientUserReadModel {
+export class RecipientReadModel {
   public constructor(
     public id: UUID,
     readonly firstName: string,
@@ -22,7 +20,6 @@ export class RecipientUserReadModel {
     readonly email: string | undefined,
     readonly relativesIds: Array<UUID> | undefined,
     readonly referralSheetUrl: string | undefined,
-    readonly role: RecipientUserRole,
     readonly deleted?: boolean
   ) {}
 
@@ -32,16 +29,13 @@ export class RecipientUserReadModel {
       .search() as Promise<RelativeReadModel[]>
   }
 
-  @Projects(RecipientUser, 'id')
-  public static projectRecipientUser(
-    entity: RecipientUser,
-    currentRecipientUserReadModel?: RecipientUserReadModel
-  ): ProjectionResult<RecipientUserReadModel> {
+  @Projects(Recipient, 'id')
+  public static projectRecipientUser(entity: Recipient): ProjectionResult<RecipientReadModel> {
     if (entity.deleted == true) {
       return ReadModelAction.Delete
     }
 
-    return new RecipientUserReadModel(
+    return new RecipientReadModel(
       entity.id,
       entity.firstName,
       entity.lastName,
@@ -52,8 +46,7 @@ export class RecipientUserReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheetUrl,
-      entity.role
+      entity.referralSheetUrl
     )
   }
 }

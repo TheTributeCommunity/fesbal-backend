@@ -7,13 +7,14 @@ import { RelativeCreated } from '../events/relative-created'
 export class Relative {
   public constructor(
     readonly id: UUID,
-    readonly recipientUserId: UUID,
+    readonly recipientId: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
     readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string
   ) {}
+
   @Reduces(RelativeCreated)
   public static reduceRelativeCreated(event: RelativeCreated, currentRelative?: Relative): Relative {
     return new Relative(
