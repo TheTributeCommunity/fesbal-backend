@@ -1,6 +1,6 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
-import { RecipientCreated } from '../events/recipient-created'
+import { RecipientCreated } from '../events/recipient/recipient-created'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
 import { RecipientEmailUpdated as RecipientEmailUpdated } from '../events/recipient-email-updated'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'

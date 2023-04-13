@@ -1,8 +1,8 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { RelativeCreated } from '../events/relative-created'
-import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
+import { TypeOfIdentityDocument } from '../../common/type-of-identity-document'
+import { RelativeCreated } from '../../events/relative-created'
+import { RelativeAddedToRecipientUser } from '../../events/relative-added-to-recipient-user'
 
 @Command({
   authorize: 'all',

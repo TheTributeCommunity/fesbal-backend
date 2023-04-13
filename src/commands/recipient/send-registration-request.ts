@@ -1,8 +1,8 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { RegistrationRequestSent } from '../events/registration-request-sent'
-import { InvalidRegistrationRequestError } from '../common/registration-request-invalid-social-security-date-error'
-import { getUserId } from '../common/user-utils'
+import { RegistrationRequestSent } from '../../events/registration-request-sent'
+import { InvalidRegistrationRequestError } from '../../common/registration-request-invalid-social-security-date-error'
+import { getUserId } from '../../common/user-utils'
 
 @Command({
   authorize: 'all',

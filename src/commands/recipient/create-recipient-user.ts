@@ -1,11 +1,11 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register } from '@boostercloud/framework-types'
-import { RecipientCreated as RecipientCreated } from '../events/recipient-created'
-import { AuthService } from '../services/auth-service'
-import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { RecipientUserNotFoundInFirebaseError as RecipientNotFoundInFirebaseError } from '../common/recipient-user-not-registered-in-firebase-error'
-import { UserRole } from '../common/user-role'
-import { getUserId } from '../common/user-utils'
+import { RecipientCreated as RecipientCreated } from '../../events/recipient/recipient-created'
+import { AuthService } from '../../services/auth-service'
+import { TypeOfIdentityDocument } from '../../common/type-of-identity-document'
+import { RecipientUserNotFoundInFirebaseError as RecipientNotFoundInFirebaseError } from '../../common/recipient-user-not-registered-in-firebase-error'
+import { UserRole } from '../../common/user-role'
+import { getUserId } from '../../common/user-utils'
 
 @Command({
   authorize: 'all',
