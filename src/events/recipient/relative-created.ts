@@ -1,6 +1,6 @@
 import { Event } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
-import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
+import { TypeOfIdentityDocument } from '../../common/type-of-identity-document'
 
 @Event
 export class RelativeCreated {
