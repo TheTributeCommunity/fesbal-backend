@@ -2,7 +2,7 @@ import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 import { RecipientCreated } from '../events/recipient-created'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
-import { RecipientUserEmailUpdated as RecipientEmailUpdated } from '../events/recipient-email-updated'
+import { RecipientEmailUpdated as RecipientEmailUpdated } from '../events/recipient-email-updated'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-referral-sheet-url-updated'
@@ -54,13 +54,13 @@ export class Recipient {
   }
 
   @Reduces(RecipientEmailUpdated)
-  public static reduceRecipientEmailUpdated(event: RecipientEmailUpdated, currentRecipientUser?: Recipient): Recipient {
-    if (!currentRecipientUser) {
+  public static reduceRecipientEmailUpdated(event: RecipientEmailUpdated, currentRecipient?: Recipient): Recipient {
+    if (!currentRecipient) {
       return Recipient.createEmpty()
     }
 
     return {
-      ...currentRecipientUser,
+      ...currentRecipient,
       email: event.email,
     }
   }
