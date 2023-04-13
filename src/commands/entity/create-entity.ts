@@ -1,7 +1,6 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register } from '@boostercloud/framework-types'
 import { EntityCreated } from '../../events/entity/entity-created'
-import { getUserId } from '../../common/user-utils'
 import { AuthService } from '../../services/auth-service'
 import { UserRole } from '../../common/user-role'
 
@@ -21,15 +20,19 @@ export class CreateEntity {
   ) {}
 
   public static async handle(command: CreateEntity, register: Register): Promise<void> {
-    const userId: string = getUserId(register)
-    await AuthService.setRole(userId, UserRole.Entity).catch((error) => {
+    const entityId = await AuthService.createUser(command.email, command.entityName).catch((error) => {
       console.log(error)
-      throw new Error('Entity not found in Firebase')
+      throw new Error('Error creating entity')
+    })
+
+    AuthService.setRole(entityId, UserRole.Entity).catch((error) => {
+      console.log(error)
+      throw new Error('Entity not found')
     })
 
     register.events(
       new EntityCreated(
-        userId,
+        entityId,
         command.entityName,
         command.entityCode,
         command.region,

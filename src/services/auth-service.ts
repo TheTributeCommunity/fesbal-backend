@@ -26,7 +26,22 @@ export class AuthService {
 
   public static async setRole(userId: string, role: UserRole): Promise<void> {
     if (this.projectId) {
-      return await getAuth().setCustomUserClaims(userId, { role: role })
+      await getAuth().setCustomUserClaims(userId, { role: role })
     }
+  }
+
+  public static async createUser(email: string, name: string): Promise<string> {
+    return getAuth()
+      .createUser({
+        email: email,
+        emailVerified: true,
+        password: 'demodemo1',
+        displayName: name,
+        disabled: false,
+      })
+      .then((userRecord) => {
+        console.log('Successfully created new user:', userRecord.uid)
+        return userRecord.uid
+      })
   }
 }
