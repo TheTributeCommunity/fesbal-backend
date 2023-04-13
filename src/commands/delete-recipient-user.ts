@@ -1,7 +1,7 @@
 import { Booster, Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
 import { RecipientUserDeleted } from '../events/recipient-user-deleted'
-import { RecipientUser } from '../entities/recipient-user'
+import { Recipient } from '../entities/recipient'
 import { RecipientUserNotFoundError } from '../common/recipient-user-not-found-error'
 
 @Command({
@@ -11,7 +11,7 @@ export class DeleteRecipientUser {
   public constructor(readonly recipientUserId: UUID) {}
 
   public static async handle(command: DeleteRecipientUser, register: Register): Promise<void> {
-    const currentRecipientUser = await Booster.entity(RecipientUser, command.recipientUserId)
+    const currentRecipientUser = await Booster.entity(Recipient, command.recipientUserId)
     if (!currentRecipientUser) {
       throw new RecipientUserNotFoundError(command.recipientUserId)
     }
