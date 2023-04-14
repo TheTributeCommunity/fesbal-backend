@@ -1,6 +1,6 @@
 import { Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-referral-sheet-url-updated'
+import { RecipientUserReferralSheetUrlUpdated } from '../../events/recipient/recipient-referral-sheet-url-updated'
 
 @Command({
   authorize: 'all',

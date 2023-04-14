@@ -1,8 +1,8 @@
 import { Booster, Command } from '@boostercloud/framework-core'
 import { Register } from '@boostercloud/framework-types'
 import { FileHandler } from '@boostercloud/rocket-file-uploads-core'
-import { RocketFilesConfigurationDefault } from '../common/config-constants'
-import { getUserId } from '../common/user-utils'
+import { RocketFilesConfigurationDefault } from '../../common/config-constants'
+import { getUserId } from '../../common/user-utils'
 
 export class PresignedPostResponse {
   public constructor(readonly url: string, readonly fields: { [key: string]: string }) {}

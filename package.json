@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "",
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.312.0",
     "@boostercloud/framework-common-helpers": "^1.7.0",
     "@boostercloud/framework-core": "^1.7.0",
     "@boostercloud/framework-provider-aws": "^1.7.0",
@@ -12,7 +13,6 @@
     "@boostercloud/rocket-file-uploads-core": "^1.2.0",
     "@boostercloud/rocket-file-uploads-local": "^1.2.0",
     "@boostercloud/rocket-file-uploads-types": "^1.2.0",
-    "aws-sdk": "^2.1295.0",
     "chai": "^4.3.7",
     "chai-as-promised": "^7.1.1",
     "dotenv": "^16.0.3",

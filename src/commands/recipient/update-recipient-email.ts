@@ -1,8 +1,8 @@
 import { Booster, Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { RecipientEmailUpdated as RecipientEmailUpdated } from '../events/recipient-email-updated'
-import { RecipientUserNotFoundError } from '../common/recipient-user-not-found-error'
-import { Recipient } from '../entities/recipient'
+import { RecipientUserNotFoundError } from '../../common/errors/recipient-user-not-found-error'
+import { Recipient } from '../../entities/recipient'
+import { RecipientEmailUpdated } from '../../events/recipient/recipient-email-updated'
 
 @Command({
   authorize: 'all',

@@ -49,4 +49,25 @@ export class RecipientReadModel {
       entity.referralSheetUrl
     )
   }
+
+  @Projects(Recipient, 'identityDocumentNumber')
+  public static projectRecipientUserByDocumentNumber(entity: Recipient): ProjectionResult<RecipientReadModel> {
+    if (entity.deleted == true) {
+      return ReadModelAction.Delete
+    }
+
+    return new RecipientReadModel(
+      entity.id,
+      entity.firstName,
+      entity.lastName,
+      entity.dateOfBirth,
+      entity.typeOfIdentityDocument,
+      entity.identityDocumentNumber,
+      entity.phone,
+      entity.phoneVerified,
+      entity.email,
+      entity.relativesIds,
+      entity.referralSheetUrl
+    )
+  }
 }

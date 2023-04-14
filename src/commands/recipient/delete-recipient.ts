@@ -1,8 +1,8 @@
 import { Booster, Command } from '@boostercloud/framework-core'
 import { Register, UUID } from '@boostercloud/framework-types'
-import { RecipientUserDeleted } from '../events/recipient-user-deleted'
-import { Recipient } from '../entities/recipient'
-import { RecipientUserNotFoundError } from '../common/recipient-user-not-found-error'
+import { Recipient } from '../../entities/recipient'
+import { RecipientUserNotFoundError } from '../../common/errors/recipient-user-not-found-error'
+import { RecipientUserDeleted } from '../../events/recipient/recipient-user-deleted'
 
 @Command({
   authorize: 'all',

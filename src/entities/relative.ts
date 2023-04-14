@@ -1,7 +1,7 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { RelativeCreated } from '../events/relative-created'
+import { RelativeCreated } from '../events/recipient/relative-created'
 
 @Entity
 export class Relative {

@@ -1,11 +1,11 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
-import { RecipientCreated } from '../events/recipient-created'
-import { RecipientUserDeleted } from '../events/recipient-user-deleted'
-import { RecipientEmailUpdated as RecipientEmailUpdated } from '../events/recipient-email-updated'
+import { RecipientCreated } from '../events/recipient/recipient-created'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { RelativeAddedToRecipientUser } from '../events/relative-added-to-recipient-user'
-import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient-referral-sheet-url-updated'
+import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updated'
+import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
+import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
+import { RelativeAddedToRecipientUser } from '../events/recipient/relative-added-to-recipient-user'
 
 @Entity
 export class Recipient {
