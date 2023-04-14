@@ -6,6 +6,8 @@ import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updat
 import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
 import { RelativeAddedToRecipientUser } from '../events/recipient/relative-added-to-recipient-user'
+import { Entity as FesbalEntity } from './entity'
+import { PickUp } from './pick-up'
 
 @Entity
 export class Recipient {
@@ -21,7 +23,10 @@ export class Recipient {
     readonly email?: string,
     readonly relativesIds?: Array<UUID>,
     readonly referralSheetUrl?: string,
-    readonly deleted: boolean = false
+    readonly deleted: boolean = false,
+    readonly entity?: FesbalEntity,
+    readonly pickUps?: Array<PickUp>,
+    readonly lastPickUp?: PickUp
   ) {}
 
   private static createEmpty(): Recipient {
