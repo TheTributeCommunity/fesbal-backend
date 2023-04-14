@@ -21,7 +21,7 @@ export class HandleEntityCreation {
         <li>Dirección: ${event.address}</li>
         <li>Contacto: ${event.contactPerson}</li>
         <li>Teléfono: ${event.phone}</li>
-        <li>Capacidad de almacenamiento: ${event.storingCapacity}</li>
+        <li>Capacidad de almacenamiento: ${event.storingCapacity}m2</li>
       </ul>
       <p>Puedes iniciar sesion con las siguientes credenciales:</p>
       <ul>

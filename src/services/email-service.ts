@@ -1,5 +1,4 @@
-import { SESV2 } from 'aws-sdk'
-import { SendEmailRequest, SendEmailResponse } from 'aws-sdk/clients/sesv2'
+import { SESClient, SendEmailCommand, SendEmailResponse } from '@aws-sdk/client-ses'
 
 export interface EmailRequest {
   to: string
@@ -9,39 +8,41 @@ export interface EmailRequest {
 }
 
 export class EmailService {
-  private static ses: SESV2
+  private static client: SESClient
   private static CHARSET_UTF8 = 'UTF-8'
 
   public static initialize(): void {
-    this.ses = new SESV2({
+    this.client = new SESClient({
       region: process.env.AWS_REGION,
     })
   }
 
   public static async send(request: EmailRequest): Promise<string> {
-    const params: SendEmailRequest = {
+    const email: SendEmailCommand = new SendEmailCommand({
       Destination: {
         ToAddresses: [request.to],
       },
-      Content: {
-        Simple: {
-          Body: {
-            Html: {
-              Data: request.body,
-              Charset: this.CHARSET_UTF8,
-            },
-          },
-          Subject: {
-            Data: request.subject,
+      Message: {
+        Body: {
+          Html: {
             Charset: this.CHARSET_UTF8,
+            Data: request.body,
           },
         },
+        Subject: {
+          Charset: this.CHARSET_UTF8,
+          Data: request.subject,
+        },
       },
-      FromEmailAddress: request.from,
+      Source: request.from,
+    })
+
+    try {
+      const response: SendEmailResponse = await this.client.send(email)
+      return response.MessageId ?? ''
+    } catch (error) {
+      console.error(error)
+      return ''
     }
-
-    const response: SendEmailResponse = await this.ses.sendEmail(params).promise()
-
-    return response.MessageId ?? ''
   }
 }
