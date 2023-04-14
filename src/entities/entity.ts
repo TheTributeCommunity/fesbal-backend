@@ -1,6 +1,7 @@
 import { Entity as EntityDecorator, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 import { EntityCreated } from '../events/entity/entity-created'
+import { EntityLoginSent } from '../events/entity/entity-login-sent'
 
 @EntityDecorator
 export class Entity {
@@ -15,6 +16,7 @@ export class Entity {
     readonly email: string,
     readonly phone: string,
     readonly storingCapacity: number,
+    readonly loginSent: boolean = false,
     readonly deleted: boolean = false
   ) {}
 
@@ -45,6 +47,18 @@ export class Entity {
       email: event.email,
       phone: event.phone,
       storingCapacity: event.storingCapacity,
+    }
+  }
+
+  @Reduces(EntityLoginSent)
+  public static reduceEntityLoginSent(event: EntityLoginSent, currentEntity?: Entity): Entity {
+    if (!currentEntity) {
+      throw new Error('Entity not found')
+    }
+
+    return {
+      ...currentEntity,
+      loginSent: true,
     }
   }
 }

@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth-service'
 import { RocketFilesUserConfiguration } from '@boostercloud/rocket-file-uploads-types'
 import { BoosterRocketFiles } from '@boostercloud/rocket-file-uploads-core'
 import { ConfigConstants, RocketFilesConfigurationDefault } from '../common/config-constants'
+import { EmailService } from '../services/email-service'
 
 const rocketFilesConfigurationDefault: RocketFilesUserConfiguration = {
   storageName: RocketFilesConfigurationDefault.storageName, // AWS S3 bucket name
@@ -16,6 +17,7 @@ Booster.configure(ConfigConstants.environment.local, (config: BoosterConfig): vo
   dotenv.config()
 
   AuthService.initialize()
+  EmailService.initialize()
 
   config.appName = `${ConfigConstants.appName}-local`
   config.providerPackage = '@boostercloud/framework-provider-local'
@@ -33,6 +35,7 @@ Booster.configure(ConfigConstants.environment.development, (config: BoosterConfi
   dotenv.config()
 
   AuthService.initialize()
+  EmailService.initialize()
 
   config.assets = ['.env']
   config.appName = `${ConfigConstants.appName}-dev`

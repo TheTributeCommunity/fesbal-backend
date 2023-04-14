@@ -20,7 +20,8 @@ export class CreateEntity {
   ) {}
 
   public static async handle(command: CreateEntity, register: Register): Promise<void> {
-    const entityId = await AuthService.createUser(command.email, command.entityName).catch((error) => {
+    const firstPassword = 'demodemo1'
+    const entityId = await AuthService.createUser(command.email, command.entityName, firstPassword).catch((error) => {
       console.log(error)
       throw new Error('Error creating entity')
     })
@@ -40,6 +41,7 @@ export class CreateEntity {
         command.contactPerson,
         command.email,
         command.phone,
+        firstPassword,
         command.storingCapacity || 0
       )
     )

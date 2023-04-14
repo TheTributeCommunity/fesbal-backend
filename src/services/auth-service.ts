@@ -30,12 +30,12 @@ export class AuthService {
     }
   }
 
-  public static async createUser(email: string, name: string): Promise<string> {
+  public static async createUser(email: string, name: string, password: string): Promise<string> {
     return getAuth()
       .createUser({
         email: email,
         emailVerified: true,
-        password: 'demodemo1',
+        password: password,
         displayName: name,
         disabled: false,
       })

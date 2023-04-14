@@ -12,6 +12,7 @@ export class EntityCreated {
     readonly contactPerson: string,
     readonly email: string,
     readonly phone: string,
+    readonly firstPassword: string,
     readonly storingCapacity: number
   ) {}
 
