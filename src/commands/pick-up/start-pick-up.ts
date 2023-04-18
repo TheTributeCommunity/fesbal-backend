@@ -6,10 +6,15 @@ import { PickUpStarted } from '../../events/pick-up/pick-up-started'
   authorize: 'all', // Specify authorized roles here. Use 'all' to authorize anyone
 })
 export class StartPickUp {
-  public constructor(readonly receiptId: UUID, readonly items: Map<string, string>) {}
+  public constructor(readonly receiptId: UUID) {}
 
-  public static async handle(command: StartPickUp, register: Register): Promise<void> {
+  public static async handle(command: StartPickUp, register: Register): Promise<UUID> {
     const pickUpId = UUID.generate()
-    register.events(new PickUpStarted(pickUpId, command.receiptId, 'entityId', command.items, new Date()))
+
+    //TODO: implement user validation
+
+    register.events(new PickUpStarted(pickUpId, command.receiptId, 'entityId', new Date()))
+
+    return pickUpId
   }
 }

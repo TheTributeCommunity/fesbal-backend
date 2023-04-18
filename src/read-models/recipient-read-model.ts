@@ -3,6 +3,9 @@ import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework
 import { Recipient } from '../entities/recipient'
 import { RelativeReadModel } from './relative-read-model'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
+import { Notification } from '../entities/notification'
+import { Entity } from '../entities/entity'
+import { PickUp } from '../entities/pick-up'
 
 @ReadModel({
   authorize: 'all',
@@ -20,6 +23,10 @@ export class RecipientReadModel {
     readonly email: string | undefined,
     readonly relativesIds: Array<UUID> | undefined,
     readonly referralSheetUrl: string | undefined,
+    readonly entity: Entity | undefined,
+    readonly pickUps: Array<PickUp> | undefined,
+    readonly lastPickUp: PickUp | undefined,
+    readonly notifications: Array<Notification> | undefined,
     readonly deleted?: boolean
   ) {}
 
@@ -46,7 +53,11 @@ export class RecipientReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheetUrl
+      entity.referralSheetUrl,
+      entity.entity,
+      entity.pickUps,
+      entity.lastPickUp,
+      entity.notifications
     )
   }
 
@@ -67,7 +78,11 @@ export class RecipientReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheetUrl
+      entity.referralSheetUrl,
+      entity.entity,
+      entity.pickUps,
+      entity.lastPickUp,
+      entity.notifications
     )
   }
 }

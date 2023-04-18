@@ -7,7 +7,9 @@ import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
 import { RelativeAddedToRecipientUser } from '../events/recipient/relative-added-to-recipient-user'
 import { Entity as FesbalEntity } from './entity'
-import { PickUp } from './pick-up'
+import { Notification } from './notification'
+import { SignRequested } from '../events/pick-up/sign-requested'
+import { PickUpAddedToRecipient } from '../events/pick-up/pick-up-added-to-recipient'
 
 @Entity
 export class Recipient {
@@ -25,8 +27,10 @@ export class Recipient {
     readonly referralSheetUrl?: string,
     readonly deleted: boolean = false,
     readonly entity?: FesbalEntity,
-    readonly pickUps?: Array<PickUp>,
-    readonly lastPickUp?: PickUp
+    readonly pickUps: UUID[] = [],
+    readonly lastPickUp?: UUID,
+    readonly notifications: Notification[] = [],
+    readonly pendingSign: UUID[] = []
   ) {}
 
   private static createEmpty(): Recipient {
@@ -114,6 +118,34 @@ export class Recipient {
     return {
       ...currentRecipientUser,
       referralSheetUrl: event.referralSheetUrl,
+    }
+  }
+
+  @Reduces(SignRequested)
+  public static reducesSignRequested(event: SignRequested, currentRecipientUser?: Recipient): Recipient {
+    if (!currentRecipientUser) {
+      return Recipient.createEmpty()
+    }
+
+    return {
+      ...currentRecipientUser,
+      pendingSign: [...currentRecipientUser.pendingSign, event.pickUpId],
+    }
+  }
+
+  @Reduces(PickUpAddedToRecipient)
+  public static reducesPickUpAddedToRecipient(
+    event: PickUpAddedToRecipient,
+    currentRecipientUser?: Recipient
+  ): Recipient {
+    if (!currentRecipientUser) {
+      return Recipient.createEmpty()
+    }
+
+    return {
+      ...currentRecipientUser,
+      pickUps: [...currentRecipientUser.pickUps, event.pickUpId],
+      lastPickUp: event.pickUpId,
     }
   }
 }
