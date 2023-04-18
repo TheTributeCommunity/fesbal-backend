@@ -3,6 +3,7 @@ import { UUID } from '@boostercloud/framework-types'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RelativeCreated } from '../events/relative/relative-created'
 import { RelativeDeleted } from '../events/relative/relative-deleted'
+import { RelativeUpdated } from '../events/relative/relative-updated'
 
 @Entity
 export class Relative {
@@ -30,6 +31,22 @@ export class Relative {
       event.typeOfIdentityDocument,
       event.identityDocumentNumber
     )
+  }
+
+  @Reduces(RelativeUpdated)
+  public static reduceRelativeUpdated(event: RelativeUpdated, currentRelative?: Relative): Relative {
+    if (!currentRelative) {
+      return Relative.relativeNotFound
+    }
+
+    return {
+      ...currentRelative,
+      firstName: event.firstName ?? currentRelative.firstName,
+      lastName: event.lastName ?? currentRelative.lastName,
+      dateOfBirth: event.dateOfBirth ?? currentRelative.dateOfBirth,
+      typeOfIdentityDocument: event.typeOfIdentityDocument ?? currentRelative.typeOfIdentityDocument,
+      identityDocumentNumber: event.identityDocumentNumber ?? currentRelative.identityDocumentNumber,
+    }
   }
 
   @Reduces(RelativeDeleted)
