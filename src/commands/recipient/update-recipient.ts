@@ -28,11 +28,11 @@ export class UpdateRecipient {
       throw new Error('Recipient not found')
     }
 
-    if (command.email && recipient?.email !== command.email) {
+    if (command.email && recipient.email !== command.email) {
       await AuthService.updateUserEmail(recipientId, command.email)
     }
 
-    if (command.phone && recipient?.phone !== command.phone) {
+    if (command.phone && recipient.phone !== command.phone) {
       await AuthService.updateUserPhone(recipientId, command.phone)
     }
 
