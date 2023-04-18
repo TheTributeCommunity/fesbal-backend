@@ -20,7 +20,7 @@ export class RecipientReadModel {
     readonly email: string | undefined,
     readonly relativesIds: Array<UUID> | undefined,
     readonly referralSheetUrl: string | undefined,
-    readonly deleted?: boolean
+    readonly deleted: boolean | false
   ) {}
 
   public get relatives(): Promise<RelativeReadModel[] | undefined> {
@@ -46,7 +46,8 @@ export class RecipientReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheetUrl
+      entity.referralSheetUrl,
+      entity.deleted
     )
   }
 
@@ -67,7 +68,8 @@ export class RecipientReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheetUrl
+      entity.referralSheetUrl,
+      entity.deleted
     )
   }
 }
