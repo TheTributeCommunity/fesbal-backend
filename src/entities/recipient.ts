@@ -40,7 +40,12 @@ export class Recipient {
         event.dateOfBirth,
         event.typeOfIdentityDocument,
         event.identityDocumentNumber,
-        event.phone
+        event.phone,
+        true,
+        event.email,
+        [],
+        undefined,
+        false
       )
     }
 
@@ -52,6 +57,7 @@ export class Recipient {
       typeOfIdentityDocument: event.typeOfIdentityDocument,
       identityDocumentNumber: event.identityDocumentNumber,
       phone: event.phone,
+      email: event.email,
     }
   }
 
