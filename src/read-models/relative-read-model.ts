@@ -1,5 +1,5 @@
 import { Projects, ReadModel } from '@boostercloud/framework-core'
-import { ProjectionResult, UUID } from '@boostercloud/framework-types'
+import { ProjectionResult, ReadModelAction, UUID } from '@boostercloud/framework-types'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { Relative } from '../entities/relative'
 
@@ -21,6 +21,10 @@ export class RelativeReadModel {
     entity: Relative,
     currentRelativeReadModel?: RelativeReadModel
   ): ProjectionResult<RelativeReadModel> {
+    if (entity.isDeleted) {
+      return ReadModelAction.Delete
+    }
+
     return new RelativeReadModel(
       entity.id,
       entity.recipientId,

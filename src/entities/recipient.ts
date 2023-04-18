@@ -5,7 +5,8 @@ import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updated'
 import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
-import { RelativeAddedToRecipientUser } from '../events/recipient/relative-added-to-recipient-user'
+import { RelativeAddedToRecipientUser } from '../events/relative/relative-added-to-recipient-user'
+import { RelativeDeletedFromRecipient } from '../events/relative/relative-deleted-from-recipient'
 
 @Entity
 export class Recipient {
@@ -19,13 +20,13 @@ export class Recipient {
     readonly phone: string,
     readonly phoneVerified: boolean = true,
     readonly email?: string,
-    readonly relativesIds?: Array<UUID>,
+    readonly relativesIds?: UUID[],
     readonly referralSheetUrl?: string,
     readonly deleted: boolean = false
   ) {}
 
   private static createEmpty(): Recipient {
-    return new Recipient(UUID.generate(), '', '', '', TypeOfIdentityDocument.DNI, '', '0', false, '', [], '', true)
+    return new Recipient(new UUID(0), '', '', '', TypeOfIdentityDocument.DNI, '', '0', false, '', [], '', true)
   }
 
   @Reduces(RecipientCreated)
@@ -109,6 +110,28 @@ export class Recipient {
     return {
       ...currentRecipientUser,
       referralSheetUrl: event.referralSheetUrl,
+    }
+  }
+
+  @Reduces(RelativeDeletedFromRecipient)
+  public static reduceRelativeDeletedFromRecipient(
+    event: RelativeDeletedFromRecipient,
+    currentRecipientUser?: Recipient
+  ): Recipient {
+    if (!currentRecipientUser) {
+      return Recipient.createEmpty()
+    }
+
+    const relativesIds = currentRecipientUser.relativesIds ?? []
+    const relativeIndex = relativesIds.indexOf(event.relativeId)
+
+    if (relativeIndex > -1) {
+      relativesIds.splice(relativeIndex, 1)
+    }
+
+    return {
+      ...currentRecipientUser,
+      relativesIds: relativesIds,
     }
   }
 }
