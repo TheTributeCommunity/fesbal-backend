@@ -5,6 +5,7 @@ import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updated'
 import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
+import { RecipientUpdated } from '../events/recipient/recipient-updated'
 import { RelativeAddedToRecipientUser } from '../events/relative/relative-added-to-recipient-user'
 import { RelativeDeletedFromRecipient } from '../events/relative/relative-deleted-from-recipient'
 
@@ -51,6 +52,24 @@ export class Recipient {
       typeOfIdentityDocument: event.typeOfIdentityDocument,
       identityDocumentNumber: event.identityDocumentNumber,
       phone: event.phone,
+    }
+  }
+
+  @Reduces(RecipientUpdated)
+  public static reduceRecipientUpdated(event: RecipientUpdated, currentRecipient?: Recipient): Recipient {
+    if (!currentRecipient) {
+      return Recipient.createEmpty()
+    }
+
+    return {
+      ...currentRecipient,
+      firstName: event.firstName ?? currentRecipient.firstName,
+      lastName: event.lastName ?? currentRecipient.lastName,
+      dateOfBirth: event.dateOfBirth ?? currentRecipient.dateOfBirth,
+      typeOfIdentityDocument: event.typeOfIdentityDocument ?? currentRecipient.typeOfIdentityDocument,
+      identityDocumentNumber: event.identityDocumentNumber ?? currentRecipient.identityDocumentNumber,
+      phone: event.phone ?? currentRecipient.phone,
+      email: event.email ?? currentRecipient.email,
     }
   }
 
