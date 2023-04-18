@@ -11,7 +11,7 @@ export class RecipientCreated {
     readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
     readonly phone: string,
-    readonly email: string
+    readonly email?: string
   ) {}
 
   public entityID(): string {
