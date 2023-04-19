@@ -14,11 +14,15 @@ export class CreateRelative {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
-    readonly typeOfIdentityDocument: TypeOfIdentityDocument,
-    readonly identityDocumentNumber: string
+    readonly typeOfIdentityDocument?: TypeOfIdentityDocument,
+    readonly identityDocumentNumber?: string
   ) {}
 
   public static async handle(command: CreateRelative, register: Register): Promise<void> {
+    if (this.getAge(command.dateOfBirth) < 18 && !command.typeOfIdentityDocument) {
+      throw new Error('If you are above 18 years old, you must register a identity document number')
+    }
+
     register.events(
       new RelativeCreated(
         command.relativeId,
@@ -32,5 +36,15 @@ export class CreateRelative {
     )
     register.events(new RelativeAddedToRecipientUser(command.recipientUserId, command.relativeId))
     await register.flush()
+  }
+
+  private static getAge = (birthDate: string): number => {
+    const now = new Date()
+    const birth = new Date(birthDate)
+    let age = now.getFullYear() - birth.getFullYear()
+    if (now.getMonth() < birth.getMonth() || now.getDate() < birth.getDate()) {
+      age--
+    }
+    return age
   }
 }
