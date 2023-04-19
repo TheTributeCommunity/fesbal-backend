@@ -38,6 +38,13 @@ export class CreateRelative {
     await register.flush()
   }
 
-  private static getAge = (birthDate: string): number =>
-    Math.floor((new Date().getTime() - new Date(birthDate).getTime()) / 3.15576e10)
+  private static getAge = (birthDate: string): number => {
+    const now = new Date()
+    const birth = new Date(birthDate)
+    let age = now.getFullYear() - birth.getFullYear()
+    if (now.getMonth() < birth.getMonth() || now.getDate() < birth.getDate()) {
+      age--
+    }
+    return age
+  }
 }
