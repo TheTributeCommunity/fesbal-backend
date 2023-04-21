@@ -6,8 +6,6 @@ import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updat
 import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
 import { RelativeAddedToRecipientUser } from '../events/relative/relative-added-to-recipient-user'
-import { Entity as FesbalEntity } from './entity'
-import { Notification } from './notification'
 import { SignRequested } from '../events/pick-up/sign-requested'
 import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
 import { RecipientUpdated } from '../events/recipient/recipient-updated'
@@ -24,14 +22,13 @@ export class Recipient {
     readonly phone: string,
     readonly phoneVerified: boolean = true,
     readonly email?: string,
-    readonly relativesIds?: UUID[],
+    readonly relativesIds: UUID[] = [],
     readonly referralSheetUrl?: string,
-    readonly deleted: boolean = false,
-    readonly entity?: FesbalEntity,
-    readonly pickUps: UUID[] = [],
-    readonly lastPickUp?: UUID,
-    readonly notifications: Notification[] = [],
-    readonly pendingSign: UUID[] = []
+    readonly isDeleted: boolean = false,
+    readonly entityId?: UUID,
+    readonly pickUpsIds: UUID[] = [],
+    readonly notificationsIds: UUID[] = [],
+    readonly pendingSignsId: UUID[] = []
   ) {}
 
   private static createEmpty(): Recipient {
@@ -107,7 +104,7 @@ export class Recipient {
 
     return {
       ...currentRecipientUser,
-      deleted: true,
+      isDeleted: true,
     }
   }
 
@@ -154,7 +151,7 @@ export class Recipient {
 
     return {
       ...currentRecipientUser,
-      pendingSign: [...currentRecipientUser.pendingSign, event.pickUpId],
+      pendingSignsId: [...currentRecipientUser.pendingSignsId, event.pickUpId],
     }
   }
 
@@ -164,10 +161,16 @@ export class Recipient {
       return Recipient.createEmpty()
     }
 
+    const pendingSignsId = currentRecipientUser.pendingSignsId ?? []
+
+    if (pendingSignsId.includes(event.pickUpId)) {
+      pendingSignsId.splice(pendingSignsId.indexOf(event.pickUpId), 1)
+    }
+
     return {
       ...currentRecipientUser,
-      pickUps: [...currentRecipientUser.pickUps, event.pickUpId],
-      lastPickUp: event.pickUpId,
+      pickUpsIds: [...currentRecipientUser.pickUpsIds, event.pickUpId],
+      pendingSignsId: pendingSignsId,
     }
   }
 }

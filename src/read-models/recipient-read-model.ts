@@ -3,8 +3,8 @@ import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework
 import { Recipient } from '../entities/recipient'
 import { RelativeReadModel } from './relative-read-model'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { Entity } from '../entities/entity'
 import { PickUpReadModel } from './pick-up-read-model'
+import { EntityReadModel } from './entity-read-model'
 
 @ReadModel({
   authorize: 'all',
@@ -20,12 +20,12 @@ export class RecipientReadModel {
     readonly phone: string,
     readonly phoneVerified: boolean,
     readonly email: string | undefined,
-    readonly relativesIds: Array<UUID> | undefined,
+    private relativesIds: Array<UUID> | undefined,
     readonly referralSheetUrl: string | undefined,
-    readonly entity: Entity | undefined,
-    readonly pickUpsIds: Array<UUID> | undefined,
-    readonly lastPickUp: UUID | undefined,
-    readonly pendingSign: UUID[] = [],
+    private entityId: UUID | undefined,
+    private pickUpsIds: Array<UUID> | undefined,
+    readonly notificationsIds: UUID[] | undefined,
+    readonly pendingSignsIds: UUID[] = [],
     readonly deleted: boolean | false
   ) {}
 
@@ -41,9 +41,21 @@ export class RecipientReadModel {
       .search() as Promise<PickUpReadModel[]>
   }
 
+  public get entity(): Promise<EntityReadModel[] | undefined> {
+    return Booster.readModel(EntityReadModel)
+      .filter({ id: { eq: this.entityId } })
+      .search() as Promise<EntityReadModel[]>
+  }
+
+  // public get notifications(): Promise<NotificationReadModel[] | undefined> {
+  //   return Booster.readModel(NotificationReadModel)
+  //     .filter({ id: { in: this.notificationsIds ?? [] } })
+  //     .search() as Promise<NotificationReadModel[]>
+  // }
+
   @Projects(Recipient, 'id')
   public static projectRecipientUser(entity: Recipient): ProjectionResult<RecipientReadModel> {
-    if (entity.deleted == true) {
+    if (entity.isDeleted == true) {
       return ReadModelAction.Delete
     }
 
@@ -59,17 +71,17 @@ export class RecipientReadModel {
       entity.email,
       entity.relativesIds,
       entity.referralSheetUrl,
-      entity.entity,
-      entity.pickUps,
-      entity.lastPickUp,
-      entity.pendingSign,
-      entity.deleted
+      entity.entityId,
+      entity.pickUpsIds,
+      entity.pendingSignsId,
+      entity.notificationsIds,
+      entity.isDeleted
     )
   }
 
   @Projects(Recipient, 'identityDocumentNumber')
   public static projectRecipientUserByDocumentNumber(entity: Recipient): ProjectionResult<RecipientReadModel> {
-    if (entity.deleted == true) {
+    if (entity.isDeleted == true) {
       return ReadModelAction.Delete
     }
 
@@ -85,11 +97,11 @@ export class RecipientReadModel {
       entity.email,
       entity.relativesIds,
       entity.referralSheetUrl,
-      entity.entity,
-      entity.pickUps,
-      entity.lastPickUp,
-      entity.pendingSign,
-      entity.deleted
+      entity.entityId,
+      entity.pickUpsIds,
+      entity.notificationsIds,
+      entity.pendingSignsId,
+      entity.isDeleted
     )
   }
 }
