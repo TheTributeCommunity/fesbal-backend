@@ -3,6 +3,7 @@ import { Register, UUID } from '@boostercloud/framework-types'
 import { RecipientUserNotFoundError } from '../../common/errors/recipient-user-not-found-error'
 import { Recipient } from '../../entities/recipient'
 import { RecipientEmailUpdated } from '../../events/recipient/recipient-email-updated'
+import { AuthService } from '../../services/auth-service'
 
 @Command({
   authorize: 'all',
@@ -15,6 +16,8 @@ export class UpdateRecipientEmail {
     if (!currentRecipientUser) {
       throw new RecipientUserNotFoundError(command.recipientId)
     }
+
+    await AuthService.updateUserEmail(currentRecipientUser.id.toString(), command.email)
 
     register.events(new RecipientEmailUpdated(command.recipientId, command.email))
   }

@@ -26,7 +26,7 @@ export class RecipientReadModel {
     readonly pickUpsIds: Array<UUID> | undefined,
     readonly lastPickUp: UUID | undefined,
     readonly pendingSign: UUID[] = [],
-    readonly deleted?: boolean
+    readonly deleted: boolean | false
   ) {}
 
   public get relatives(): Promise<RelativeReadModel[] | undefined> {
@@ -62,7 +62,8 @@ export class RecipientReadModel {
       entity.entity,
       entity.pickUps,
       entity.lastPickUp,
-      entity.pendingSign
+      entity.pendingSign,
+      entity.deleted
     )
   }
 
@@ -87,7 +88,8 @@ export class RecipientReadModel {
       entity.entity,
       entity.pickUps,
       entity.lastPickUp,
-      entity.pendingSign
+      entity.pendingSign,
+      entity.deleted
     )
   }
 }

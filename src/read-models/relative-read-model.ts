@@ -13,20 +13,19 @@ export class RelativeReadModel {
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
-    readonly typeOfIdentityDocument: TypeOfIdentityDocument,
-    readonly identityDocumentNumber: string
+    readonly isDeleted: boolean,
+    readonly typeOfIdentityDocument?: TypeOfIdentityDocument,
+    readonly identityDocumentNumber?: string
   ) {}
   @Projects(Relative, 'id')
-  public static projectRelative(
-    entity: Relative,
-    currentRelativeReadModel?: RelativeReadModel
-  ): ProjectionResult<RelativeReadModel> {
+  public static projectRelative(entity: Relative): ProjectionResult<RelativeReadModel> {
     return new RelativeReadModel(
       entity.id,
       entity.recipientId,
       entity.firstName,
       entity.lastName,
       entity.dateOfBirth,
+      entity.isDeleted,
       entity.typeOfIdentityDocument,
       entity.identityDocumentNumber
     )

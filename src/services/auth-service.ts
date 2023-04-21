@@ -44,4 +44,31 @@ export class AuthService {
         return userRecord.uid
       })
   }
+
+  public static async updateUserPhone(userId: string, phone: string): Promise<void> {
+    return getAuth()
+      .updateUser(userId, {
+        phoneNumber: phone,
+      })
+      .then(() => {
+        console.log('Successfully updated user')
+      })
+      .catch((error) => {
+        console.log('Error updating user phone:', error)
+      })
+  }
+
+  public static async updateUserEmail(userId: string, email: string): Promise<void> {
+    return getAuth()
+      .updateUser(userId, {
+        email: email,
+        emailVerified: true,
+      })
+      .then(() => {
+        console.log('Successfully updated user')
+      })
+      .catch((error) => {
+        console.log('Error updating user email:', error)
+      })
+  }
 }
