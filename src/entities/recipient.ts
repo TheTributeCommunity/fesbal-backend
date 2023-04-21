@@ -9,7 +9,7 @@ import { RelativeAddedToRecipientUser } from '../events/recipient/relative-added
 import { Entity as FesbalEntity } from './entity'
 import { Notification } from './notification'
 import { SignRequested } from '../events/pick-up/sign-requested'
-import { PickUpAddedToRecipient } from '../events/pick-up/pick-up-added-to-recipient'
+import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
 
 @Entity
 export class Recipient {
@@ -133,11 +133,8 @@ export class Recipient {
     }
   }
 
-  @Reduces(PickUpAddedToRecipient)
-  public static reducesPickUpAddedToRecipient(
-    event: PickUpAddedToRecipient,
-    currentRecipientUser?: Recipient
-  ): Recipient {
+  @Reduces(RecipientPickUpDone)
+  public static reducesPickUpAddedToRecipient(event: RecipientPickUpDone, currentRecipientUser?: Recipient): Recipient {
     if (!currentRecipientUser) {
       return Recipient.createEmpty()
     }

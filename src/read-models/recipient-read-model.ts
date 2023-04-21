@@ -3,9 +3,8 @@ import { UUID, ProjectionResult, ReadModelAction } from '@boostercloud/framework
 import { Recipient } from '../entities/recipient'
 import { RelativeReadModel } from './relative-read-model'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
-import { Notification } from '../entities/notification'
 import { Entity } from '../entities/entity'
-import { PickUp } from '../entities/pick-up'
+import { PickUpReadModel } from './pick-up-read-model'
 
 @ReadModel({
   authorize: 'all',
@@ -24,9 +23,9 @@ export class RecipientReadModel {
     readonly relativesIds: Array<UUID> | undefined,
     readonly referralSheetUrl: string | undefined,
     readonly entity: Entity | undefined,
-    readonly pickUps: Array<PickUp> | undefined,
-    readonly lastPickUp: PickUp | undefined,
-    readonly notifications: Array<Notification> | undefined,
+    readonly pickUpsIds: Array<UUID> | undefined,
+    readonly lastPickUp: UUID | undefined,
+    readonly pendingSign: UUID[] = [],
     readonly deleted?: boolean
   ) {}
 
@@ -34,6 +33,12 @@ export class RecipientReadModel {
     return Booster.readModel(RelativeReadModel)
       .filter({ id: { in: this.relativesIds ?? [] } })
       .search() as Promise<RelativeReadModel[]>
+  }
+
+  public get pickUps(): Promise<PickUpReadModel[] | undefined> {
+    return Booster.readModel(PickUpReadModel)
+      .filter({ id: { in: this.pickUpsIds ?? [] } })
+      .search() as Promise<PickUpReadModel[]>
   }
 
   @Projects(Recipient, 'id')
@@ -57,7 +62,7 @@ export class RecipientReadModel {
       entity.entity,
       entity.pickUps,
       entity.lastPickUp,
-      entity.notifications
+      entity.pendingSign
     )
   }
 
@@ -82,7 +87,7 @@ export class RecipientReadModel {
       entity.entity,
       entity.pickUps,
       entity.lastPickUp,
-      entity.notifications
+      entity.pendingSign
     )
   }
 }

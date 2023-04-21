@@ -2,10 +2,10 @@ import { Event } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 
 @Event
-export class PickUpAddedToRecipient {
-  public constructor(readonly pickUpId: UUID, readonly recipientId: UUID) {}
+export class EntityDeliveryDone {
+  public constructor(readonly entityId: UUID, readonly pickUpId: UUID) {}
 
   public entityID(): UUID {
-    return this.recipientId
+    return this.entityId
   }
 }

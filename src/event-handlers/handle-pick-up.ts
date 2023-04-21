@@ -4,7 +4,8 @@ import { PickUpSubmitted } from '../events/pick-up/pick-up-submitted'
 import { PickUp } from '../entities/pick-up'
 import { SignRequested } from '../events/pick-up/sign-requested'
 import { PickUpSigned } from '../events/pick-up/pick-up-signed'
-import { PickUpAddedToRecipient } from '../events/pick-up/pick-up-added-to-recipient'
+import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
+import { EntityDeliveryDone } from '../events/pick-up/entity-delivery-done'
 
 @EventHandler(PickUpSubmitted)
 export class HandlePickUpSubmitted {
@@ -14,7 +15,7 @@ export class HandlePickUpSubmitted {
       throw new Error('PickUp not found')
     }
 
-    register.events(new SignRequested(event.pickUpId, pickUp.receiptId))
+    register.events(new SignRequested(pickUp.receiptId, event.pickUpId))
   }
 }
 
@@ -26,7 +27,7 @@ export class HandlePickUpSigned {
       throw new Error('PickUp not found')
     }
 
-    register.events(new PickUpAddedToRecipient(event.pickUpId, event.recipientId))
-    //TODO: Add event to update entity pickUps
+    register.events(new RecipientPickUpDone(event.recipientId, event.pickUpId))
+    register.events(new EntityDeliveryDone(pickUp.entityId, event.pickUpId))
   }
 }

@@ -2,6 +2,7 @@ import { Entity as EntityDecorator, Reduces } from '@boostercloud/framework-core
 import { UUID } from '@boostercloud/framework-types'
 import { EntityCreated } from '../events/entity/entity-created'
 import { EntityLoginSent } from '../events/entity/entity-login-sent'
+import { EntityDeliveryDone } from '../events/pick-up/entity-delivery-done'
 
 @EntityDecorator
 export class Entity {
@@ -17,8 +18,11 @@ export class Entity {
     readonly phone: string,
     readonly storingCapacity: number,
     readonly loginSent: boolean = false,
+    readonly deliveries: UUID[] = [],
     readonly deleted: boolean = false
   ) {}
+
+  static entityNotFound = new Entity(new UUID(0), '', '', '', '', '', '', '', '', 0, false, [], true)
 
   @Reduces(EntityCreated)
   public static reduceEntityCreated(event: EntityCreated, currentEntity?: Entity): Entity {
@@ -53,12 +57,24 @@ export class Entity {
   @Reduces(EntityLoginSent)
   public static reduceEntityLoginSent(event: EntityLoginSent, currentEntity?: Entity): Entity {
     if (!currentEntity) {
-      throw new Error('Entity not found')
+      return Entity.entityNotFound
     }
 
     return {
       ...currentEntity,
       loginSent: true,
+    }
+  }
+
+  @Reduces(EntityDeliveryDone)
+  public static reduceEntityDeliveryDone(event: EntityDeliveryDone, currentEntity?: Entity): Entity {
+    if (!currentEntity) {
+      return Entity.entityNotFound
+    }
+
+    return {
+      ...currentEntity,
+      deliveries: [...currentEntity.deliveries, event.pickUpId],
     }
   }
 }
