@@ -5,6 +5,7 @@ import { RelativeReadModel } from './relative-read-model'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { PickUpReadModel } from './pick-up-read-model'
 import { EntityReadModel } from './entity-read-model'
+import { NotificationReadModel } from './notification-read-model'
 
 @ReadModel({
   authorize: 'all',
@@ -47,11 +48,11 @@ export class RecipientReadModel {
       .search() as Promise<EntityReadModel[]>
   }
 
-  // public get notifications(): Promise<NotificationReadModel[] | undefined> {
-  //   return Booster.readModel(NotificationReadModel)
-  //     .filter({ id: { in: this.notificationsIds ?? [] } })
-  //     .search() as Promise<NotificationReadModel[]>
-  // }
+  public get notifications(): Promise<NotificationReadModel[] | undefined> {
+    return Booster.readModel(NotificationReadModel)
+      .filter({ id: { in: this.notificationsIds ?? [] } })
+      .search() as Promise<NotificationReadModel[]>
+  }
 
   @Projects(Recipient, 'id')
   public static projectRecipientUser(entity: Recipient): ProjectionResult<RecipientReadModel> {

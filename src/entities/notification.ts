@@ -5,12 +5,12 @@ import { UUID } from '@boostercloud/framework-types'
 export class Notification {
   public constructor(
     public id: UUID,
-    readonly recipientId: UUID,
+    readonly userId: UUID,
     readonly title: string,
     readonly body: string,
-    readonly type: string,
     readonly read: boolean = false,
     readonly createdAt: Date,
-    readonly readAt?: Date
+    readonly readAt?: Date,
+    readonly isDeleted: boolean = false
   ) {}
 }
