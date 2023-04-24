@@ -5,9 +5,10 @@ import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updated'
 import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
 import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
-import { RecipientUpdated } from '../events/recipient/recipient-updated'
 import { RelativeAddedToRecipientUser } from '../events/relative/relative-added-to-recipient-user'
-import { RelativeDeletedFromRecipient } from '../events/relative/relative-deleted-from-recipient'
+import { SignRequested } from '../events/pick-up/sign-requested'
+import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
+import { RecipientUpdated } from '../events/recipient/recipient-updated'
 
 @Entity
 export class Recipient {
@@ -21,9 +22,13 @@ export class Recipient {
     readonly phone: string,
     readonly phoneVerified: boolean = true,
     readonly email?: string,
-    readonly relativesIds?: UUID[],
+    readonly relativesIds: UUID[] = [],
     readonly referralSheetUrl?: string,
-    readonly deleted: boolean = false
+    readonly isDeleted: boolean = false,
+    readonly entityId?: UUID,
+    readonly pickUpsIds: UUID[] = [],
+    readonly notificationsIds: UUID[] = [],
+    readonly pendingSignsId: UUID[] = []
   ) {}
 
   private static createEmpty(): Recipient {
@@ -99,7 +104,7 @@ export class Recipient {
 
     return {
       ...currentRecipientUser,
-      deleted: true,
+      isDeleted: true,
     }
   }
 
@@ -138,25 +143,34 @@ export class Recipient {
     }
   }
 
-  @Reduces(RelativeDeletedFromRecipient)
-  public static reduceRelativeDeletedFromRecipient(
-    event: RelativeDeletedFromRecipient,
-    currentRecipientUser?: Recipient
-  ): Recipient {
+  @Reduces(SignRequested)
+  public static reducesSignRequested(event: SignRequested, currentRecipientUser?: Recipient): Recipient {
     if (!currentRecipientUser) {
       return Recipient.createEmpty()
     }
 
-    const relativesIds = currentRecipientUser.relativesIds ?? []
-    const relativeIndex = relativesIds.indexOf(event.relativeId)
+    return {
+      ...currentRecipientUser,
+      pendingSignsId: [...currentRecipientUser.pendingSignsId, event.pickUpId],
+    }
+  }
 
-    if (relativeIndex > -1) {
-      relativesIds.splice(relativeIndex, 1)
+  @Reduces(RecipientPickUpDone)
+  public static reducesPickUpAddedToRecipient(event: RecipientPickUpDone, currentRecipientUser?: Recipient): Recipient {
+    if (!currentRecipientUser) {
+      return Recipient.createEmpty()
+    }
+
+    const pendingSignsId = currentRecipientUser.pendingSignsId ?? []
+
+    if (pendingSignsId.includes(event.pickUpId)) {
+      pendingSignsId.splice(pendingSignsId.indexOf(event.pickUpId), 1)
     }
 
     return {
       ...currentRecipientUser,
-      relativesIds: relativesIds,
+      pickUpsIds: [...currentRecipientUser.pickUpsIds, event.pickUpId],
+      pendingSignsId: pendingSignsId,
     }
   }
 }
