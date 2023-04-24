@@ -4,7 +4,7 @@ import { RecipientCreated } from '../events/recipient/recipient-created'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updated'
 import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
-import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
+import { RecipientReferralSheetUploaded } from '../events/recipient/recipient-referral-sheet-uploaded'
 import { RelativeAddedToRecipientUser } from '../events/relative/relative-added-to-recipient-user'
 import { SignRequested } from '../events/pick-up/sign-requested'
 import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
@@ -128,9 +128,9 @@ export class Recipient {
     }
   }
 
-  @Reduces(RecipientUserReferralSheetUrlUpdated)
+  @Reduces(RecipientReferralSheetUploaded)
   public static reduceRecipientUserReferralSheetUpdated(
-    event: RecipientUserReferralSheetUrlUpdated,
+    event: RecipientReferralSheetUploaded,
     currentRecipientUser?: Recipient
   ): Recipient {
     if (!currentRecipientUser) {
