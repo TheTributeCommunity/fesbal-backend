@@ -18,15 +18,19 @@ export class ReferralSheetUploadUrl {
 
   public static async handle(command: ReferralSheetUploadUrl, register: Register): Promise<PresignedPostResponse> {
     const recipientId = getUserId(register)
-    const boosterConfig = Booster.config
-    const fileHandler = new FileHandler(boosterConfig, RocketFilesConfigurationDefault.storageName)
-    const timestamp = new Date()
+    const fileHandler = new FileHandler(Booster.config, RocketFilesConfigurationDefault.storageName)
+    const timestamp = new Date().getTime()
+    const fileKey = `${timestamp}-${command.filename}`
 
-    register.events(new RecipientReferralSheetUploaded(recipientId, '', command.entityId, timestamp, command.endDate))
-
-    return (await fileHandler.presignedPut(
+    const response = (await fileHandler.presignedPut(
       RocketFilesConfigurationDefault.directories[0],
-      `${recipientId}/${timestamp.getTime()}-${command.filename}`
+      `${recipientId}/${fileKey}`
     )) as Promise<PresignedPostResponse>
+
+    register.events(
+      new RecipientReferralSheetUploaded(recipientId, fileKey, command.entityId, timestamp, command.endDate)
+    )
+
+    return response
   }
 }
