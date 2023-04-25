@@ -4,7 +4,7 @@ import { RecipientCreated } from '../events/recipient/recipient-created'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updated'
 import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
-import { RecipientUserReferralSheetUrlUpdated } from '../events/recipient/recipient-referral-sheet-url-updated'
+import { RecipientReferralSheetUploaded } from '../events/recipient/recipient-referral-sheet-uploaded'
 import { RelativeAddedToRecipientUser } from '../events/relative/relative-added-to-recipient-user'
 import { SignRequested } from '../events/pick-up/sign-requested'
 import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
@@ -24,6 +24,7 @@ export class Recipient {
     readonly email?: string,
     readonly relativesIds: UUID[] = [],
     readonly referralSheetUrl?: string,
+    readonly referralSheetEndsAt?: Date,
     readonly isDeleted: boolean = false,
     readonly entityId?: UUID,
     readonly pickUpsIds: UUID[] = [],
@@ -32,7 +33,21 @@ export class Recipient {
   ) {}
 
   private static createEmpty(): Recipient {
-    return new Recipient(new UUID(0), '', '', '', TypeOfIdentityDocument.DNI, '', '0', false, '', [], '', true)
+    return new Recipient(
+      new UUID(0),
+      '',
+      '',
+      '',
+      TypeOfIdentityDocument.DNI,
+      '',
+      '0',
+      false,
+      '',
+      [],
+      '',
+      undefined,
+      true
+    )
   }
 
   @Reduces(RecipientCreated)
@@ -49,6 +64,7 @@ export class Recipient {
         true,
         event.email,
         [],
+        undefined,
         undefined,
         false
       )
@@ -128,21 +144,6 @@ export class Recipient {
     }
   }
 
-  @Reduces(RecipientUserReferralSheetUrlUpdated)
-  public static reduceRecipientUserReferralSheetUpdated(
-    event: RecipientUserReferralSheetUrlUpdated,
-    currentRecipientUser?: Recipient
-  ): Recipient {
-    if (!currentRecipientUser) {
-      return Recipient.createEmpty()
-    }
-
-    return {
-      ...currentRecipientUser,
-      referralSheetUrl: event.referralSheetUrl,
-    }
-  }
-
   @Reduces(SignRequested)
   public static reducesSignRequested(event: SignRequested, currentRecipientUser?: Recipient): Recipient {
     if (!currentRecipientUser) {
@@ -171,6 +172,23 @@ export class Recipient {
       ...currentRecipientUser,
       pickUpsIds: [...currentRecipientUser.pickUpsIds, event.pickUpId],
       pendingSignsId: pendingSignsId,
+    }
+  }
+
+  @Reduces(RecipientReferralSheetUploaded)
+  public static reducesRecipientReferralSheetUploaded(
+    event: RecipientReferralSheetUploaded,
+    currentRecipient?: Recipient
+  ): Recipient {
+    if (!currentRecipient) {
+      return Recipient.createEmpty()
+    }
+
+    return {
+      ...currentRecipient,
+      referralSheetUrl: event.referralSheet,
+      referralSheetEndsAt: event.endDate,
+      entityId: event.entityId,
     }
   }
 }
