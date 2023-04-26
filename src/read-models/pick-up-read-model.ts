@@ -10,11 +10,11 @@ export class PickUpReadModel {
     readonly id: UUID,
     readonly recipientId: UUID,
     readonly entityId: UUID,
-    readonly items: string[] = [],
-    readonly startedAt: Date,
-    readonly endedAt?: Date,
+    readonly items: string[],
+    readonly startedAt: string,
+    readonly endedAt?: string,
     readonly signed: boolean = false,
-    readonly signDate?: Date
+    readonly signDate?: string
   ) {}
 
   @Projects(PickUp, 'id')
@@ -24,10 +24,10 @@ export class PickUpReadModel {
       entity.receiptId,
       entity.entityId,
       entity.items,
-      entity.startedAt,
-      entity.endedAt,
+      entity.startedAt.toDateString(),
+      entity.endedAt?.toDateString(),
       entity.signed,
-      entity.signDate
+      entity.signDate?.toDateString()
     )
   }
 }

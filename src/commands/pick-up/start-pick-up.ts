@@ -7,7 +7,7 @@ import { getUserId } from '../../common/user-utils'
   authorize: 'all', // Specify authorized roles here. Use 'all' to authorize anyone
 })
 export class StartPickUp {
-  public constructor(readonly receiptId: UUID) {}
+  public constructor(readonly recipientId: UUID) {}
 
   public static async handle(command: StartPickUp, register: Register): Promise<UUID> {
     const pickUpId = UUID.generate()
@@ -15,7 +15,7 @@ export class StartPickUp {
 
     //TODO: implement user validation
 
-    register.events(new PickUpStarted(pickUpId, command.receiptId, entityId, new Date()))
+    register.events(new PickUpStarted(pickUpId, command.recipientId, entityId, new Date()))
 
     return pickUpId
   }
