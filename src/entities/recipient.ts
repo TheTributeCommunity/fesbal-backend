@@ -9,6 +9,7 @@ import { RelativeAddedToRecipientUser } from '../events/relative/relative-added-
 import { SignRequested } from '../events/pick-up/sign-requested'
 import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
 import { RecipientUpdated } from '../events/recipient/recipient-updated'
+import { RecipientNotified } from '../events/notification/recipient-notified'
 
 @Entity
 export class Recipient {
@@ -189,6 +190,18 @@ export class Recipient {
       referralSheetUrl: event.referralSheet,
       referralSheetEndsAt: event.endDate,
       entityId: event.entityId,
+    }
+  }
+
+  @Reduces(RecipientNotified)
+  public static reducesRecipientNotified(event: RecipientNotified, currentRecipient?: Recipient): Recipient {
+    if (!currentRecipient) {
+      return Recipient.createEmpty()
+    }
+
+    return {
+      ...currentRecipient,
+      notificationsIds: [...currentRecipient.notificationsIds, event.notificationId],
     }
   }
 }
