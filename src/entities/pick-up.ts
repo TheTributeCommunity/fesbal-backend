@@ -41,7 +41,6 @@ export class PickUp {
     return {
       ...currentPickUp,
       items: event.items,
-      signed: true,
     }
   }
 
