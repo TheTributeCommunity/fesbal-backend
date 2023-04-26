@@ -1,6 +1,7 @@
 import { Entity, Reduces } from '@boostercloud/framework-core'
 import { UUID } from '@boostercloud/framework-types'
 import { NewNotification } from '../events/notification/new-notification'
+import { NotificationRead } from '../events/notification/notification-read'
 
 @Entity
 export class Notification {
@@ -15,6 +16,8 @@ export class Notification {
     readonly isDeleted: boolean = false
   ) {}
 
+  static notificationNotFound = new Notification(new UUID(0), new UUID(0), '', '', false, new Date(), new Date(), true)
+
   @Reduces(NewNotification)
   public static reduceNewNotification(event: NewNotification): Notification {
     return {
@@ -25,6 +28,19 @@ export class Notification {
       read: false,
       createdAt: event.createdAt,
       isDeleted: false,
+    }
+  }
+
+  @Reduces(NotificationRead)
+  public static reduceNotificationRead(event: NotificationRead, currentNotification?: Notification): Notification {
+    if (!currentNotification) {
+      return Notification.notificationNotFound
+    }
+
+    return {
+      ...currentNotification,
+      read: true,
+      readAt: event.readAt,
     }
   }
 }
