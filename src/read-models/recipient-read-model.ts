@@ -31,24 +31,40 @@ export class RecipientReadModel {
   ) {}
 
   public get relatives(): Promise<RelativeReadModel[] | undefined> {
+    if (this.relativesIds.length == 0) {
+      return Promise.resolve(undefined)
+    }
+
     return Booster.readModel(RelativeReadModel)
       .filter({ id: { in: this.relativesIds ?? [] } })
       .search() as Promise<RelativeReadModel[]>
   }
 
   public get pickUps(): Promise<PickUpReadModel[] | undefined> {
+    if (this.pickUpsIds.length == 0) {
+      return Promise.resolve(undefined)
+    }
+
     return Booster.readModel(PickUpReadModel)
       .filter({ id: { in: this.pickUpsIds ?? [] } })
       .search() as Promise<PickUpReadModel[]>
   }
 
   public get entity(): Promise<EntityReadModel[] | undefined> {
+    if (this.entityId == undefined) {
+      return Promise.resolve(undefined)
+    }
+
     return Booster.readModel(EntityReadModel)
       .filter({ id: { eq: this.entityId } })
       .search() as Promise<EntityReadModel[]>
   }
 
   public get notifications(): Promise<NotificationReadModel[] | undefined> {
+    if (this.notificationsIds.length == 0) {
+      return Promise.resolve(undefined)
+    }
+
     return Booster.readModel(NotificationReadModel)
       .filter({ id: { in: this.notificationsIds ?? [] } })
       .search() as Promise<NotificationReadModel[]>
@@ -74,8 +90,8 @@ export class RecipientReadModel {
       entity.referralSheetUrl,
       entity.entityId,
       entity.pickUpsIds,
-      entity.pendingSignsId,
       entity.notificationsIds,
+      entity.pendingSignsId,
       entity.isDeleted
     )
   }

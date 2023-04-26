@@ -25,12 +25,20 @@ export class EntityReadModel {
   ) {}
 
   public get notifications(): Promise<NotificationReadModel[] | undefined> {
+    if (this.notificationsIds.length == 0) {
+      return Promise.resolve(undefined)
+    }
+
     return Booster.readModel(NotificationReadModel)
       .filter({ id: { in: this.notificationsIds ?? [] } })
       .search() as Promise<NotificationReadModel[]>
   }
 
   public get deliveries(): Promise<PickUpReadModel[] | undefined> {
+    if (this.deliveriesIds.length == 0) {
+      return Promise.resolve(undefined)
+    }
+
     return Booster.readModel(PickUpReadModel)
       .filter({ id: { in: this.deliveriesIds ?? [] } })
       .search() as Promise<PickUpReadModel[]>
