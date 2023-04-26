@@ -12,13 +12,13 @@ export class PickUp {
     readonly receiptId: UUID,
     readonly entityId: UUID,
     readonly items: string[],
-    readonly startedAt: Date,
-    readonly endedAt?: Date,
+    readonly startedAt: number,
+    readonly endedAt?: number,
     readonly signed: boolean = false,
-    readonly signDate?: Date
+    readonly signDate?: number
   ) {}
 
-  static pickUpNotFound = new PickUp('', '', '', [], new Date())
+  static pickUpNotFound = new PickUp('', '', '', [], 0)
 
   @Reduces(PickUpStarted)
   public static reducePickUpStarted(event: PickUpStarted): PickUp {

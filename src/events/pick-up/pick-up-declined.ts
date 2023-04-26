@@ -7,7 +7,7 @@ export class PickUpDeclined {
     readonly pickUpId: UUID,
     readonly reason: string,
     readonly explanation: string,
-    readonly declinedAt: Date
+    readonly declinedAt: number
   ) {}
 
   public entityID(): UUID {

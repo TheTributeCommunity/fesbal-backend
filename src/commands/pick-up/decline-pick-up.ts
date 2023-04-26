@@ -17,7 +17,7 @@ export class DeclinePickUp {
     } else if (pickIp.endedAt) {
       throw new Error('PickUp already closed')
     }
-    register.events(new PickUpDeclined(command.pickUpId, command.reason, command.explanation, new Date()))
+    register.events(new PickUpDeclined(command.pickUpId, command.reason, command.explanation, new Date().getTime()))
     //TODO: maybe new event to update user
   }
 }

@@ -8,7 +8,7 @@ export class RecipientReferralSheetUploaded {
     readonly referralSheet: string,
     readonly entityId: UUID,
     readonly uploadedAt: number,
-    readonly endDate: Date
+    readonly endDate: number
   ) {}
 
   public entityID(): UUID {

@@ -32,7 +32,7 @@ export class RecipientReadModel {
 
   public get relatives(): Promise<RelativeReadModel[] | undefined> {
     if (this.relativesIds.length == 0) {
-      return Promise.resolve(undefined)
+      return Promise.resolve([])
     }
 
     return Booster.readModel(RelativeReadModel)
@@ -42,7 +42,7 @@ export class RecipientReadModel {
 
   public get pickUps(): Promise<PickUpReadModel[] | undefined> {
     if (this.pickUpsIds.length == 0) {
-      return Promise.resolve(undefined)
+      return Promise.resolve([])
     }
 
     return Booster.readModel(PickUpReadModel)
@@ -62,7 +62,7 @@ export class RecipientReadModel {
 
   public get notifications(): Promise<NotificationReadModel[] | undefined> {
     if (this.notificationsIds.length == 0) {
-      return Promise.resolve(undefined)
+      return Promise.resolve([])
     }
 
     return Booster.readModel(NotificationReadModel)

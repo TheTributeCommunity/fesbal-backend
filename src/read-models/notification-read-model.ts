@@ -11,8 +11,8 @@ export class NotificationReadModel {
     readonly title: string,
     readonly body: string,
     readonly read: boolean,
-    readonly createdAt: Date,
-    readonly readAt: Date | undefined,
+    readonly createdAt: number,
+    readonly readAt: number | undefined,
     readonly isDeleted: boolean
   ) {}
 

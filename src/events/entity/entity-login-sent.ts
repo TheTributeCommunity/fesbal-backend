@@ -7,7 +7,7 @@ export class EntityLoginSent {
     readonly entityId: UUID,
     readonly messageId: string,
     readonly email: string,
-    readonly sentAt: Date
+    readonly sentAt: number
   ) {}
 
   public entityID(): UUID {

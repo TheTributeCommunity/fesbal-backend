@@ -15,7 +15,7 @@ export class StartPickUp {
 
     //TODO: implement user validation
 
-    register.events(new PickUpStarted(pickUpId, command.recipientId, entityId, new Date()))
+    register.events(new PickUpStarted(pickUpId, command.recipientId, entityId, new Date().getTime()))
 
     return pickUpId
   }

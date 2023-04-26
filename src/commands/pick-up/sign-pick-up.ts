@@ -19,7 +19,7 @@ export class SignPickUp {
       throw new Error('PickUp already closed')
     }
 
-    register.events(new PickUpSigned(command.pickUpId, recipientId, new Date()))
+    register.events(new PickUpSigned(command.pickUpId, recipientId, new Date().getTime()))
     //TODO: maybe new event to update user
   }
 }
