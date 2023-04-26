@@ -18,11 +18,12 @@ export class Entity {
     readonly phone: string,
     readonly storingCapacity: number,
     readonly loginSent: boolean = false,
-    readonly deliveries: UUID[] = [],
+    readonly deliveriesIds: UUID[] = [],
+    readonly notificationsIds: UUID[] = [],
     readonly deleted: boolean = false
   ) {}
 
-  static entityNotFound = new Entity(new UUID(0), '', '', '', '', '', '', '', '', 0, false, [], true)
+  static entityNotFound = new Entity(new UUID(0), '', '', '', '', '', '', '', '', 0, false, [], [], true)
 
   @Reduces(EntityCreated)
   public static reduceEntityCreated(event: EntityCreated, currentEntity?: Entity): Entity {
@@ -74,7 +75,7 @@ export class Entity {
 
     return {
       ...currentEntity,
-      deliveries: [...currentEntity.deliveries, event.pickUpId],
+      deliveriesIds: [...currentEntity.deliveriesIds, event.pickUpId],
     }
   }
 }

@@ -21,12 +21,12 @@ export class RecipientReadModel {
     readonly phone: string,
     readonly phoneVerified: boolean,
     readonly email: string | undefined,
-    private relativesIds: Array<UUID> | undefined,
+    private relativesIds: UUID[],
     readonly referralSheetUrl: string | undefined,
     private entityId: UUID | undefined,
-    private pickUpsIds: Array<UUID> | undefined,
-    readonly notificationsIds: UUID[] | undefined,
-    readonly pendingSignsIds: UUID[] = [],
+    private pickUpsIds: UUID[],
+    private notificationsIds: UUID[],
+    readonly pendingSignsIds: UUID[],
     readonly deleted: boolean | false
   ) {}
 
