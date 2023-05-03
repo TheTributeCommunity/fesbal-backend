@@ -16,6 +16,7 @@ export class PickUpReadModel {
     readonly submittedAt?: number,
     readonly endedAt?: number,
     readonly signed: boolean = false,
+    readonly declined: boolean = false,
     readonly signDate?: number
   ) {}
 
@@ -31,6 +32,7 @@ export class PickUpReadModel {
       entity.submittedAt,
       entity.endedAt,
       entity.signed,
+      entity.declined,
       entity.signDate
     )
   }

@@ -7,17 +7,17 @@ import { PickUp } from '../../entities/pick-up'
   authorize: 'all', // Specify authorized roles here. Use 'all' to authorize anyone
 })
 export class DeclinePickUp {
-  public constructor(readonly pickUpId: UUID, readonly reason: string, readonly explanation: string) {}
+  public constructor(readonly pickUpId: UUID) {}
 
   public static async handle(command: DeclinePickUp, register: Register): Promise<void> {
     const pickIp = await Booster.entity(PickUp, command.pickUpId)
 
     if (!pickIp) {
-      throw new Error('PickUp not found')
+      throw new Error(`PickUp with id ${command.pickUpId} not found`)
     } else if (pickIp.endedAt) {
-      throw new Error('PickUp already closed')
+      throw new Error(`PickUp with id ${command.pickUpId} already closed`)
     }
-    register.events(new PickUpDeclined(command.pickUpId, command.reason, command.explanation, new Date().getTime()))
+    register.events(new PickUpDeclined(command.pickUpId, new Date().getTime()))
     //TODO: maybe new event to update user
   }
 }

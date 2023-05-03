@@ -17,6 +17,7 @@ export class PickUp {
     readonly submittedAt?: number,
     readonly endedAt?: number,
     readonly signed: boolean = false,
+    readonly declined: boolean = false,
     readonly signDate?: number
   ) {}
 
@@ -32,6 +33,7 @@ export class PickUp {
       recipientLastName: event.recipientLastName,
       startedAt: event.startedAt,
       signed: false,
+      declined: false,
     }
   }
 
@@ -69,7 +71,7 @@ export class PickUp {
 
     return {
       ...currentPickUp,
-      signed: false,
+      declined: true,
       endedAt: event.declinedAt,
     }
   }
