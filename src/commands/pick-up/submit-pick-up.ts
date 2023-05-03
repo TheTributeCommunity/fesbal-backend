@@ -6,9 +6,9 @@ import { PickUpSubmitted } from '../../events/pick-up/pick-up-submitted'
   authorize: 'all', // Specify authorized roles here. Use 'all' to authorize anyone
 })
 export class SubmitPickUp {
-  public constructor(readonly pickUpId: UUID, readonly items: string[]) {}
+  public constructor(readonly pickUpId: UUID) {}
 
   public static async handle(command: SubmitPickUp, register: Register): Promise<void> {
-    register.events(new PickUpSubmitted(command.pickUpId, command.items))
+    register.events(new PickUpSubmitted(command.pickUpId, Date.now()))
   }
 }

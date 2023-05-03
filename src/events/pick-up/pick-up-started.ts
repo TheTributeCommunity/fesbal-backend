@@ -5,8 +5,10 @@ import { UUID } from '@boostercloud/framework-types'
 export class PickUpStarted {
   public constructor(
     readonly pickUpId: UUID,
-    readonly receiptId: UUID,
     readonly entityId: UUID,
+    readonly recipientId: UUID,
+    readonly recipientFirstName: string,
+    readonly recipientLastName: string,
     readonly startedAt: number
   ) {}
 

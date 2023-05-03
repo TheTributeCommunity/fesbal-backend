@@ -8,25 +8,28 @@ import { PickUpDeclined } from '../events/pick-up/pick-up-declined'
 @Entity
 export class PickUp {
   public constructor(
-    public id: UUID,
-    readonly receiptId: UUID,
+    readonly id: UUID,
     readonly entityId: UUID,
-    readonly items: string[],
+    readonly recipientId: UUID,
+    readonly recipientFirstName: string,
+    readonly recipientLastName: string,
     readonly startedAt: number,
+    readonly submittedAt?: number,
     readonly endedAt?: number,
     readonly signed: boolean = false,
     readonly signDate?: number
   ) {}
 
-  static pickUpNotFound = new PickUp('', '', '', [], 0)
+  static pickUpNotFound = new PickUp('', '', '', '', '', 0)
 
   @Reduces(PickUpStarted)
   public static reducePickUpStarted(event: PickUpStarted): PickUp {
     return {
       id: event.pickUpId,
-      receiptId: event.receiptId,
       entityId: event.entityId,
-      items: [],
+      recipientId: event.recipientId,
+      recipientFirstName: event.recipientFirstName,
+      recipientLastName: event.recipientLastName,
       startedAt: event.startedAt,
       signed: false,
     }
@@ -40,7 +43,7 @@ export class PickUp {
 
     return {
       ...currentPickUp,
-      items: event.items,
+      submittedAt: event.submittedAt,
     }
   }
 

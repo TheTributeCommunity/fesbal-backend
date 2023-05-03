@@ -3,7 +3,7 @@ import { UUID } from '@boostercloud/framework-types'
 
 @Event
 export class PickUpSubmitted {
-  public constructor(readonly pickUpId: UUID, readonly items: string[]) {}
+  public constructor(readonly pickUpId: UUID, readonly submittedAt: number) {}
 
   public entityID(): UUID {
     return this.pickUpId
