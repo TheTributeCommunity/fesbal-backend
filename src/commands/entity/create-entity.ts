@@ -16,7 +16,9 @@ export class CreateEntity {
     readonly contactPerson: string,
     readonly email: string,
     readonly phone: string,
-    readonly storingCapacity?: number
+    readonly storingCapacity?: number,
+    readonly hasFridge?: boolean,
+    readonly hasFreezer?: boolean
   ) {}
 
   public static async handle(command: CreateEntity, register: Register): Promise<void> {
@@ -42,7 +44,9 @@ export class CreateEntity {
         command.email,
         command.phone,
         firstPassword,
-        command.storingCapacity || 0
+        command.storingCapacity || 0,
+        command.hasFridge || false,
+        command.hasFreezer || false
       )
     )
   }

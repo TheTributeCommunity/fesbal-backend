@@ -11,19 +11,20 @@ export class Entity {
     readonly entityName: string,
     readonly entityCode: string,
     readonly region: string,
-    readonly nextDelivery: string,
     readonly address: string,
     readonly contactPerson: string,
     readonly email: string,
     readonly phone: string,
     readonly storingCapacity: number,
+    readonly hasFridge: boolean = false,
+    readonly hasFreezer: boolean = false,
     readonly loginSent: boolean = false,
     readonly deliveriesIds: UUID[] = [],
     readonly notificationsIds: UUID[] = [],
     readonly deleted: boolean = false
   ) {}
 
-  static entityNotFound = new Entity(new UUID(0), '', '', '', '', '', '', '', '', 0, false, [], [], true)
+  static entityNotFound = new Entity(new UUID(0), '', '', '', '', '', '', '', 0, false, false, false, [], [], true)
 
   @Reduces(EntityCreated)
   public static reduceEntityCreated(event: EntityCreated, currentEntity?: Entity): Entity {
@@ -33,12 +34,13 @@ export class Entity {
         event.entityName,
         event.entityCode,
         event.region,
-        '',
         event.address,
         event.contactPerson,
         event.email,
         event.phone,
-        event.storingCapacity
+        event.storingCapacity,
+        event.hasFridge,
+        event.hasFreezer
       )
     }
 
