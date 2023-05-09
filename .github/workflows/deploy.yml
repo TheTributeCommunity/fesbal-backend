@@ -9,17 +9,20 @@ jobs:
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    defaults:
+      run:
+        working-directory: ./
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: '16.20'
+          node-version: 16.20
       
       - name: Install dependencies
         run: npm install
 
       - name: Install booster CLI app
-        run: npm install -g @boostercloud/cli
+        run: npm install -g @boostercloud/cli@1.7.0
 
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1.3
@@ -32,4 +35,4 @@ jobs:
           directory: ./
 
       - name: Deploy
-        run: booster deploy -e development
+        run: boost deploy -e development
