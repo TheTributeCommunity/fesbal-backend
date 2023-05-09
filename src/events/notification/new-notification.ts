@@ -9,8 +9,8 @@ export class NewNotification {
     readonly title: string,
     readonly body: string,
     readonly read: boolean = false,
-    readonly createdAt: Date,
-    readonly readAt?: Date,
+    readonly createdAt: number,
+    readonly readAt?: number,
     readonly isDeleted: boolean = false
   ) {}
 

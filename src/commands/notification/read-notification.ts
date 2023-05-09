@@ -16,6 +16,6 @@ export class ReadNotification {
       throw new Error('Notification not found')
     }
 
-    register.events(new NotificationRead(command.notificationId, new Date()))
+    register.events(new NotificationRead(command.notificationId, new Date().getTime()))
   }
 }

@@ -25,7 +25,7 @@ export class Recipient {
     readonly email?: string,
     readonly relativesIds: UUID[] = [],
     readonly referralSheetUrl?: string,
-    readonly referralSheetEndsAt?: Date,
+    readonly referralSheetEndsAt?: number,
     readonly isDeleted: boolean = false,
     readonly entityId?: UUID,
     readonly pickUpsIds: UUID[] = [],

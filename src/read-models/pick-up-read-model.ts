@@ -8,25 +8,31 @@ import { ProjectionResult, UUID } from '@boostercloud/framework-types'
 export class PickUpReadModel {
   public constructor(
     readonly id: UUID,
-    readonly recipientId: UUID,
     readonly entityId: UUID,
-    readonly items: string[] = [],
-    readonly startedAt: Date,
-    readonly endedAt?: Date,
+    readonly recipientId: UUID,
+    readonly recipientFirstName: string,
+    readonly recipientLastName: string,
+    readonly startedAt: number,
+    readonly submittedAt?: number,
+    readonly endedAt?: number,
     readonly signed: boolean = false,
-    readonly signDate?: Date
+    readonly declined: boolean = false,
+    readonly signDate?: number
   ) {}
 
   @Projects(PickUp, 'id')
   public static projectPickUp(entity: PickUp, currentPickUp?: PickUpReadModel): ProjectionResult<PickUpReadModel> {
     return new PickUpReadModel(
       entity.id,
-      entity.receiptId,
       entity.entityId,
-      entity.items,
+      entity.recipientId,
+      entity.recipientFirstName,
+      entity.recipientLastName,
       entity.startedAt,
+      entity.submittedAt,
       entity.endedAt,
       entity.signed,
+      entity.declined,
       entity.signDate
     )
   }

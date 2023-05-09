@@ -13,7 +13,9 @@ export class EntityCreated {
     readonly email: string,
     readonly phone: string,
     readonly firstPassword: string,
-    readonly storingCapacity: number
+    readonly storingCapacity: number,
+    readonly hasFridge: boolean,
+    readonly hasFreezer: boolean
   ) {}
 
   public entityID(): UUID {

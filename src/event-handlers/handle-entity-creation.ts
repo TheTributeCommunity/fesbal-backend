@@ -35,6 +35,6 @@ export class HandleEntityCreation {
       throw new Error('Error sending email')
     }
 
-    register.events(new EntityLoginSent(event.entityId, messageId, event.email, new Date()))
+    register.events(new EntityLoginSent(event.entityId, messageId, event.email, new Date().getTime()))
   }
 }

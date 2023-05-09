@@ -14,7 +14,7 @@ export class PresignedPostResponse {
   // TODO: add validations before: [],
 })
 export class ReferralSheetUploadUrl {
-  public constructor(readonly filename: string, readonly entityId: UUID, readonly endDate: Date) {}
+  public constructor(readonly filename: string, readonly entityId: UUID, readonly endDate: number) {}
 
   public static async handle(command: ReferralSheetUploadUrl, register: Register): Promise<PresignedPostResponse> {
     const recipientId = getUserId(register)

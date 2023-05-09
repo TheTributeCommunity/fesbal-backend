@@ -11,12 +11,12 @@ export class Notification {
     readonly title: string,
     readonly body: string,
     readonly read: boolean = false,
-    readonly createdAt: Date,
-    readonly readAt?: Date,
+    readonly createdAt: number,
+    readonly readAt?: number,
     readonly isDeleted: boolean = false
   ) {}
 
-  static notificationNotFound = new Notification(new UUID(0), new UUID(0), '', '', false, new Date(), new Date(), true)
+  static notificationNotFound = new Notification(new UUID(0), new UUID(0), '', '', false, 0, 0, true)
 
   @Reduces(NewNotification)
   public static reduceNewNotification(event: NewNotification): Notification {
