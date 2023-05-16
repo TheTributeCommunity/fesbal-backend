@@ -13,6 +13,8 @@ export class PickUp {
     readonly recipientId: UUID,
     readonly recipientFirstName: string,
     readonly recipientLastName: string,
+    readonly recipientIdentityDocumentNumber: string,
+    readonly recipientNumberOfRelatives: number,
     readonly startedAt: number,
     readonly submittedAt?: number,
     readonly endedAt?: number,
@@ -21,7 +23,7 @@ export class PickUp {
     readonly signDate?: number
   ) {}
 
-  static pickUpNotFound = new PickUp('', '', '', '', '', 0)
+  static pickUpNotFound = new PickUp('', '', '', '', '', '', 0, 0, 0, 0, false, false, 0)
 
   @Reduces(PickUpStarted)
   public static reducePickUpStarted(event: PickUpStarted): PickUp {
@@ -31,6 +33,8 @@ export class PickUp {
       recipientId: event.recipientId,
       recipientFirstName: event.recipientFirstName,
       recipientLastName: event.recipientLastName,
+      recipientIdentityDocumentNumber: event.recipientIdentityDocumentNumber,
+      recipientNumberOfRelatives: event.recipientNumberOfRelatives,
       startedAt: event.startedAt,
       signed: false,
       declined: false,

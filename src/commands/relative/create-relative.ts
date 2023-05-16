@@ -19,7 +19,7 @@ export class CreateRelative {
   ) {}
 
   public static async handle(command: CreateRelative, register: Register): Promise<void> {
-    if (this.getAge(command.dateOfBirth) < 18 && !command.typeOfIdentityDocument) {
+    if (this.getAge(command.dateOfBirth) >= 18 && !command.typeOfIdentityDocument) {
       throw new Error('If you are above 18 years old, you must register a identity document number')
     }
 

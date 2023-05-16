@@ -28,6 +28,8 @@ export class StartPickUp {
         command.recipientId,
         recipient.firstName,
         recipient.lastName,
+        recipient.identityDocumentNumber,
+        recipient.relativesIds.length,
         new Date().getTime()
       )
     )
