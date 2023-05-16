@@ -4,7 +4,7 @@ import { RecipientCreated } from '../events/recipient/recipient-created'
 import { TypeOfIdentityDocument } from '../common/type-of-identity-document'
 import { RecipientEmailUpdated } from '../events/recipient/recipient-email-updated'
 import { RecipientUserDeleted } from '../events/recipient/recipient-user-deleted'
-import { RecipientReferralSheetUploaded } from '../events/recipient/recipient-referral-sheet-uploaded'
+import { RecipientAddedReferralSheet } from '../events/recipient/recipient-added-referral-sheet'
 import { RelativeAddedToRecipientUser } from '../events/relative/relative-added-to-recipient-user'
 import { SignRequested } from '../events/pick-up/sign-requested'
 import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
@@ -24,8 +24,7 @@ export class Recipient {
     readonly phoneVerified: boolean = true,
     readonly email?: string,
     readonly relativesIds: UUID[] = [],
-    readonly referralSheetUrl?: string,
-    readonly referralSheetEndsAt?: number,
+    readonly referralSheetsIds: UUID[] = [],
     readonly isDeleted: boolean = false,
     readonly entityId?: UUID,
     readonly pickUpsIds: UUID[] = [],
@@ -45,9 +44,9 @@ export class Recipient {
       false,
       '',
       [],
-      '',
-      undefined,
-      true
+      [],
+      false,
+      undefined
     )
   }
 
@@ -65,9 +64,9 @@ export class Recipient {
         true,
         event.email,
         [],
-        undefined,
-        undefined,
-        false
+        [],
+        false,
+        undefined
       )
     }
 
@@ -176,9 +175,9 @@ export class Recipient {
     }
   }
 
-  @Reduces(RecipientReferralSheetUploaded)
-  public static reducesRecipientReferralSheetUploaded(
-    event: RecipientReferralSheetUploaded,
+  @Reduces(RecipientAddedReferralSheet)
+  public static reducesRecipientAddedReferralSheet(
+    event: RecipientAddedReferralSheet,
     currentRecipient?: Recipient
   ): Recipient {
     if (!currentRecipient) {
@@ -187,8 +186,7 @@ export class Recipient {
 
     return {
       ...currentRecipient,
-      referralSheetUrl: event.referralSheet,
-      referralSheetEndsAt: event.endDate,
+      referralSheetsIds: [...currentRecipient.referralSheetsIds, event.referralSheetId],
       entityId: event.entityId,
     }
   }

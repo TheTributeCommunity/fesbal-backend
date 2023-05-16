@@ -3,7 +3,9 @@ import { Register, UUID } from '@boostercloud/framework-types'
 import { FileHandler } from '@boostercloud/rocket-file-uploads-core'
 import { RocketFilesConfigurationDefault } from '../../common/config-constants'
 import { getUserId } from '../../common/user-utils'
-import { RecipientReferralSheetUploaded } from '../../events/recipient/recipient-referral-sheet-uploaded'
+import { RecipientAddedReferralSheet } from '../../events/recipient/recipient-added-referral-sheet'
+import { ReferralSheetStatus } from '../../common/referral-sheet-status'
+import { ReferralSheetUploaded } from '../../events/referral-sheet/referral-sheet-uploaded'
 
 export class PresignedPostResponse {
   public constructor(readonly url: string, readonly fields: { [key: string]: string }) {}
@@ -27,8 +29,19 @@ export class ReferralSheetUploadUrl {
       `${recipientId}/${fileKey}`
     )) as Promise<PresignedPostResponse>
 
+    const referralSheetId = UUID.generate()
+
     register.events(
-      new RecipientReferralSheetUploaded(recipientId, fileKey, command.entityId, timestamp, command.endDate)
+      new ReferralSheetUploaded(
+        referralSheetId,
+        fileKey,
+        ReferralSheetStatus.PendingValidation,
+        recipientId,
+        command.entityId,
+        timestamp,
+        command.endDate
+      ),
+      new RecipientAddedReferralSheet(recipientId, referralSheetId, command.entityId)
     )
 
     return response
