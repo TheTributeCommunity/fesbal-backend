@@ -79,6 +79,7 @@ export class Recipient {
       identityDocumentNumber: event.identityDocumentNumber,
       phone: event.phone,
       email: event.email,
+      referralSheetsIds: [],
     }
   }
 
