@@ -12,7 +12,7 @@ import { NotificationReadModel } from './notification-read-model'
 })
 export class RecipientReadModel {
   public constructor(
-    public id: UUID,
+    readonly id: UUID,
     readonly firstName: string,
     readonly lastName: string,
     readonly dateOfBirth: string,
@@ -22,7 +22,7 @@ export class RecipientReadModel {
     readonly phoneVerified: boolean,
     readonly email: string | undefined,
     private relativesIds: UUID[],
-    readonly referralSheetUrl: string | undefined,
+    readonly referralSheetsIds: UUID[],
     private entityId: UUID | undefined,
     private pickUpsIds: UUID[],
     private notificationsIds: UUID[],
@@ -87,7 +87,7 @@ export class RecipientReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheetUrl,
+      entity.referralSheetsIds,
       entity.entityId,
       entity.pickUpsIds,
       entity.notificationsIds,
@@ -113,7 +113,7 @@ export class RecipientReadModel {
       entity.phoneVerified,
       entity.email,
       entity.relativesIds,
-      entity.referralSheetUrl,
+      entity.referralSheetsIds,
       entity.entityId,
       entity.pickUpsIds,
       entity.notificationsIds,
