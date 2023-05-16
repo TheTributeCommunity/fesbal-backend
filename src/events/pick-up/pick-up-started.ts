@@ -9,6 +9,8 @@ export class PickUpStarted {
     readonly recipientId: UUID,
     readonly recipientFirstName: string,
     readonly recipientLastName: string,
+    readonly recipientIdentityDocumentNumber: string,
+    readonly recipientNumberOfRelatives: number,
     readonly startedAt: number
   ) {}
 
