@@ -10,6 +10,7 @@ import { SignRequested } from '../events/pick-up/sign-requested'
 import { RecipientPickUpDone } from '../events/pick-up/recipient-pick-up-done'
 import { RecipientUpdated } from '../events/recipient/recipient-updated'
 import { RecipientNotified } from '../events/notification/recipient-notified'
+import { RelativeDeletedFromRecipient } from '../events/relative/relative-deleted-from-recipient'
 
 @Entity
 export class Recipient {
@@ -17,7 +18,7 @@ export class Recipient {
     readonly id: UUID,
     readonly firstName: string,
     readonly lastName: string,
-    readonly dateOfBirth: string,
+    readonly dateOfBirth: number,
     readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
     readonly phone: string,
@@ -37,7 +38,7 @@ export class Recipient {
       new UUID(0),
       '',
       '',
-      '',
+      0,
       TypeOfIdentityDocument.DNI,
       '',
       '0',
@@ -136,6 +137,26 @@ export class Recipient {
 
     if (!relativesIds.includes(event.relativeId)) {
       relativesIds.push(event.relativeId)
+    }
+
+    return {
+      ...currentRecipientUser,
+      relativesIds: relativesIds,
+    }
+  }
+
+  @Reduces(RelativeDeletedFromRecipient)
+  public static reduceRelativeDeletedFromRecipientUser(
+    event: RelativeDeletedFromRecipient,
+    currentRecipientUser?: Recipient
+  ): Recipient {
+    if (!currentRecipientUser) {
+      return Recipient.createEmpty()
+    }
+    let relativesIds = currentRecipientUser.relativesIds ?? []
+
+    if (relativesIds.includes(event.relativeId)) {
+      relativesIds = relativesIds.filter((id) => id !== event.relativeId)
     }
 
     return {

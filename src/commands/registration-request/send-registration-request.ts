@@ -11,7 +11,7 @@ export class SendRegistrationRequest {
   public constructor(
     readonly registrationRequestId: UUID,
     readonly referralSheet?: string,
-    readonly socialServiceAppointment?: string
+    readonly socialServiceAppointment?: number
   ) {}
 
   public static async handle(command: SendRegistrationRequest, register: Register): Promise<void> {
@@ -25,7 +25,7 @@ export class SendRegistrationRequest {
         command.registrationRequestId,
         recipientId,
         command.referralSheet || '',
-        command.socialServiceAppointment || ''
+        command.socialServiceAppointment || 0
       )
     )
   }

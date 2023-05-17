@@ -13,7 +13,7 @@ export class CreateRelative {
     readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
-    readonly dateOfBirth: string,
+    readonly dateOfBirth: number,
     readonly typeOfIdentityDocument?: TypeOfIdentityDocument,
     readonly identityDocumentNumber?: string
   ) {}
@@ -38,7 +38,7 @@ export class CreateRelative {
     await register.flush()
   }
 
-  private static getAge = (birthDate: string): number => {
+  private static getAge = (birthDate: number): number => {
     const now = new Date()
     const birth = new Date(birthDate)
     let age = now.getFullYear() - birth.getFullYear()

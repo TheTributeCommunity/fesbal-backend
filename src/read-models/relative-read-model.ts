@@ -12,7 +12,7 @@ export class RelativeReadModel {
     readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
-    readonly dateOfBirth: string,
+    readonly dateOfBirth: number,
     readonly isDeleted: boolean,
     readonly typeOfIdentityDocument?: TypeOfIdentityDocument,
     readonly identityDocumentNumber?: string
