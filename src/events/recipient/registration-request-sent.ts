@@ -7,7 +7,7 @@ export class RegistrationRequestSent {
     readonly registrationRequestId: UUID,
     readonly recipientId: UUID,
     readonly referralSheet?: string,
-    readonly socialServiceAppointment?: string
+    readonly socialServiceAppointment?: number
   ) {}
 
   public entityID(): UUID {

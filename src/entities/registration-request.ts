@@ -10,7 +10,7 @@ export class RegistrationRequest {
     readonly recipientId: UUID,
     readonly status: RegistrationRequestStatus,
     readonly referralSheet?: string,
-    readonly socialServiceAppointment?: string
+    readonly socialServiceAppointment?: number
   ) {}
 
   @Reduces(RegistrationRequestSent)

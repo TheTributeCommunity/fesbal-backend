@@ -13,7 +13,7 @@ export class UpdateRecipient {
   public constructor(
     readonly firstName?: string,
     readonly lastName?: string,
-    readonly dateOfBirth?: string,
+    readonly dateOfBirth?: number,
     readonly typeOfIdentityDocument?: TypeOfIdentityDocument,
     readonly identityDocumentNumber?: string,
     readonly phone?: string,
