@@ -12,13 +12,13 @@ export class Relative {
     readonly recipientId: UUID,
     readonly firstName: string,
     readonly lastName: string,
-    readonly dateOfBirth: number,
+    readonly dateOfBirth: string,
     readonly typeOfIdentityDocument?: TypeOfIdentityDocument,
     readonly identityDocumentNumber?: string,
     readonly isDeleted: boolean = false
   ) {}
 
-  static relativeNotFound = new Relative(new UUID(0), new UUID(0), '', '', 0, TypeOfIdentityDocument.DNI, '', true)
+  static relativeNotFound = new Relative(new UUID(0), new UUID(0), '', '', '', TypeOfIdentityDocument.DNI, '', true)
 
   @Reduces(RelativeCreated)
   public static reduceRelativeCreated(event: RelativeCreated, currentRelative?: Relative): Relative {
