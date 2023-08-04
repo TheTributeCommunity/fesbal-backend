@@ -14,7 +14,7 @@ export class CreateRecipient {
   public constructor(
     readonly firstName: string,
     readonly lastName: string,
-    readonly dateOfBirth: number,
+    readonly dateOfBirth: string,
     readonly typeOfIdentityDocument: TypeOfIdentityDocument,
     readonly identityDocumentNumber: string,
     readonly phone: string,

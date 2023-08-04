@@ -9,7 +9,7 @@ export class RelativeCreated {
     readonly recipientUserId: UUID,
     readonly firstName: string,
     readonly lastName: string,
-    readonly dateOfBirth: number,
+    readonly dateOfBirth: string,
     readonly typeOfIdentityDocument?: TypeOfIdentityDocument,
     readonly identityDocumentNumber?: string
   ) {}
